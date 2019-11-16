@@ -108,6 +108,26 @@ Matrix get_T(Matrix mid1)
 	}
 	return mid2;
 }
+double* flatten(Matrix mid1)
+{
+	int size = mid1.row*mid1.col;
+	double balance[size];
+	double *p;
+	p = balance;
+	for ( int i = 0; i <size; i++ )
+	{
+		int index_x = i/mid1.col;
+		int index_y = i%mid1.col;
+		*(p+i) = mid1.matrix[index_x][index_y];
+//		cout << "*(p + " << i << ") : ";
+//		cout << *(p + i) <<" index_x: "<<index_x<<" index_y: "<<index_y<< endl;
+	}
+	return balance;
+}
+Matrix reshape(Matrix mid1)
+{
+
+}
 double matrix_sum(Matrix mid1)
 {
 	double sum = 0;

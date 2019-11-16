@@ -16,10 +16,11 @@ int main()
 	Matrix b = CreateMatrix(3,11);
 	cout<<"end"<<endl;
 	change_va(a,1,2,1);
-	change_va(a,0,1,9);
+	change_va(a,0,0,9);
 	change_va(a,0,2,2);
 	change_va(a,1,1,8);
 	start = clock();
+	cout<<*flatten(a)<<endl;
 	cout<<matrix_mean(a)<<endl;
 /*	add(a,b,1);
 	mul(a,b);
