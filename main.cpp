@@ -20,7 +20,7 @@ int main()
 	change_va(a,0,2,2);
 	change_va(a,1,1,8);
 	start = clock();
-	cout<<*flatten(a)<<endl;
+	cout<<*flatten(a)+1<<endl;
 	cout<<matrix_mean(a)<<endl;
 /*	add(a,b,1);
 	mul(a,b);
