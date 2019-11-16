@@ -1,9 +1,10 @@
 # Edge-Computing-Engine
-a computing engine base cpp
 
-# 矩阵定义：
+Description: a computing engine base cpp
 
-1. 创建矩阵，结构体的typedf
+## 矩阵定义：
+
+1. 创建矩阵,默认为1^n
 
 2. 动态分配内存，防止矩阵过大
 
@@ -11,17 +12,18 @@ a computing engine base cpp
 
 具体见文档,源代码.
 
-# 矩阵相乘：
+## 矩阵相乘：
 
 1. 查看数值顺序，给出不合理的问题
 2. 结果储存接口
+3. 矩阵均值,行列式
 
-# reshape操作
+## reshape操作
 
 1. 重新定义矩阵大小，支持flatten和reshape操作
 2. 拉伸变化后矩阵数值不变，方式：重定义
 
-# 更新某一个值
+## 更新某一个值
 
 1. 利用某个地址赋值方法，更新矩阵的值
 2. 实现更新单个或者多个
