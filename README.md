@@ -1,10 +1,6 @@
 # Edge-Computing-Engine
 
-**##Edge : 一个开源的科学计算引擎
-
-**
-
-Description: a computing engine base cpp
+##*Edge : 一个开源的科学计算引擎*
 
 ## 0.1 矩阵定义：
 
