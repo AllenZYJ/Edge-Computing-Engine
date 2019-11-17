@@ -146,6 +146,7 @@ double matrix_sum(Matrix mid1)
 
 double matrix_mean(Matrix mid1)
 
+
 一些细节:
 
 1. 创建矩阵,默认为1^n
@@ -159,9 +160,9 @@ double matrix_mean(Matrix mid1)
 
 # PS
 
-## 作者邮箱:zk@likedge.top
+ 作者邮箱:zk@likedge.top
 
-## 欢迎加入这个项目,一起完善内核。
+ 欢迎加入这个项目,一起完善内核。
 
-## QQ:2533524298
+ QQ:2533524298
 
