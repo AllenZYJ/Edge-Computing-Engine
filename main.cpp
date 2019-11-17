@@ -20,7 +20,6 @@ int main()
 	change_va(a,0,2,2);
 	change_va(a,1,1,8);
 	start = clock();
-	flatten(a);
 	Matrix rs = matrix_rs(a,2,6);
 	cout<<matrix_mean(a)<<endl;
 /*	add(a,b,1);

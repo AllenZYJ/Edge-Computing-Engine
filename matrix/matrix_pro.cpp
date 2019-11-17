@@ -119,6 +119,7 @@ double* flatten(Matrix mid1)
 		int index_x = i/mid1.col;
 		int index_y = i%mid1.col;
 		*(p+i) = mid1.matrix[index_x][index_y];
+		cout<<index_x<<","<<index_y<<*(p+i)<<endl;
 //		cout << "*(p + " << i << ") : ";
 //		cout << *(p + i) <<" index_x: "<<index_x<<" index_y: "<<index_y<< endl;
 	}
@@ -127,21 +128,33 @@ double* flatten(Matrix mid1)
 Matrix matrix_rs(Matrix mid1,int rs_row,int rs_col)
 {
 
+	int size = mid1.row*mid1.col;
+	double balance[size];
+	double *p;
+	p = balance;
 	int index_x=0,index_y=0;
 	Matrix result = CreateMatrix(rs_row,rs_col);
-	int added = mid1.row*mid1.col;
-	double *p = flatten(mid1);	
-	for(int p_ = 0;p_<added;p_++)
+	for ( int i = 0; i <size; i++ )
 	{
-		cout<<*(p++)<<endl;
+		int index_x = i/mid1.col;
+		int index_y = i%mid1.col;
+		*(p+i) = mid1.matrix[index_x][index_y];
+//		cout<<index_x<<","<<index_y<<*(p+i)<<endl;
+	}
+
+	int added = mid1.row*mid1.col;
+	for(int i = 0;i<size;i++)
+	{
+		cout<<"p+"<<i<<*(p+i)<<endl;
 		cout<<index_x<<":"<<index_y<<endl;
 		if(index_y == rs_col)
 		{
 			index_y=0;	
 			index_x+=1;
 		}
-		result.matrix[index_x][index_y]=*(p++);
-//		cout<<*(p)<<endl;
+		result.matrix[index_x][index_y]=*(p+i);
+		cout<<index_x<<","<<index_y<<":"<<result.matrix[index_x][index_y]<<endl;
+		index_y++;
 	}
 	return result;
 }
