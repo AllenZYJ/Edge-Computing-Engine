@@ -161,7 +161,7 @@ double matrix_mean(Matrix mid1)
 
 ## 作者邮箱:zk@likedge.top
 
-## 欢迎加入这个项目,一起完善自己。
+## 欢迎加入这个项目,一起完善内核。
 
 ## QQ:2533524298
 
