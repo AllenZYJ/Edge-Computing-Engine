@@ -2,9 +2,9 @@
 
 ##Edge : 一个开源的科学计算引擎
 
-- [ ] ## 目前实现的:
+- [x] ## 目前实现的:
 
-  ## 0.1 矩阵：
+- [ ] ## 0.1 矩阵：
 
   EX:
 
@@ -70,33 +70,29 @@
 	return 0;
 
 ```
-<<<<<<< HEAD
-=======
+- [x] ##API:
 
->>>>>>> 253fdcd0880cd6992715c6b3808c38b1154f12ea
-​	API:
+- [x] ​		Create a matrix :  create(row,cols)
 
-​		Create a matrix :  create(row,cols)
+- [x] ​		Change the element for matrix void move_ele(int &ele1, int &ele2)
 
-​		Change the element for matrix void move_ele(int &ele1, int &ele2)
+- [x] ​		Matrix1+Matrix2 : Matrix add(Matrix mid1,Matrix mid2,int flag=1)
 
-​		Matrix1+Matrix2 : Matrix add(Matrix mid1,Matrix mid2,int flag=1)
+- [x] ​		Flag is how to compete the ele ,default 1 ,bitwise operation.
 
-​		Flag is how to compete the ele ,default 1 ,bitwise operation.
+- [ ] ​		flag标志,默认为1,使用位运算,在亿万级数据下,位运算平均速度优于其他方法,故而做了实现,深入理解.
 
-​		flag标志,默认为1,使用位运算,在亿万级数据下,位运算平均速度优于其他方法,故而做了实现,深入理解.
+- [x] ​		Matrix1-Matrix2 : Matrix subtract(Matrix mid1,Matrix mid2)
 
-​		Matrix1-Matrix2 : Matrix subtract(Matrix mid1,Matrix mid2)
+- [x] ​		Matrix1*Matrix2 : Matrix mul(Matrix mid1,Matrix mid2)
 
-​		Matrix1*Matrix2 : Matrix mul(Matrix mid1,Matrix mid2)
+- [x] ​		Matrix1*n : Matrix times_mat(int times,Matrix mid1)
 
-​		Matrix1*n : Matrix times_mat(int times,Matrix mid1)
+- [x] ​		Matrix1's Transposition : Matrix get_T(Matrix mid1)
 
-​		Matrix1's Transposition : Matrix get_T(Matrix mid1)
+- [x] ​		Mul(matrix1,matrix2)
 
-​		Mul(matrix1,matrix2)
-
-矩阵**A**：
+  矩阵**A**：
 
 | 第1列   | 第2列   | 第3列   | 第4列   | 第5列   |
 | ------- | ------- | ------- | ------- | ------- |
@@ -107,7 +103,7 @@
 | 0.0000  | 0.0000  | 0.0000  | 0.0000  | 0.0000  |
 | 0.0000  | 0.0000  | 0.0000  | 0.0000  | 0.0000  |
 
-矩阵**B**：
+​	矩阵**B**：
 
 | 第1列   | 第2列   | 第3列   | 第4列   | 第5列  | 第6列  |
 | ------- | ------- | ------- | ------- | ------ | ------ |
@@ -117,7 +113,7 @@
 | 0.0000  | 0.0000  | 0.0000  | 16.0000 | 0.0000 | 0.0000 |
 | 0.0000  | 0.0000  | 0.0000  | 32.0000 | 0.0000 | 0.0000 |
 
-To
+​	To
 
 | 第1列     | 第2列     | 第3列     | 第4列     | 第5列  | 第6列  |
 | --------- | --------- | --------- | --------- | ------ | ------ |
@@ -128,32 +124,31 @@ To
 | 0.0000    | 0.0000    | 0.0000    | 0.0000    | 0.0000 | 0.0000 |
 | 0.0000    | 0.0000    | 0.0000    | 0.0000    | 0.0000 | 0.0000 |
 
-​		double* flatten(Matrix mid1)
+- [x] ​		double* flatten(Matrix mid1)
+
 
 |  1   |  2   |  3   |
 | :--: | :--: | :--: |
 |  2   |  4   |  6   |
 |  7   |  8   |  9   |
 
-To
+​	To
 
 | 1    | 2    | 3    | 2    | 4    | 6    | 7    | 8    | 9                  |
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | :----------------- |
 |      |      |      |      |      |      |      |      | Like numpy.flatten |
 
-Return a flattened array.
+- [x] Return a flattened array.
 
-Matrix matrix_rs(Matrix mid1,int rs_row,int rs_col)
+- [x] Matrix matrix_rs(Matrix mid1,int rs_row,int rs_col)
 
-double matrix_sum(Matrix mid1)
+- [x] double matrix_sum(Matrix mid1)
 
-double matrix_mean(Matrix mid1)
-<<<<<<< HEAD
-=======
+- [x] double matrix_mean(Matrix mid1)
 
->>>>>>> 253fdcd0880cd6992715c6b3808c38b1154f12ea
+  ------
 
-一些细节:
+  Something :
 
 1. 创建矩阵,默认为1^n
 2. 动态分配内存，防止矩阵过大
@@ -163,7 +158,6 @@ double matrix_mean(Matrix mid1)
 6. 利用某个地址赋值方法，更新矩阵的值
 7. 已实现实现更新单个或者多个
 8. 具体文档不多赘述,详情见源代码.
-<<<<<<< HEAD
 
 # PS
 
