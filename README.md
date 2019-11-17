@@ -1,12 +1,12 @@
 # Edge-Computing-Engine
 
-# Edge : 一个开源的科学计算引擎
+##Edge : 一个开源的科学计算引擎
 
-## 目前实现的:
+- [ ] ## 目前实现的:
 
-## 0.1 矩阵：
+  ## 0.1 矩阵：
 
-使用:
+  EX:
 
 ```c
 	welcome();
@@ -70,6 +70,10 @@
 	return 0;
 
 ```
+<<<<<<< HEAD
+=======
+
+>>>>>>> 253fdcd0880cd6992715c6b3808c38b1154f12ea
 ​	API:
 
 ​		Create a matrix :  create(row,cols)
@@ -144,6 +148,10 @@ Matrix matrix_rs(Matrix mid1,int rs_row,int rs_col)
 double matrix_sum(Matrix mid1)
 
 double matrix_mean(Matrix mid1)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 253fdcd0880cd6992715c6b3808c38b1154f12ea
 
 一些细节:
 
@@ -155,6 +163,7 @@ double matrix_mean(Matrix mid1)
 6. 利用某个地址赋值方法，更新矩阵的值
 7. 已实现实现更新单个或者多个
 8. 具体文档不多赘述,详情见源代码.
+<<<<<<< HEAD
 
 # PS
 
@@ -165,4 +174,14 @@ double matrix_mean(Matrix mid1)
 ## QQ:2533524298
 
 
+=======
+
+# PS
+
+ 作者邮箱:zk@likedge.top
+
+ 欢迎加入这个项目,一起完善内核。
+
+ QQ:2533524298
+>>>>>>> 253fdcd0880cd6992715c6b3808c38b1154f12ea
 
