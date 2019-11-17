@@ -4,7 +4,7 @@
 
 - [x] ## 目前实现的:
 
-- [ ] ## 0.1 矩阵：
+- [x] ## 0.1 矩阵：
 
   EX:
 
@@ -80,7 +80,7 @@
 
 - [x] ​		Flag is how to compete the ele ,default 1 ,bitwise operation.
 
-- [ ] ​		flag标志,默认为1,使用位运算,在亿万级数据下,位运算平均速度优于其他方法,故而做了实现,深入理解.
+- [x] ​		flag标志,默认为1,使用位运算,在亿万级数据下,位运算平均速度优于其他方法,故而做了实现,深入理解.
 
 - [x] ​		Matrix1-Matrix2 : Matrix subtract(Matrix mid1,Matrix mid2)
 
