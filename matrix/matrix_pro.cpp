@@ -124,9 +124,26 @@ double* flatten(Matrix mid1)
 	}
 	return balance;
 }
-Matrix reshape(Matrix mid1)
+Matrix matrix_rs(Matrix mid1,int rs_row,int rs_col)
 {
 
+	int index_x=0,index_y=0;
+	Matrix result = CreateMatrix(rs_row,rs_col);
+	int added = mid1.row*mid1.col;
+	double *p = flatten(mid1);	
+	for(int p_ = 0;p_<added;p_++)
+	{
+		cout<<*(p++)<<endl;
+		cout<<index_x<<":"<<index_y<<endl;
+		if(index_y == rs_col)
+		{
+			index_y=0;	
+			index_x+=1;
+		}
+		result.matrix[index_x][index_y]=*(p++);
+//		cout<<*(p)<<endl;
+	}
+	return result;
 }
 double matrix_sum(Matrix mid1)
 {
@@ -135,7 +152,7 @@ double matrix_sum(Matrix mid1)
 	{
 		for(int index_y=0;index_y<mid1.col;++index_y)
 		{
-			cout<<index_x<<","<<index_y<<endl;
+	//		cout<<index_x<<","<<index_y<<endl;
 			sum+=mid1.matrix[index_x][index_y];
 		}
 	}
@@ -143,6 +160,7 @@ double matrix_sum(Matrix mid1)
 }
 double matrix_mean(Matrix mid1)
 {
+	
 	double ele = mid1.row*mid1.col;
 	return matrix_sum(mid1)/ele;
 }
