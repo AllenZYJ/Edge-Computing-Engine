@@ -13,7 +13,6 @@ int main()
 {
    	welcome();
 	Matrix a = CreateMatrix(5,6);
-	Matrix b = CreateMatrix(3,11);
 	cout<<"end"<<endl;
 	change_va(a,1,2,1);
 	change_va(a,2,3,7);
@@ -23,22 +22,43 @@ int main()
 	change_va(a,0,2,2);
 	change_va(a,1,1,8);
 	start = clock();
-	Matrix rs = matrix_rs(a,6,5);
-	cout<<matrix_mean(a)<<endl;
-/*	add(a,b,1);
-	mul(a,b);
-	for(int index_x = 0;index_x<a.row;index_x++)
+	cout<<"matrix sum: "<<matrix_sum(a)<<endl;
+	cout<<"matrix mean: "<<matrix_mean(a)<<endl;
+	cout<<"matrix T: "<<endl;
+	Matrix b = get_T(a);
+	for(int index_x = 0;index_x<b.row;index_x++)
 	{
-		for(int index_y=0;index_y<a.col;index_y++)
+		for(int index_y=0;index_y<b.col;index_y++)
 		{
-			cout<<a.matrix[index_x][index_y]<<" ";
+			cout<<b.matrix[index_x][index_y]<<" ";
 		}
 		cout<<endl;
 	}
-	cout<<"------------"<<endl;
-	Matrix a_ = get_T(a);
-	*/
-		for(int index_x = 0;index_x<rs.row;index_x++)
+	cout<<"-----------split line-----------"<<endl;
+	cout<<"matrix*n"<<endl;
+	Matrix c = times_mat(8,b);
+	for(int index_x = 0;index_x<c.row;index_x++)
+	{
+		for(int index_y=0;index_y<c.col;index_y++)
+		{
+			cout<<c.matrix[index_x][index_y]<<" ";
+		}
+		cout<<endl;
+	}
+	cout<<"-----------split line-----------"<<endl;
+	cout<<"matrix*matrix"<<endl; 
+	Matrix d =mul(c,get_T(c));
+	for(int index_x = 0;index_x<d.row;index_x++)
+	{
+		for(int index_y=0;index_y<d.col;index_y++)
+		{
+			cout<<d.matrix[index_x][index_y]<<" ";
+		}
+		cout<<endl;
+	}
+	cout<<"-----------split line-----------"<<endl;
+	Matrix rs = matrix_rs(a,6,5);
+	for(int index_x = 0;index_x<rs.row;index_x++)
 	{
 		for(int index_y=0;index_y<rs.col;index_y++)
 		{
