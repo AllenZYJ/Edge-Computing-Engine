@@ -139,7 +139,6 @@ Matrix matrix_rs(Matrix mid1,int rs_row,int rs_col)
 		int index_x = i/mid1.col;
 		int index_y = i%mid1.col;
 		*(p+i) = mid1.matrix[index_x][index_y];
-//		cout<<index_x<<","<<index_y<<*(p+i)<<endl;
 	}
 
 	int added = mid1.row*mid1.col;

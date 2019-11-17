@@ -4,6 +4,45 @@
 
 ## 0.1 矩阵定义：
 
+​	api:
+
+​		Create a matrix :  create(row,cols)
+
+​		Change the element for matrix void move_ele(int &ele1, int &ele2)
+
+​		Matrix1+Matrix2 : Matrix add(Matrix mid1,Matrix mid2,int flag=1)
+
+​		Flag is how to compete the ele ,default 1 ,bitwise operation.
+
+​		flag标志,默认为1,使用位运算,在亿万级数据下,位运算平均速度优于其他方法,故而做了实现,深入理解.
+
+​		Matrix1-Matrix2 : Matrix subtract(Matrix mid1,Matrix mid2)
+
+​		Matrix1*Matrix2 : Matrix mul(Matrix mid1,Matrix mid2)
+
+​		Matrix1*n : Matrix times_mat(int times,Matrix mid1)
+
+​		Matrix1's Transposition : Matrix get_T(Matrix mid1)
+
+​		double* flatten(Matrix mid1)
+
+|  1   |  2   |  3   |
+| :--: | :--: | :--: |
+|  2   |  4   |  6   |
+|  7   |  8   |  9   |
+
+To
+
+| 1    | 2    | 3    | 2    | 4    | 6    | 7    | 8    | 9    |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+|      |      |      |      |      |      |      |      |      |
+
+Flatten: 
+
+
+
+一些细节:
+
 1. 创建矩阵,默认为1^n
 2. 动态分配内存，防止矩阵过大
 3. 可修改的地方(已完成)

@@ -12,15 +12,18 @@ using namespace std;
 int main()
 {
    	welcome();
-	Matrix a = CreateMatrix(3,4);
+	Matrix a = CreateMatrix(5,6);
 	Matrix b = CreateMatrix(3,11);
 	cout<<"end"<<endl;
 	change_va(a,1,2,1);
+	change_va(a,2,3,7);
+	change_va(a,3,3,2);
+	change_va(a,4,3,4);
 	change_va(a,0,0,9);
 	change_va(a,0,2,2);
 	change_va(a,1,1,8);
 	start = clock();
-	Matrix rs = matrix_rs(a,2,6);
+	Matrix rs = matrix_rs(a,6,5);
 	cout<<matrix_mean(a)<<endl;
 /*	add(a,b,1);
 	mul(a,b);
