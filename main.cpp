@@ -3,19 +3,23 @@
 #include<string>
 #include <time.h>
 #include <math.h>
+#include <fstream>
 #include"./matrix/matrix_def.h"
 #include"./matrix/matrix_pro.h"
 #include"./welcome/score_wel.cpp"
 #include"./logistic/logistic_def.h"
+#include"./file_pro/data_read.h"
 using namespace std;
 clock_t start, stop;
 double duration;
 int main()
 {
+	string path = "./data.csv";
+	read_csv(path);
    	welcome();
 	Matrix a = CreateMatrix(5,6);
-	e_sigmoid(a);	
-	cout<<"end"<<endl;
+	double a_ = e_sigmoid(1);	
+	cout<<a_<<endl;
 	change_va(a,1,2,1);
 	change_va(a,2,3,7);
 	change_va(a,3,3,2);
