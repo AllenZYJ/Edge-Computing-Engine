@@ -1,3 +1,5 @@
+#ifndef MATRIX_PRO
+#define MATRIX_PRO
 #include<iostream>
 #include<string>
 /*
@@ -76,7 +78,6 @@ for(int i = 0;i<mid1.row;i++)
 	{
 		for(int k = 0;k<mid1.col;k++)
 		{
-			cout<<i<<":"<<j<<endl;
 			mid3.matrix[i][j]=mid3.matrix[i][j]+mid1.matrix[i][k]*mid2.matrix[k][j];
 		}
 	}
@@ -175,4 +176,4 @@ double matrix_mean(Matrix mid1)
 	double ele = mid1.row*mid1.col;
 	return matrix_sum(mid1)/ele;
 }
-
+#endif

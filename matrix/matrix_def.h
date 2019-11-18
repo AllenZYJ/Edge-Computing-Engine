@@ -1,3 +1,6 @@
+#ifndef MATRIX_DEF
+#define MATRIX_DEF
+#pragma once
 #include<iostream>
 #include<sys/malloc.h>
 #include<stdio.h>
@@ -7,7 +10,6 @@ using namespace std;
 //2*3
 //0 0 0
 //0 0 0
-//change_va （matrix Matrix，int index_x,int index_y,value）
 //change the value in matrix
 typedef struct
 {
@@ -41,3 +43,4 @@ int change_va(Matrix Matrix ,int index_x,int index_y,int value)
 	Matrix.matrix[index_x][index_y] = value;
 	return 0;
 }
+#endif

@@ -3,16 +3,18 @@
 #include<string>
 #include <time.h>
 #include <math.h>
-clock_t start, stop;    //clock_t为clock()返回的变量类型
-double duration;
+#include"./matrix/matrix_def.h"
+#include"./matrix/matrix_pro.h"
 #include"./welcome/score_wel.cpp"
-#include"./matrix/matrix_def.cpp"
-#include"./matrix/matrix_pro.cpp"
+#include"./logistic/logistic_def.h"
 using namespace std;
+clock_t start, stop;
+double duration;
 int main()
 {
    	welcome();
 	Matrix a = CreateMatrix(5,6);
+	e_sigmoid(a);	
 	cout<<"end"<<endl;
 	change_va(a,1,2,1);
 	change_va(a,2,3,7);
