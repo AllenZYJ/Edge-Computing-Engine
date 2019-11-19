@@ -183,7 +183,7 @@ Edge : 一个开源的科学计算引擎
 
 # PS
 
- 个人小站:[](likedge.top)
+ 个人小站:[极度空间](likedge.top)
 
 作者邮箱:zk@likedge.top | edge@ibooker.org.cn
 
