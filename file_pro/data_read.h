@@ -63,8 +63,6 @@ Matrix read_csv(string &file_path)
 	infile2 >> data;
 	string base = "";
     string added ="";
-	string base2 = "";
-	string added2 = "";
 	int iSize = data.size();
 	int flag_if = 1;
 	int count_times = 0;

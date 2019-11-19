@@ -4,7 +4,21 @@
 
 - [x] ## 目前实现的:
 
-- [x] Csv,txt,dat,等格式化文件流读取,转化为矩阵,获取尺寸.
+  - [ ] CSV,dat,txt等格式化文件读取:
+
+    实现由文件流读取内存文件首地址:
+
+    接口为:
+
+    Matrix read_csv(string &file_path)
+
+    使用eof标志位表示文件末尾,读出数据,默认为double精度的数据读取,file_path为文件路径,返回一个shape为文件rows和cols的matrix.
+
+    例如:
+
+    ![image-20191119105056296](/Users/zhangyiji/Library/Application Support/typora-user-images/image-20191119105056296.png)
+
+  - [x] Csv,txt,dat,等格式化文件流读取,转化为矩阵,获取尺寸.
 
 - [x] ## 0.1 矩阵：
 
