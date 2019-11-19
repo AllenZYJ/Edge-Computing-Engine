@@ -85,7 +85,7 @@ Matrix read_csv(string &file_path)
 			added ="";
 			base = "";
 		}
-			if(count_times==2)
+			if(count_times==count_col)
 		{
 		added2+=data[i+1];
 		base2 = added2;
