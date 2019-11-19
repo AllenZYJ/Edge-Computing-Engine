@@ -16,7 +16,7 @@
 
     例如:
 
-    ![image-20191119105056296](/Users/zhangyiji/Library/Application Support/typora-user-images/image-20191119105056296.png)
+    ![](/Users/zhangyiji/Documents/code/cpp_demo/my_os/Edge-Computing-Engine/picture/WX20191119-105411@2x.png)
 
   - [x] Csv,txt,dat,等格式化文件流读取,转化为矩阵,获取尺寸.
 
