@@ -3,7 +3,7 @@
 ## Edge : 一个开源的科学计算引擎
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/AllenZYJ/Edge-Computing-Engine/blob/add-license-1/LICENSE)
 
-- [x] ## 目前实现的:
+- [x] 目前实现的:
 
   - [x] CSV,dat,txt等格式化文件读取:
 
