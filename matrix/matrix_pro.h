@@ -119,9 +119,6 @@ double* flatten(Matrix mid1)
 		int index_x = i/mid1.col;
 		int index_y = i%mid1.col;
 		*(p+i) = mid1.matrix[index_x][index_y];
-//		cout<<index_x<<","<<index_y<<*(p+i)<<endl;
-//		cout << "*(p + " << i << ") : ";
-//		cout << *(p + i) <<" index_x: "<<index_x<<" index_y: "<<index_y<< endl;
 	}
 	return balance;
 }
@@ -144,15 +141,12 @@ Matrix matrix_rs(Matrix mid1,int rs_row,int rs_col)
 	int added = mid1.row*mid1.col;
 	for(int i = 0;i<size;i++)
 	{
-//		cout<<"p+"<<i<<*(p+i)<<endl;
-//		cout<<index_x<<":"<<index_y<<endl;
 		if(index_y == rs_col)
 		{
 			index_y=0;	
 			index_x+=1;
 		}
 		result.matrix[index_x][index_y]=*(p+i);
-//		cout<<index_x<<","<<index_y<<":"<<result.matrix[index_x][index_y]<<endl;
 		index_y++;
 	}
 	return result;
@@ -164,7 +158,6 @@ double matrix_sum(Matrix mid1)
 	{
 		for(int index_y=0;index_y<mid1.col;++index_y)
 		{
-	//		cout<<index_x<<","<<index_y<<endl;
 			sum+=mid1.matrix[index_x][index_y];
 		}
 	}
@@ -176,4 +169,51 @@ double matrix_mean(Matrix mid1)
 	double ele = mid1.row*mid1.col;
 	return matrix_sum(mid1)/ele;
 }
+Matrix appply(Matrix mid1,Matrix mid2,int axis = 0)
+{
+	int new_row = mid1.row+mid2.row;
+	int new_col = mid1.col+mid2.col;
+//	cout<<new_row<<":"<<new_col<<endl;
+	Matrix result;
+	if(axis ==1)
+	{result = CreateMatrix(mid1.row,new_col);}
+	else{result = CreateMatrix(new_row,mid2.col);}
+	for(int index_x = 0;index_x<mid1.row;++index_x)
+	{
+		for(int index_y=0;index_y<mid1.col;++index_y)
+		{
+			result.matrix[index_x][index_y] = mid1.matrix[index_x][index_y];
+		}
+	}
+	if(axis == 1)
+	{
+	for(int index_row=0;index_row<mid2.row;++index_row)
+	{
+		for(int index_col = mid1.col;index_col<new_col;++index_col)
+		{
+			result.matrix[index_row][index_col]= mid2.matrix[index_row][mid2.col-new_col+index_col];
+		}
+	}
+	}
+	else
+	{
+//	cout<<result.row<<result.col<<endl;
+	for(int index_row=mid1.row;index_row<new_row;++index_row)
+	{
+		for(int index_col = 0;index_col<mid2.col;++index_col)
+		{
+//		cout<<"x: "<<index_row-mid2.row<<" ";
+//		cout<<"y: "<<index_col<<endl;	
+//		cout<<"x->"<<index_row<<endl;
+//		cout<<"y->"<<index_col<<endl;
+//		cout<<"aim"<<mid2.matrix[index_row-mid2.row][index_col]<<endl;
+		result.matrix[index_row][index_col]= mid2.matrix[index_row-mid2.row][index_col];
+//		cout<<"result: "<<result.matrix[index_row][index_col]<<endl;
+		
+		}
+	}
+	}
+	return result;
+}
+
 #endif
