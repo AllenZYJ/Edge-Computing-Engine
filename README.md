@@ -4,28 +4,27 @@ Edge : 一个开源的科学计算引擎
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/AllenZYJ/Edge-Computing-Engine/blob/add-license-1/LICENSE)
 
-- [x] ## 目前实现的:
+目前实现的:
 
-  - [x] CSV,dat,txt等格式化文件读取:
+- [x] CSV,dat,txt等格式化文件读取:
 
-    实现由文件流读取内存文件首地址:
+  实现由文件流读取内存文件首地址:
 
-    接口为:
+  接口为:
 
-    Matrix read_csv(string &file_path)
+  Matrix read_csv(string &file_path)
 
-    使用eof标志位表示文件末尾,读出数据,默认为double精度的数据读取,file_path为文件路径,返回一个shape为文件rows和cols的matrix.
+  使用eof标志位表示文件末尾,读出数据,默认为double精度的数据读取,file_path为文件路径,返回一个shape为文件rows和cols的matrix.
 
-    例如:
+  例如:
 
-    ![](./picture/WX20191119-105411@2x.png)
+  ![](./picture/WX20191119-105411@2x.png)
 
-  - [x] Csv,txt,dat,等格式化文件流读取,转化为矩阵,获取尺寸.
+- [x] Csv,txt,dat,等格式化文件流读取,转化为矩阵,获取尺寸.
 
-  - [x] 矩阵：
+- [x] 矩阵：
 
-  EX:
-
+EX:
 
 ```c
 	welcome();
