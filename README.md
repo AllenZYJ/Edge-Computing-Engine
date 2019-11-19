@@ -1,6 +1,7 @@
 # Edge-Computing-Engine
 
 ## Edge : 一个开源的科学计算引擎
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/keras-team/keras/blob/master/LICENSE)
 
 - [x] ## 目前实现的:
 
