@@ -15,7 +15,17 @@ double duration;
 int main()
 {
 	string path = "./data.csv";
-	read_csv(path);
+	Matrix data = read_csv(path);
+	for(int index_x = 0;index_x<data.row;index_x++)
+	{
+		for(int index_y=0;index_y<data.col;index_y++)
+		{
+			cout<<data.matrix[index_x][index_y]<<" ";
+		}
+		cout<<endl;
+	}
+	cout<<"-----------split line-----------"<<endl;
+
    	welcome();
 	Matrix a = CreateMatrix(5,6);
 	double a_ = e_sigmoid(1);	
