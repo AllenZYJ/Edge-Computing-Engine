@@ -71,7 +71,6 @@ Matrix read_csv(string &file_path)
 	{
 		if(data[i]!=',')
 		{
-		added2+=data[i];
 		added+=data[i];		
 		}
 		else if(data[i]==',')
