@@ -27,26 +27,26 @@ int main()
 	cout<<"-----------split line-----------"<<endl;
 
    	welcome();
-	Matrix a = CreateMatrix(5,6);
+	Matrix a = CreateMatrix(4,3);
 	double a_ = e_sigmoid(1);	
 	cout<<a_<<endl;
 	change_va(a,1,2,1);
-	change_va(a,2,3,7);
-	change_va(a,3,3,2);
-	change_va(a,4,3,4);
-	change_va(a,0,0,9);
+	change_va(a,0,1,7);
 	change_va(a,0,2,2);
-	change_va(a,1,1,8);
+	change_va(a,1,1,3);
+	change_va(a,3,2,11);	
+	
 	start = clock();
 
-	Matrix applyed_ma = appply(a,a,0);
+	Matrix applyed_ma = appply(a,a,1);
 	for(int index_x = 0;index_x<applyed_ma.row;index_x++)
 	{
+		cout<<"|";
 		for(int index_y=0;index_y<applyed_ma.col;index_y++)
 		{
-			cout<<"|"<<applyed_ma.matrix[index_x][index_y]<<"|";
+			cout<<applyed_ma.matrix[index_x][index_y]<<"|";
 		}
-		cout<<"🏃"<<endl;
+		cout<<endl;
 	}
 	cout<<"matrix sum: "<<matrix_sum(a)<<endl;
 	cout<<"matrix mean: "<<matrix_mean(a)<<endl;
