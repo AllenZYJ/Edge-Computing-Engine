@@ -250,10 +250,12 @@ Matrix iloc(Matrix mid1,int start_x=0,int end_x=0,int start_y=0,int end_y=0)
 	{	
 		for(int index_y=start_y;index_y<end_y;++index_y)
 		{
-		//	cout<<"start: "<<index_x<<",end: "<<index_y<<endl;
-		mid_return.matrix[index_x][index_y] = mid1.matrix[index_x][index_y];
+			cout<<"start: "<<index_x<<",end: "<<index_y<<endl;
+			cout<<"re: "<<mid1.matrix[index_x][index_y]<<endl;
+		mid_return.matrix[index_x-start_x][index_y-start_y] = mid1.matrix[index_x][index_y];
 		}
 	}
 	return mid_return;
 }
+
 #endif

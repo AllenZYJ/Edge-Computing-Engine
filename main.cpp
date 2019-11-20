@@ -14,15 +14,14 @@ clock_t start, stop;
 double duration;
 int main()
 {
+	welcome();	
 	string path = "./data.csv";	
 	Matrix test_head_mat = CreateMatrix(5,4);
-//	cout_mat(head(read_csv(path)));
-	cout_mat(iloc(read_csv(path),0,0,0,2));
+	cout_mat(iloc(read_csv(path),2,199,0,2));
 	cout<<"-----------split line-----------"<<endl;	
 	Matrix data = read_csv(path);
 //	cout_mat(data);
 	cout<<"-----------split line-----------"<<endl;
-   	welcome();
 	Matrix a = CreateMatrix(4,3);
 	double a_ = e_sigmoid(1);	
 	cout<<a_<<endl;

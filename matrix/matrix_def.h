@@ -4,6 +4,7 @@
 #include<iostream>
 #include<sys/malloc.h>
 #include<stdio.h>
+#include<string>
 using namespace std;
 //CreateMatrix Create a Matrix for ones;
 //ex:
