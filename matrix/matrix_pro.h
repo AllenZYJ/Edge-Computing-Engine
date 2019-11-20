@@ -173,7 +173,6 @@ Matrix appply(Matrix mid1,Matrix mid2,int axis = 0)
 {
 	int new_row = mid1.row+mid2.row;
 	int new_col = mid1.col+mid2.col;
-//	cout<<new_row<<":"<<new_col<<endl;
 	Matrix result;
 	if(axis ==1)
 	{result = CreateMatrix(mid1.row,new_col);}
@@ -197,23 +196,64 @@ Matrix appply(Matrix mid1,Matrix mid2,int axis = 0)
 	}
 	else
 	{
-//	cout<<result.row<<result.col<<endl;
 	for(int index_row=mid1.row;index_row<new_row;++index_row)
 	{
 		for(int index_col = 0;index_col<mid2.col;++index_col)
 		{
-//		cout<<"x: "<<index_row-mid2.row<<" ";
-//		cout<<"y: "<<index_col<<endl;	
-//		cout<<"x->"<<index_row<<endl;
-//		cout<<"y->"<<index_col<<endl;
-//		cout<<"aim"<<mid2.matrix[index_row-mid2.row][index_col]<<endl;
 		result.matrix[index_row][index_col]= mid2.matrix[index_row-mid2.row][index_col];
-//		cout<<"result: "<<result.matrix[index_row][index_col]<<endl;
-		
 		}
 	}
 	}
 	return result;
 }
-
+Matrix head(Matrix mid1)
+{
+	int col = mid1.col;
+	Matrix mid_return = CreateMatrix(6,mid1.col);
+	for(int index_x = 0;index_x<6;++index_x)
+	{	
+		for(int index_y=0;index_y<col;++index_y)
+		{
+		mid_return.matrix[index_x][index_y] = mid1.matrix[index_x][index_y];
+		}
+	}
+	return mid_return;
+}
+void cout_mat(Matrix mid1)
+{
+	for(int index_x = 0;index_x<mid1.row;index_x++)
+	{
+		for(int index_y=0;index_y<mid1.col;index_y++)
+		{
+			cout<<mid1.matrix[index_x][index_y]<<" ";
+		}
+		cout<<endl;
+	}
+}
+//iloc [x1,x2,y1,y2]
+Matrix iloc(Matrix mid1,int start_x=0,int end_x=0,int start_y=0,int end_y=0)
+{
+	if(end_y == 0)
+	{
+		end_y = mid1.col;
+	}
+	else if(end_x == 0)
+	{
+		end_x = mid1.row;
+	}
+	cout<<mid1.row<<end_x<<" "<<start_x<<" "<<end_y<<" "<<start_y<<endl;
+	int new_row = end_x-start_x;
+	int new_col = end_y-start_y;
+	cout<<"nc"<<new_col<<" nr"<<new_row<<endl;
+	Matrix mid_return = CreateMatrix(new_row,new_col);
+	for(int index_x = start_x;index_x<end_x;++index_x)
+	{	
+		for(int index_y=start_y;index_y<end_y;++index_y)
+		{
+		//	cout<<"start: "<<index_x<<",end: "<<index_y<<endl;
+		mid_return.matrix[index_x][index_y] = mid1.matrix[index_x][index_y];
+		}
+	}
+	return mid_return;
+}
 #endif

@@ -17,11 +17,12 @@
 - [x] Matrix1*n : Matrix times_mat(int times,Matrix mid1)
 - [x] Matrix1's Transposition : Matrix get_T(Matrix mid1)
 - [x] Mul(matrix1,matrix2)
-- [x] Return a flattened array.
+- [x] double* flatten(Matrix mid1) : Return a flattened array.
 - [x] Matrix matrix_rs(Matrix mid1,int rs_row,int rs_col)
 - [x] double matrix_sum(Matrix mid1)
 - [x] double matrix_mean(Matrix mid1)
 - [x] Matrix appply(Matrix mid1,Matrix mid2,int axis = 0)
+- [x] Matrix iloc(Matrix mid1,int start_x=0,int end_x=0,int start_y=0,int end_y=0)
 
 Matrix **A**：
 
@@ -34,7 +35,7 @@ Matrix **A**：
 | 0.0000  | 0.0000  | 0.0000  | 0.0000  | 0.0000  |
 | 0.0000  | 0.0000  | 0.0000  | 0.0000  | 0.0000  |
 
-​	MAtrix **B**：
+MAtrix **B**：
 
 | 第1列   | 第2列   | 第3列   | 第4列   | 第5列  | 第6列  |
 | ------- | ------- | ------- | ------- | ------ | ------ |
@@ -44,7 +45,7 @@ Matrix **A**：
 | 0.0000  | 0.0000  | 0.0000  | 16.0000 | 0.0000 | 0.0000 |
 | 0.0000  | 0.0000  | 0.0000  | 32.0000 | 0.0000 | 0.0000 |
 
-​	To
+To
 
 | 第1列     | 第2列     | 第3列     | 第4列     | 第5列  | 第6列  |
 | --------- | --------- | --------- | --------- | ------ | ------ |
@@ -55,7 +56,7 @@ Matrix **A**：
 | 0.0000    | 0.0000    | 0.0000    | 0.0000    | 0.0000 | 0.0000 |
 | 0.0000    | 0.0000    | 0.0000    | 0.0000    | 0.0000 | 0.0000 |
 
-- [x] ​		double* flatten(Matrix mid1)
+- [x] double* flatten(Matrix mid1)
 
 |  1   |  2   |  3   |
 | :--: | :--: | :--: |

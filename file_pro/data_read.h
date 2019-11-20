@@ -80,7 +80,6 @@ Matrix read_csv(string &file_path)
 			count_times+=1;			
 			base = added; 
 			char *result = (char*)base.data();
-			//cout<<"result: "<<result<<endl;
 			data_ma.matrix[next_flag][count_times-1] = str2double(result);
 			added ="";
 			base = "";
@@ -91,7 +90,6 @@ Matrix read_csv(string &file_path)
 		base2 = added2;
 		char *result2 = (char*)base2.data();
 		data_ma.matrix[next_flag][count_times] = str2double(result2);
-		cout<<"relt2: "<<result2<<endl;
 		}
 
 	}
