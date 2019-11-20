@@ -39,14 +39,14 @@ int main()
 	change_va(a,1,1,8);
 	start = clock();
 
-	Matrix applyed_ma = appply(a,a,1);
+	Matrix applyed_ma = appply(a,a,0);
 	for(int index_x = 0;index_x<applyed_ma.row;index_x++)
 	{
 		for(int index_y=0;index_y<applyed_ma.col;index_y++)
 		{
 			cout<<"|"<<applyed_ma.matrix[index_x][index_y]<<"|";
 		}
-		cout<<endl;
+		cout<<"🏃"<<endl;
 	}
 	cout<<"matrix sum: "<<matrix_sum(a)<<endl;
 	cout<<"matrix mean: "<<matrix_mean(a)<<endl;
