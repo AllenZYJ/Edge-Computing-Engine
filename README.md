@@ -1,6 +1,6 @@
 
 
-![](./picture/彩虹.svg)
+<div align=center><img src="./picture/01.svg"/></div>
 
 # Edge-Computing-Engine
 
@@ -9,8 +9,6 @@
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000) ](https://github.com/AllenZYJ/Edge-Computing-Engine/blob/add-license-1/LICENSE)![](https://img.shields.io/badge/Bulid-Passed-green.svg)
 
 目前实现的:
-
-
 
 Matrix API:
 
