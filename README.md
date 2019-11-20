@@ -4,17 +4,17 @@ Edge : 一个开源的科学计算引擎
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/AllenZYJ/Edge-Computing-Engine/blob/add-license-1/LICENSE)
 
-目前实现的:
+**目前实现的:**
 
-更新11.20 
+**更新11.20 **
 
 > 00:06
 
-更新apply接口:
+**更新apply接口:**
 
-定义原型:
+**定义原型:**
 
-​	Matrix appply(Matrix mid1,Matrix mid2,int axis = 0)	
+​	**Matrix appply(Matrix mid1,Matrix mid2,int axis = 0)**	
 
 > axis=0 :
 
