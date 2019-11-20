@@ -1,12 +1,12 @@
 
 
-![](/Users/zhangyiji/Documents/code/cpp_demo/my_os/Edge-Computing-Engine/picture/彩虹.svg)
+![](./picture/彩虹.svg)
 
 # Edge-Computing-Engine
 
 ## Edge : 一个开源的科学计算引擎
 
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](https://github.com/AllenZYJ/Edge-Computing-Engine/blob/add-license-1/LICENSE)![](https://img.shields.io/badge/Bulid-Passed-green.svg)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000) ](https://github.com/AllenZYJ/Edge-Computing-Engine/blob/add-license-1/LICENSE)![](https://img.shields.io/badge/Bulid-Passed-green.svg)
 
 目前实现的:
 
