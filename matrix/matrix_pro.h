@@ -55,18 +55,17 @@ Matrix add(Matrix mid1,Matrix mid2,int flag=1)
 
 Matrix subtract(Matrix mid1,Matrix mid2)
 {
-	if(mid1.row == mid2.row&&mid1.col == mid2.col)
+	Matrix result_subtract = CreateMatrix(mid1.row,mid2.col);
+	for(int i=0; i<mid1.row; i++)
 	{
-		for(int i=0; i<mid1.row; i++)
+		for(int j=0; j<mid1.col; j++)
 		{
-			for(int j=0; j<mid1.col; j++)
-			{
-				mid1.matrix[i][j] = mid1.matrix[i][j] -mid2.matrix[i][j];
-			}
+			//cout<<" mid1.matrix[i][j]"<< mid1.matrix[i][j]<<"mid2.matrix[i][j]"<<mid2.matrix[i][j]<<endl;
+
+			result_subtract.matrix[i][j] = mid1.matrix[i][j]-mid2.matrix[i][j];
 		}
 	}
-	else{return mid1;}
-    return mid1;
+    return result_subtract;
 }
 
 Matrix mul(Matrix mid1,Matrix mid2)
@@ -84,7 +83,7 @@ for(int i = 0;i<mid1.row;i++)
 }
 	return mid3;	
 }
-Matrix times_mat(int times,Matrix mid1)
+Matrix times_mat(double times,Matrix mid1)
 {
     for(int index_x=0; index_x<mid1.row; index_x++)
     {

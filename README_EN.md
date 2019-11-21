@@ -27,78 +27,38 @@
 > Target: x86_64-apple-darwin18.7.0
 > Thread model: posix
 >
-> 实现的:
+> 目前实现的:
 
-如何安装和运行基于Edeg的逻辑回归demo.
+How to install and run the demo for logistic regession:
 
 `git clone git@github.com:AllenZYJ/Edge-Computing-Engine.git`
 
-进入到clone 之后的目录
-
 cd to this dir 
-
-编译demo入口程序
 
 `g++ main.cpp -o main`
 
-`'./main'`
+`./main`
 
-输出最终损失和参数迭代结果.
-
------------split-line-----------
-2.79955
-0.36431
--0.451694
-epoch: 100 error: 6.05895
------------split-line-----------
-0.009167(sum of loss)
-
-目前实现的程序接口
 Matrix API:
 
-- [x] Matrix read_csv(string &file_path)读取格式化文件(csv),返回一个自动计算长度的矩阵.
-
-- [ ] Create a matrix :  create(row,cols)开辟一个矩阵结构的内存,元素初值为0;
-
-- [x] Change the element for matrix void move_ele(int &ele1, int &ele2),修改某一个位置的元素的值.
-
-- [x] Matrix1+Matrix2 : Matrix add(Matrix mid1,Matrix mid2,int flag=1),矩阵加和操作接口,可选位运算加速.
-
+- [x] Matrix read_csv(string &file_path)
+- [x] Create a matrix :  create(row,cols)
+- [x] Change the element for matrix void move_ele(int &ele1, int &ele2)
+- [x] Matrix1+Matrix2 : Matrix add(Matrix mid1,Matrix mid2,int flag=1)
 - [x] Flag is how to compete the ele ,default 1 ,bitwise operation(位运算加速).
-
 - [x] Matrix1-Matrix2 : Matrix subtract(Matrix mid1,Matrix mid2)
-
 - [x] Matrix1*Matrix2 : Matrix mul(Matrix mid1,Matrix mid2)
-
 - [x] Matrix1*n : Matrix times_mat(int times,Matrix mid1)
+- [x] Matrix1's Transposition : Matrix get_T(Matrix mid1)
+- [x] Mul(matrix1,matrix2)
+- [x] double* flatten(Matrix mid1) : Return a flattened array.
+- [x] Matrix matrix_rs(Matrix mid1,int rs_row,int rs_col)
+- [x] double matrix_sum(Matrix mid1)
+- [x] double matrix_mean(Matrix mid1)
+- [x] Matrix appply(Matrix mid1,Matrix mid2,int axis = 0)
+- [x] Matrix iloc(Matrix mid1,int start_x=0,int end_x=0,int start_y=0,int end_y=0)
 
-- [x] Matrix1's Transposition : Matrix get_T(Matrix mid1)矩阵转置
-
-- [x] Mul(matrix1,matrix2)矩阵乘积(完整数学定义).
-
-- [x] double* flatten(Matrix mid1) : Return a flattened array.矩阵展开
-
-- [x] Matrix matrix_rs(Matrix mid1,int rs_row,int rs_col) 矩阵的结构压缩
-
-- [x] double matrix_sum(Matrix mid1)矩阵求和
-
-- [x] double matrix_mean(Matrix mid1)均值
-
-- [x] Matrix appply(Matrix mid1,Matrix mid2,int axis = 0)矩阵拼接
-
-- [x] Matrix iloc(Matrix mid1,int start_x=0,int end_x=0,int start_y=0,int end_y=0)矩阵切片
-
-- [x] Matrix mul_simple(Matrix mid1,Matrix mid2)为了贴合机器学习的需要,实现了矩阵对应元素相乘,请与传统意义的矩阵乘法区分开.
-
-- [ ] 卷积神经网络定义(包括但不限于卷积核,池化层定义,自定义损失接口).
-
-- [ ] 随机森林迭代过程封装.
-
-- [ ] …...
-
-  
-
-## 演示:矩阵乘法
+## Demo: mat*mat
 
 Matrix **A**：
 
@@ -132,7 +92,7 @@ To
 | 0.0000    | 0.0000    | 0.0000    | 0.0000    | 0.0000 | 0.0000 |
 | 0.0000    | 0.0000    | 0.0000    | 0.0000    | 0.0000 | 0.0000 |
 
-## 演示: 矩阵展开(flatten).
+## Demo : mat.flatten
 
 double* flatten(Matrix mid1)
 
@@ -147,13 +107,11 @@ double* flatten(Matrix mid1)
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | :----------------- |
 |      |      |      |      |      |      |      |      | Like numpy.flatten |
 
-function:
-
-## 演示: 邻接矩阵的参数定义:
+## Demo : apply nearly mat
 
 ​	Matrix appply(Matrix mid1,Matrix mid2,int axis = 0)
 
-> 参数 axis=0 :
+> if axis=0 :
 
 | 0    | 7    | 2    |
 | ---- | ---- | ---- |
@@ -174,13 +132,13 @@ function:
 | 0    | 0    | 0    | 0    | 0    | 0    |
 | 0    | 0    | 11   | 0    | 0    | 11   |
 
-------
 
-## 更新2019/11/18/00:12
 
-- [x] read_csv 通过文件流读取逗号分隔符文件,返回一个自动计算长度的矩阵.
+- [x] read_csv 
 
-  例如 CSV's head :
+- [x] return a matrix
+
+  CSV head :
 
   | -0.017612 | 14.053064 | 0    |
   | --------- | --------- | ---- |
@@ -196,8 +154,7 @@ function:
 
   
 
-  ## Logistic Regression demo:
-
+  ## demo:
 
 ```c
 #include<iostream>
@@ -250,12 +207,13 @@ int main()
 ```
 Something :
 
-> 1. 矩阵元素默认为1
-> 2. 使用位运算加速防止填充过大的数值,但是会损失一定精度,慎用.
-> 3. 记得delete(matrix)在你使用完一个矩阵计算单元以后.
-> 4. api接口更多的接近于pandas和numpy的使用习惯.
-> 5. 更多的细节参见目前最新的代码
-> 6. 欢迎star和关注.
+> 1. Matrix'element is default 1
+> 2. Dynamically allocate memory to prevent matrix from being too large
+> 3. To save memory and delete later,  use pointer to open up array space temporarily
+> 4. if free please delete(matrix);
+> 5. Api design like numpy or pandas
+> 6. Talking is cheap u can get the code
+> 7. welcome 🏃watched and star.
 >
 
 ------

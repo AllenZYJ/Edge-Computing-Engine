@@ -15,78 +15,32 @@ double duration;
 int main()
 {
 	welcome();	
-	string path = "./new_data.csv";
+	string path = "./new_data2.csv";
 	Matrix data = read_csv(path);
-	cout<<"new"<<endl;
-	cout_mat(data);
-	Matrix y = iloc(data,0,0,2,3);
-	Matrix x = iloc(data,0,0,0,2);
-	cout_mat(y);
-	Matrix bais = CreateMatrix(data.row,1);
-	Matrix data_new = appply(data,bais,1);
-	cout_mat(data_new);
-	cout<<"shape: "<<data_new.row<<","<<data_new.col<<endl;
-
-	cout<<"-----------split line-----------"<<endl;		
-	Matrix test_head_mat = CreateMatrix(5,4);
-	cout_mat(iloc(read_csv(path),2,19,2,3));
-//	Matrix data = read_csv(path);
-//	cout_mat(data);
-	cout<<"-----------split line-----------"<<endl;
-	Matrix a = CreateMatrix(4,3);
-	double a_ = e_sigmoid(1);	
-	cout<<a_<<endl;
-	change_va(a,1,2,1);
-	change_va(a,0,1,7);
-	change_va(a,0,2,2);
-	change_va(a,1,1,3);
-	change_va(a,3,2,11);	
-	start = clock();
-	Matrix applyed_ma = appply(a,a,1);
-	cout_mat(applyed_ma);
-	cout<<"--------split---------"<<endl;
-	Matrix b = get_T(a);
-	for(int index_x = 0;index_x<b.row;index_x++)
+	Matrix bais = CreateMatrix(data.row,1);		
+	data = appply(data,bais,1);
+	Matrix y = iloc(data,0,0,3,4);
+	Matrix x_1 = iloc(data,0,0,0,3);
+	Matrix x_2 = get_T(x_1);
+	double alpha = 0.002;
+	int max_epoch = 100;
+	Matrix weight = CreateMatrix(3,1);
+	change_va(weight,0,0,1);
+	change_va(weight,1,0,1);
+	change_va(weight,2,0,1);
+	int epoch = 0;
+	for(epoch = 0;epoch<=max_epoch;epoch++)
 	{
-		for(int index_y=0;index_y<b.col;index_y++)
-		{
-			cout<<b.matrix[index_x][index_y]<<" ";
-		}
-		cout<<endl;
+	cout<<"-----------split-line-----------"<<endl;			
+	Matrix temp_mul = mul(x_1,weight);
+	Matrix h =e_sigmoid(temp_mul);
+	Matrix error = subtract(y,h);
+	Matrix temp_update = mul(x_2,error);
+	Matrix updata = add(weight,times_mat(alpha,temp_update),0);
+	cout_mat(weight);
+	cout<<"epoch: "<<epoch<<" error: "<<matrix_sum(error)<<endl;
+	cout<<"-----------split-line-----------"<<endl;	
 	}
-	cout<<"-----------split line-----------"<<endl;
-	cout<<"matrix*n"<<endl;
-	Matrix c = times_mat(8,b);
-	for(int index_x = 0;index_x<c.row;index_x++)
-	{
-		for(int index_y=0;index_y<c.col;index_y++)
-		{
-			cout<<c.matrix[index_x][index_y]<<" ";
-		}
-		cout<<endl;
-	}
-	cout<<"-----------split line-----------"<<endl;
-	cout<<"matrix*matrix"<<endl; 
-	Matrix d =mul(c,get_T(c));
-	for(int index_x = 0;index_x<d.row;index_x++)
-	{
-		for(int index_y=0;index_y<d.col;index_y++)
-		{
-			cout<<d.matrix[index_x][index_y]<<" ";
-		}
-		cout<<endl;
-	}
-	cout<<"-----------split line-----------"<<endl;
-	Matrix rs = matrix_rs(a,6,5);
-	for(int index_x = 0;index_x<rs.row;index_x++)
-	{
-		for(int index_y=0;index_y<rs.col;index_y++)
-		{
-			cout<<rs.matrix[index_x][index_y]<<" ";
-		}
-		cout<<endl;
-	}
-	times_mat(5,a);
 	stop = clock();
     printf("%f\n", (double)(stop - start) / CLOCKS_PER_SEC);
 	return 0;
