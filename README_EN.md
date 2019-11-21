@@ -29,7 +29,7 @@
 >
 > 目前实现的:
 
-How to install and run the demo for logistic regession:
+How to install and run the demo:
 
 `git clone git@github.com:AllenZYJ/Edge-Computing-Engine.git`
 
@@ -154,7 +154,7 @@ double* flatten(Matrix mid1)
 
   
 
-  ## demo:
+  ## Test demo:
 
 ```c
 #include<iostream>

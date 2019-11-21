@@ -29,7 +29,7 @@
 >
 > 实现的:
 
-如何安装和运行基于Edge的逻辑回归demo.
+如何安装和运行基于Edge的测试demo.
 
 `git clone git@github.com:AllenZYJ/Edge-Computing-Engine.git`
 
@@ -198,7 +198,7 @@ function:
 
   
 
-  ## Logistic Regression demo:
+  ## Logistic Regression demo base Edge:
 
 
 ```c
