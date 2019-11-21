@@ -4,9 +4,9 @@
 
 # Edge-Computing-Engine
 
-## Edge : 一个开源的科学计算引擎
+## Edge : 一个开源的科学计算引擎				
 
-
+[README for English_version](./README_EN.md)
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000) ](https://github.com/AllenZYJ/Edge-Computing-Engine/blob/add-license-1/LICENSE)![](https://img.shields.io/badge/Bulid-Version1.0-green.svg)
 
@@ -53,12 +53,12 @@ epoch: 100 error: 6.05895
 -----------split-line-----------
 0.009167(sum of loss)
 
-目前实现的程序接口
+### 目前实现的程序接口
 Matrix API:
 
 - [x] Matrix read_csv(string &file_path)读取格式化文件(csv),返回一个自动计算长度的矩阵.
 
-- [ ] Create a matrix :  create(row,cols)开辟一个矩阵结构的内存,元素初值为0;
+- [x] Create a matrix :  create(row,cols)开辟一个矩阵结构的内存,元素初值为0;
 
 - [x] Change the element for matrix void move_ele(int &ele1, int &ele2),修改某一个位置的元素的值.
 
@@ -90,11 +90,13 @@ Matrix API:
 
 - [x] Matrix mul_simple(Matrix mid1,Matrix mid2)为了贴合机器学习的需要,实现了矩阵对应元素相乘,请与传统意义的矩阵乘法区分开.
 
+  ### 即将着手开发:
+
 - [ ] 卷积神经网络定义(包括但不限于卷积核,池化层定义,自定义损失接口).
 
-- [ ] 随机森林迭代过程封装.
+- [ ] 随机森林算法封装.
 
-- [ ] …...
+- [ ] 主流网络架构实现.
 
   
 
