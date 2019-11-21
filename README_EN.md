@@ -33,7 +33,7 @@ How to install and run the demo for logistic regession:
 
 `git clone git@github.com:AllenZYJ/Edge-Computing-Engine.git`
 
-cd to this dir 
+`cd to this dir `
 
 `g++ main.cpp -o main`
 

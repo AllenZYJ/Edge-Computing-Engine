@@ -29,13 +29,13 @@
 >
 > 实现的:
 
-如何安装和运行基于Edeg的逻辑回归demo.
+如何安装和运行基于Edge的逻辑回归demo.
 
 `git clone git@github.com:AllenZYJ/Edge-Computing-Engine.git`
 
 进入到clone 之后的目录
 
-cd to this dir 
+`cd to this dir `
 
 编译demo入口程序
 
