@@ -15,11 +15,22 @@ double duration;
 int main()
 {
 	welcome();	
-	string path = "./data.csv";	
-	Matrix test_head_mat = CreateMatrix(5,4);
-	cout_mat(iloc(read_csv(path),2,199,0,2));
-	cout<<"-----------split line-----------"<<endl;	
+	string path = "./new_data.csv";
 	Matrix data = read_csv(path);
+	cout<<"new"<<endl;
+	cout_mat(data);
+	Matrix y = iloc(data,0,0,2,3);
+	Matrix x = iloc(data,0,0,0,2);
+	cout_mat(y);
+	Matrix bais = CreateMatrix(data.row,1);
+	Matrix data_new = appply(data,bais,1);
+	cout_mat(data_new);
+	cout<<"shape: "<<data_new.row<<","<<data_new.col<<endl;
+
+	cout<<"-----------split line-----------"<<endl;		
+	Matrix test_head_mat = CreateMatrix(5,4);
+	cout_mat(iloc(read_csv(path),2,19,2,3));
+//	Matrix data = read_csv(path);
 //	cout_mat(data);
 	cout<<"-----------split line-----------"<<endl;
 	Matrix a = CreateMatrix(4,3);
@@ -30,19 +41,9 @@ int main()
 	change_va(a,0,2,2);
 	change_va(a,1,1,3);
 	change_va(a,3,2,11);	
-	
 	start = clock();
-
 	Matrix applyed_ma = appply(a,a,1);
-	for(int index_x = 0;index_x<applyed_ma.row;index_x++)
-	{
-		cout<<"|";
-		for(int index_y=0;index_y<applyed_ma.col;index_y++)
-		{
-			cout<<applyed_ma.matrix[index_x][index_y]<<"|";
-		}
-		cout<<endl;
-	}
+	cout_mat(applyed_ma);
 	cout<<"--------split---------"<<endl;
 	Matrix b = get_T(a);
 	for(int index_x = 0;index_x<b.row;index_x++)

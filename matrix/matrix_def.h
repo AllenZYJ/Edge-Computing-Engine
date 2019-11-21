@@ -39,7 +39,7 @@ Matrix CreateMatrix(int ro,int co)
 	m.matrix = inputMatrix;
 	return m;
 }
-int change_va(Matrix Matrix ,int index_x,int index_y,int value)
+int change_va(Matrix Matrix ,int index_x,int index_y,float value)
 {
 	Matrix.matrix[index_x][index_y] = value;
 	return 0;

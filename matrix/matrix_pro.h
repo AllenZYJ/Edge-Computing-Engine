@@ -176,7 +176,7 @@ Matrix appply(Matrix mid1,Matrix mid2,int axis = 0)
 	Matrix result;
 	if(axis ==1)
 	{result = CreateMatrix(mid1.row,new_col);}
-	else{result = CreateMatrix(new_row,mid2.col);}
+	else{result = CreateMatrix(new_row+1,mid2.col);}
 	for(int index_x = 0;index_x<mid1.row;++index_x)
 	{
 		for(int index_y=0;index_y<mid1.col;++index_y)
@@ -244,18 +244,34 @@ Matrix iloc(Matrix mid1,int start_x=0,int end_x=0,int start_y=0,int end_y=0)
 	cout<<mid1.row<<end_x<<" "<<start_x<<" "<<end_y<<" "<<start_y<<endl;
 	int new_row = end_x-start_x;
 	int new_col = end_y-start_y;
-	cout<<"nc"<<new_col<<" nr"<<new_row<<endl;
+//	cout<<"nc"<<new_col<<" nr"<<new_row<<endl;
 	Matrix mid_return = CreateMatrix(new_row,new_col);
 	for(int index_x = start_x;index_x<end_x;++index_x)
 	{	
 		for(int index_y=start_y;index_y<end_y;++index_y)
 		{
-			cout<<"start: "<<index_x<<",end: "<<index_y<<endl;
-			cout<<"re: "<<mid1.matrix[index_x][index_y]<<endl;
+		//	cout<<"start: "<<index_x<<",end: "<<index_y<<endl;
+		//	cout<<"re: "<<mid1.matrix[index_x][index_y]<<endl;
 		mid_return.matrix[index_x-start_x][index_y-start_y] = mid1.matrix[index_x][index_y];
 		}
 	}
 	return mid_return;
 }
-
+Matrix mul_simple(Matrix mid1,Matrix mid2)
+{
+	if(mid1.row != mid2.row||mid1.col != mid2.col)
+	{
+		cout<<"Error: shape A&B"<<endl;
+		return mid1;
+	}
+	Matrix result = CreateMatrix(mid1.row,mid1.col);
+	for(int index_x = 0;index_x<mid1.row;index_x++)
+	{
+		for(int index_y=0;index_y<mid1.col;index_y++)
+		{
+		result.matrix[index_x][index_y] = mid1.matrix[index_x][index_y]*mid2.matrix[index_x][index_y];
+		}
+	}
+	return result;
+}
 #endif

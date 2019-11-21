@@ -53,13 +53,12 @@ Matrix read_csv(string &file_path)
 		}
 	}
 	}
-	Matrix data_ma = CreateMatrix(count_rows+1,count_col+1);	
+	Matrix data_ma = CreateMatrix(count_rows,count_col+1);	
 	ifstream infile2;
 	infile2.open(file_path);
 	int next_flag = 0;
 	while(!infile2.eof())
 	{
-	next_flag+=1;		
 	infile2 >> data;
 	string base = "";
 	string added ="";
@@ -91,8 +90,8 @@ Matrix read_csv(string &file_path)
 		char *result2 = (char*)base2.data();
 		data_ma.matrix[next_flag][count_times] = str2double(result2);
 		}
-
 	}
+	next_flag+=1;	
 	}
 	return data_ma;
 }
