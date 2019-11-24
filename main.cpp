@@ -23,7 +23,7 @@ int main()
 	Matrix x_1 = iloc(data,0,0,0,3);
 	Matrix x_2 = get_T(x_1);
 	double alpha = 0.002;
-	int max_epoch = 100;
+	int max_epoch = 10000;
 	Matrix weight = CreateMatrix(3,1);
 	change_va(weight,0,0,1);
 	change_va(weight,1,0,1);

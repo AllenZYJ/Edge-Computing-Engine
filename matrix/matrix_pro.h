@@ -1,7 +1,10 @@
 #ifndef MATRIX_PRO
 #define MATRIX_PRO
 #include<iostream>
+#include<stdlib.h>
 #include<string>
+#define random(x) (rand()%x)
+
 /*
 matrix add
 
@@ -272,5 +275,49 @@ Matrix mul_simple(Matrix mid1,Matrix mid2)
 		}
 	}
 	return result;
+}
+Matrix CreateRandMat(int x_dim,int y_dim)
+{
+	int index_x,index_y;
+	Matrix result = CreateMatrix(x_dim,y_dim);
+	for(index_x = 0;index_x<x_dim;++index_x)
+	{
+		for(index_y=0;index_y<y_dim;++index_y)
+		{
+			double temp_val = (rand()%30000)*0.0001-1;
+			change_va(result,index_x,index_y,temp_val);
+		}
+	}
+return result;
+}
+double edge_relu(double val_relu)
+{
+	if(val_relu>0)
+	{return val_relu;}
+	else
+	{return 0;}
+}
+Matrix mat_relu(Matrix mid1)
+{
+	Matrix relu_mat = CreateMatrix(mid1.row,mid1.col);
+	for(int index_x = 0;index_x<mid1.row;++index_x)
+		for(int index_y = 0;index_y<mid1.row;++index_y)
+		{
+			{
+			relu_mat.matrix[index_x][index_y] = edge_relu(mid1.matrix[index_x][index_y]);
+
+			}
+		}
+	return relu_mat;
+}
+Matrix mat_sq_loss(Matrix mid1,Matrix mid2)
+{
+	int index_x,index_y;
+	Matrix mat_sq = CreateMatrix(mid1.row,1);
+	for(index_x = 0;index_x<mid1.row;++index_x)
+	{
+		mat_sq.matrix[index_x][0] = pow(mid1.matrix[index_x][0]-mid2.matrix[index_x][0],2);
+	}
+	return mat_sq;
 }
 #endif
