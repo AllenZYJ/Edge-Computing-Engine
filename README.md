@@ -128,7 +128,8 @@ Matrix API:
 
 ## 反向传播测试demo:
 
-`#include<iostream>
+```c
+#include<iostream>
 #include<ctime>
 #include<string>
 #include<time.h>
@@ -178,7 +179,10 @@ int main()
 		cout<<"loss"<<": ";
 		cout<<matrix_sum(mat_sq)/100<<endl;
 	}
-}`
+}
+```
+
+
 
 ## 演示:矩阵乘法
 
