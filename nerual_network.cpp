@@ -17,6 +17,7 @@ int main()
 {
 	welcome();	
 	string path = "./data/nerual_data.csv";
+	ofstream fout( "mytest.txt" );	
 	Matrix data = read_csv(path);
 	Matrix bais = CreateMatrix(data.row,1);		
 	Matrix x = iloc(data,0,100,0,2);
@@ -27,7 +28,7 @@ int main()
 	Matrix W2 = CreateRandMat(H_num,out_Dim);
 	cout_mat(W1);
 	cout_mat(W2);
-	for(int epoch = 0;epoch<100;epoch++)
+	for(int epoch = 0;epoch<500;epoch++)
 	{
 		Matrix x_w1 = mul(x,W1);
 		Matrix re = mat_relu(x_w1);
@@ -47,5 +48,6 @@ int main()
 		cout_mat(W2);
 		cout<<"loss"<<": ";
 		cout<<matrix_sum(mat_sq)/100<<endl;
+		save_txt(W1,"result.csv",",","header");
 	}
 }

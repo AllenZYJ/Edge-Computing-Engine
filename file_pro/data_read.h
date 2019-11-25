@@ -95,4 +95,21 @@ Matrix read_csv(string &file_path)
 	}
 	return data_ma;
 }
+int save_txt(Matrix mid1,string path = "./",string delimiter = ",",string header="./")
+{
+	int index_x,index_y;
+	ofstream fout(path,ios::app);
+	fout<<header<<endl;		
+	for(index_x=0;index_x<mid1.row;index_x++)
+	{
+		for(index_y=0;index_y<mid1.col;index_y++)
+		{
+			fout<<mid1.matrix[index_x][index_y]<<delimiter;
+		}
+		fout<<endl;
+	}
+	fout.close();
+	return 0;
+
+}
 //-----------split------------

@@ -1,5 +1,3 @@
-
-
 <div align=center><img src="./picture/01.svg"/></div>
 
 # Edge-Engine
@@ -77,6 +75,8 @@ epoch: 100 error: 6.05895
 Matrix API:
 
 - [x] Matrix read_csv(string &file_path)读取格式化文件(csv),返回一个自动计算长度的矩阵.
+
+- [x] int save_txt(Matrix mid1,string path = "./",string delimiter = ",",string header="./") 设计文件流获取文件头部接口 , 写入格式化文件 , 已设计支持矩阵类型数据写入,支持自定义表头,写入文件路径 , 自定义分隔符,默认为" , ".
 
 - [x] Create a matrix :  create(row,cols)开辟一个矩阵结构的内存,元素初值为0;
 
