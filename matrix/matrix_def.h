@@ -16,6 +16,7 @@ typedef struct
 {
 	int row,col;
 	float **matrix;
+
 }Matrix;
 Matrix CreateMatrix(int ro,int co)
 {
@@ -39,6 +40,29 @@ Matrix CreateMatrix(int ro,int co)
 	m.matrix = inputMatrix;
 	return m;
 }
+Matrix ones(int ro,int co)
+{
+	Matrix m;
+	int row,col;
+	float **inputMatrix;
+	inputMatrix=(float**)malloc(ro*sizeof(float*));
+	for(int i = 0;i<ro;i++)
+	{
+		inputMatrix[i]=(float*)malloc(co*sizeof(float));
+	}
+	for(int i=0; i<ro; i++)
+    {
+        for(int j=0; j<co; j++)
+        {
+            inputMatrix[i][j] = 1;
+        }
+    }
+	m.col = co;
+	m.row = ro;
+	m.matrix = inputMatrix;
+	return m;
+}
+
 int change_va(Matrix Matrix ,int index_x,int index_y,float value)
 {
 	Matrix.matrix[index_x][index_y] = value;

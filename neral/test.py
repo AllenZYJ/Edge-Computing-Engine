@@ -1,41 +1,58 @@
-# -*- coding: utf-8 -*-
-import numpy as np
-
-# N is batch size; D_in is input dimension;
-# H is hidden dimension; D_out is output dimension.
-N, D_in, H, D_out = 1, 2, 3, 1
-
-# Create random input and output data
-x = np.random.randn(N, D_in)
-y = np.random.randn(N, D_out)
+class Tensor:
+    def __init__(self, data, depend=[]):
+        """初始化"""
+        self.data = data  
+        self.depend = depend 
+        self.grad = 0 
+    def __mul__(self, data):
+        """乘法"""
+        def grad_fn1(grad):
+            return grad * data.data 
+        def grad_fn2(grad):
+            return grad * self.data  
+        depend = [(self, grad_fn1), (data, grad_fn2)]
+        new = Tensor(self.data * data.data, depend) 
+        return new 
+    def __rmul__(self, data):
+        def grad_fn1(grad):
+            return grad * data.data 
+        def grad_fn2(grad):
+            return grad * self.data  
+        depend = [(self, grad_fn1), (data, grad_fn2)]
+        new = Tensor(self.data * data.data, depend) 
+        return new 
+    def __add__(self, data):
+        """加法"""
+        def grad_fn(grad):
+            return grad   
+        depend = [(self, grad_fn), (data, grad_fn)]
+        new = Tensor(self.data * data.data, depend) 
+        return new    
+    def __radd__(self, data):
+        def grad_fn(grad):
+            return grad   
+        depend = [(self, grad_fn), (data, grad_fn)]
+        new = Tensor(self.data * data.data, depend) 
+        return new  
+    def __repr__(self):
+        return f"Tensor:{self.data}"
+    def backward(self, grad=None):
+        """
+        反向传播，需要递归计算
+        """
+        if grad == None:
+            self.grad = 1 
+        else:
+            # 这一步用于计算图中的分支
+            self.grad += grad
+        # 这一步是递归计算
+        for tensor, grad_fn in self.depend:
+            bw = grad_fn(self.grad)
+            tensor.backward(bw)
+x = Tensor(4) 
+f = x * x 
+g = x * x 
+y = f + g
+y.backward()
 print(x)
-# Randomly initialize weights
-w1 = np.random.randn(D_in, H)
-w2 = np.random.randn(H, D_out)
-print("w1:",w1)
-print("-----------------------")
-print("w2:",w2)
-learning_rate = 1e-6
-for t in range(5):
-    # Forward pass: compute predicted y
-    h = x.dot(w1)
-    h_relu = np.maximum(h, 0)
-    print("h:",h_relu)
-    y_pred = h_relu.dot(w2)
-    print("y_pred: ",y_pred)
-    # Compute and print loss
-    loss = np.square(y_pred - y).sum()
-    print(t, loss)
-    # Backprop to compute gradients of w1 and w2 with respect to loss
-    grad_y_pred = 2.0 * (y_pred - y)
-    print("grad:",grad_y_pred)
-    grad_w2 = h_relu.T.dot(grad_y_pred)#完成
-    print("gradw2: ",grad_w2)
-    grad_h_relu = grad_y_pred.dot(w2.T)
-    grad_h = grad_h_relu.copy()
-    grad_h[h < 0] = 0
-    grad_w1 = x.T.dot(grad_h)
-
-    # Update weights
-    w1 -= learning_rate * grad_w1
-    w2 -= learning_rate * grad_w2
+print(y, g.grad, x.grad)

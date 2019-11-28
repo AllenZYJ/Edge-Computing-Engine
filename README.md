@@ -27,6 +27,10 @@
 >
 > 实现的:
 
+———2019.11.28
+
+更新: 实现矩阵封装和自动求导接口.
+
 如何安装和运行基于Edge的测试demo.
 
 `git clone git@github.com:AllenZYJ/Edge-Computing-Engine.git`
@@ -75,6 +79,8 @@ epoch: 100 error: 6.05895
 Matrix API:
 
 - [x] Matrix read_csv(string &file_path)读取格式化文件(csv),返回一个自动计算长度的矩阵.
+
+- [x] 矩阵微分和自动求导接口封装
 
 - [x] int save_txt(Matrix mid1,string path = "./",string delimiter = ",",string header="./") 设计文件流获取文件头部接口 , 写入格式化文件 , 已设计支持矩阵类型数据写入,支持自定义表头,写入文件路径 , 自定义分隔符,默认为" , ".
 
