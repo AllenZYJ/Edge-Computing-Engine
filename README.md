@@ -10,9 +10,9 @@
 
 > 项目开始日期 : 2019/10/01
 
-> 目前项目总代码 : 709 行
+> 目前项目总代码 : 810 行
 >
-> 测试 : main.cpp | nerual_network.cpp (新增Bp反向传播矩阵求导测试demo)
+> 测试 : main.cpp | nerual_network.cpp | 新增全连接神经网络架构(新增全连接网络正向传播和反向传播的测试demo)
 >
 > 测试环境:
 >
@@ -26,36 +26,144 @@
 > Thread model: posix
 >
 > 实现的:
+>
+> 进入到clone 之后的目录
 
-———2019.11.28
+## 安装编译
 
-更新: 实现矩阵封装和自动求导接口.
+git clone git@github.com:AllenZYJ/Edge-Computing-Engine.git
 
-如何安装和运行基于Edge的测试demo.
+cd to this dir `
 
-`git clone git@github.com:AllenZYJ/Edge-Computing-Engine.git`
+进入root目录:
 
-进入到clone 之后的目录
+执行
 
-`cd to this dir `
+```
+make
+make install
+```
 
 编译demo入口程序
 
-`g++ main.cpp -o main`
+```shell
+➜  edge-computing-engine git:(master) ✗ g++ main.cpp -o ma -lautodiff
+```
 
 或者BP测试程序
 
-`g++ nerual_network.cpp -o ma`
+```shell
+➜  edge-computing-engine git:(master) ✗ g++ nerual_network.cpp -o ma
+```
 
 运行
 
-`'./main'`
+```shell
+➜  edge-computing-engine git:(master) ✗ ./main
+```
 
-`./ma`
+## 新的demo程序实现5层全连接层,可自定义神经元和激活函数,损失函数
 
-Bp反向传播基于Pytorch官方代码模拟实现测试
+代码:
 
-最终迭代结果 :
+```c
+Matrix data_mine = CreateRandMat(2,1);
+Matrix label = CreateMatrix(2,1);
+Matrix weight1 = CreateRandMat(2,2);
+Matrix weight2 = CreateRandMat(2,2);
+Matrix weight3 = CreateRandMat(2,2);
+Matrix weight4 = CreateRandMat(2,2);
+for(int epoch = 0;epoch<20;epoch++)
+{
+cout_mat(weight1);
+edge_network sequaltial(2,2);
+
+Matrix output1 = sequaltial.forward(data_mine,weight1);
+Matrix output2 = sequaltial.forward(output1,weight2);
+Matrix output3 = sequaltial.forward(output2,weight3);
+Matrix output4 = sequaltial.forward(output3,weight4);
+Matrix output_end = sequaltial.end_layer_backward(label,output4);
+//get the forward
+Matrix backward1 = sequaltial.backward(output_end,output3,weight4);
+Matrix grad_w1w2 = mul_simple(backward1,data_mine);
+Matrix backward2 = sequaltial.backward(backward1,output2,weight3);
+Matrix grad_w3w4 = mul_simple(backward2,data_mine);
+Matrix backward3 = sequaltial.backward(backward2,output1,weight2);
+Matrix grad_w5w6 = mul_simple(backward3,data_mine);
+Matrix backward4 = sequaltial.backward(backward3,output4,weight1);
+Matrix grad_w7w8 = mul_simple(backward4,data_mine);
+weight1 = subtract(weight1,times_mat(0.0001,padding(grad_w1w2,2,2)));
+weight2 = subtract(weight2,times_mat(0.0001,padding(grad_w3w4,2,2)));
+weight3 = subtract(weight3,times_mat(0.0001,padding(grad_w5w6,2,2)));
+weight4 = subtract(weight4,times_mat(0.0001,padding(grad_w7w8,2,2)));
+}
+```
+```python
+---------epoch: 0------------
+loss: 4.65667
+loss: 3.28273
+---------epoch: 1------------
+loss: 4.65655
+loss: 3.28265
+---------epoch: 2------------
+loss: 4.65643
+loss: 3.28257
+---------epoch: 3------------
+loss: 4.65631
+loss: 3.28249
+---------epoch: 4------------
+loss: 4.65619
+loss: 3.2824
+---------epoch: 5------------
+loss: 4.65607
+loss: 3.28232
+---------epoch: 6------------
+loss: 4.65596
+loss: 3.28224
+---------epoch: 7------------
+loss: 4.65584
+loss: 3.28216
+---------epoch: 8------------
+loss: 4.65572
+loss: 3.28208
+---------epoch: 9------------
+loss: 4.6556
+loss: 3.282
+---------epoch: 10------------
+loss: 4.65548
+loss: 3.28192
+---------epoch: 11------------
+loss: 4.65536
+loss: 3.28184
+---------epoch: 12------------
+loss: 4.65524
+loss: 3.28176
+---------epoch: 13------------
+loss: 4.65512
+loss: 3.28168
+---------epoch: 14------------
+loss: 4.65501
+loss: 3.2816
+---------epoch: 15------------
+loss: 4.65489
+loss: 3.28152
+---------epoch: 16------------
+loss: 4.65477
+loss: 3.28144
+---------epoch: 17------------
+loss: 4.65465
+loss: 3.28136
+---------epoch: 18------------
+loss: 4.65453
+loss: 3.28128
+---------epoch: 19------------
+loss: 4.65441
+loss: 3.2812
+```
+
+## Bp反向传播的demo程序基于Pytorch官方代码模拟实现测试
+
+迭代结果 :
 
 W1: 0.6944 1.52368
 	-1.46644 -0.154097
@@ -76,9 +184,16 @@ epoch: 100 error: 6.05895
 0.009167(sum of loss)
 
 ### 目前实现的程序接口
-Matrix API:
+
+### API:
 
 - [x] Matrix read_csv(string &file_path)读取格式化文件(csv),返回一个自动计算长度的矩阵.
+
+- [x] 实现格式化文件写入接口.比较pandas.to_csv.
+
+- [x] 矩阵广播机制,实现padding接口
+
+- [x] 全连接层前向传播和反向传播接口,支持自动求导
 
 - [x] 矩阵微分和自动求导接口封装
 
@@ -348,6 +463,7 @@ Something :
 > 4. api接口更多的接近于pandas和numpy的使用习惯.
 > 5. 更多的细节参见目前最新的代码
 > 6. 欢迎star和关注.
+> 7. autodiff部分感谢国外博主Omar的思路提醒.
 >
 
 ------

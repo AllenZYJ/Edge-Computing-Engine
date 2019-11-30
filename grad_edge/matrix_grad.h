@@ -18,48 +18,61 @@ Node mean_square_error(Matrix mid1,Matrix mid2){
     }
     return loss;
 }
-struct edge_layer
+struct edge_network
 {
-	Matrix weights;
-	Matrix bias;
-	int input_shape;
-	int output_shape;
-	edge_layer(int input, int output,Matrix weights,Matrix label,string activation){
-        this->input_shape = input;
-        this->output_shape = output;
-		this->weights = weights;
+	edge_network(int input, int output){
     }
 	Matrix forward(Matrix data,Matrix weights)
 	{
-		cout<<"data: ";
-		cout_mat(data);
-		cout<<"weights: "<<endl;
-		cout_mat(weights);
+	//	cout<<"data: ";
+	//	cout_mat(data);
+	//	cout<<"weights: "<<endl;
+	//	cout_mat(weights);
 		Matrix output = mul(weights,data);
-	//	output = e_sigmoid(output);
-	cout<<"forward output: ";
-		cout_mat(output);
+		output = e_sigmoid(output);
+	//	cout<<"forward output: ";
+	//	cout_mat(output);
+	//	cout<<"----------forward finish--------"<<endl;
 		return output;
 	}
-	Matrix backward(Matrix output,Matrix label,const float& learning_rate,Matrix grad_before)
+	Matrix backward(Matrix grad_next, Matrix output_before,Matrix weights)
 	{
-		Matrix grad = CreateMatrix(weights.row,weights.col);
+		
+	//	cout<<"-----------backward-------------"<<endl;
+	//	cout_mat(grad_next);
+	//	cout<<"-----------grad_next------------"<<endl;
+	//	cout_mat(output_before);
+	//	cout<<"-----------output before--------"<<endl;
+	//	cout_mat(get_T(weights));
+	//	cout<<"-----------TTTTTweights--------------"<<endl;
+	//	cout_mat(padding(mul_simple(mul(get_T(weights),grad_next),output_before),2,2));
+//		cout<<"[[[[[";
+		return mul_simple(mul(get_T(weights),grad_next),output_before);
 
-		for(int index_x=0;index_x<weights.row;index_x++)
-			{
-				Node target=label.matrix[index_x][0],_y_ = output.matrix[index_x][0];	
-				cout<<"target: "<<target<<endl;
-				Node loss = target-pow(_y_,2);
-				cout<<"loss: "<<loss<<endl;
-			for(int index_y = 0;index_y<weights.col;index_y++)
-			{			
-				grad.matrix[index_x][index_y] = loss.gradient(_y_);
-				weights.matrix[index_x][index_y]-=loss.gradient(_y_);
-			}
-		}
-		grad = mul_simple(grad,grad_before);
-		cout<<"grad:";
-		cout_mat(grad);
+	}
+	Matrix end_layer_backward(Matrix label,Matrix acti_val)
+	{
+		Matrix loss_act = CreateMatrix(acti_val.row,acti_val.col);
+		Matrix act_output = CreateMatrix(acti_val.row,acti_val.col);
+		int index_x,index_y;
+		for(index_x=0;index_x<loss_act.row;index_x++)
+		{
+		Node t1 = label.matrix[index_x][0],z31 =acti_val.matrix[index_x][0];
+		Node a13 = 1+exp(z31);
+		Node loss = 0.5*(pow((t1-a13),2));
+		Node act = 1/(1+exp(z31));
+		act_output.matrix[index_x][0] = act.gradient(z31);
+		loss_act.matrix[index_x][0] = loss.gradient(a13);
+	//	cout<<"z31: "<<z31<<endl;
+	//	cout<<"z31_grad: "<<act.gradient(z31)<<endl;
+	//	cout<<"a13: "<<a13<<"t1: "<<t1<<endl;
+		cout<<"loss: "<<loss<<endl;	
+	//	cout<<"gradient: "<<loss.gradient(a13)<<endl;
+		}		
+		Matrix mid_grad_end = mul_simple(loss_act,act_output);
+	//	cout<<"[[[[[[[[";
+	//	cout_mat(mid_grad_end);
+		return mid_grad_end;
 	}
 };
 

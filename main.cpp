@@ -45,31 +45,37 @@ int main()
 	}
 	stop = clock();
     printf("%f\n", (double)(stop - start) / CLOCKS_PER_SEC);
-	Node u=2, p=3.2,tt = 10,ll = u*p;
-    Node f = 1/(1+exp(ll));
-    std::cout << "f(x,y) = 1/1+exp(2*3)"<<f<< std::endl;
-    std::cout << "∂f/∂u = " << f.gradient(ll) << std::endl;
-    std::cout << "∂f/∂p = " << f.gradient(p) << std::endl;
 	cout<<"------------autodiff for neraul network-----------"<<endl;
-	Matrix data1 = CreateRandMat(2,1);
-	Matrix label_data = CreateMatrix(2,1);
-	change_va(label_data,0,0,1);
-	change_va(label_data,1,0,1);
-	cout_mat(data1);
-	cout<<"------------data1----------------"<<endl;	
-	Matrix we1 = CreateRandMat(2,2);
-	cout_mat(we1);	
-	cout<<"------------weight-----------"<<endl;	
-	edge_layer layer(2,2,we1,label_data,"tanh");
-	Matrix grad_before1 = ones(2,2);	
-	Matrix out_put = layer.forward(data1,we1);
-	Matrix grad_before2 = layer.backward(out_put,label_data,0.1,grad_before1);
-	Matrix grad_we1 = CreateRandMat(2,2);
-	we1 = subtract(we1,grad_we1);
-	cout<<"------------first backward---------"<<endl;	
-	edge_layer layer_2(layer.output_shape,2,we1,label_data,"tanh");	
-	Matrix out_put2 = layer_2.forward(out_put,we1);
-	layer_2.backward(out_put2,label_data,0.1,grad_before2);
+	Matrix data_mine = CreateRandMat(2,1);
+	Matrix label = CreateMatrix(2,1);
+	Matrix weight1 = CreateRandMat(2,2);
+	Matrix weight2 = CreateRandMat(2,2);
+	Matrix weight3 = CreateRandMat(2,2);
+	Matrix weight4 = CreateRandMat(2,2);
+	for(int epoch = 0;epoch<20;epoch++)
+	{
+		cout<<"---------epoch: "<<epoch<<"------------"<<endl;
+//	cout_mat(weight1);
+	edge_network sequaltial(2,2);
+	Matrix output1 = sequaltial.forward(data_mine,weight1);
+	Matrix output2 = sequaltial.forward(output1,weight2);
+	Matrix output3 = sequaltial.forward(output2,weight3);
+	Matrix output4 = sequaltial.forward(output3,weight4);
+	Matrix output_end = sequaltial.end_layer_backward(label,output4);
+	//get the forward
+	Matrix backward1 = sequaltial.backward(output_end,output3,weight4);
+	Matrix grad_w1w2 = mul_simple(backward1,data_mine);
+	Matrix backward2 = sequaltial.backward(backward1,output2,weight3);
+	Matrix grad_w3w4 = mul_simple(backward2,data_mine);
+	Matrix backward3 = sequaltial.backward(backward2,output1,weight2);
+	Matrix grad_w5w6 = mul_simple(backward3,data_mine);
+	Matrix backward4 = sequaltial.backward(backward3,output4,weight1);
+	Matrix grad_w7w8 = mul_simple(backward4,data_mine);
+	weight1 = subtract(weight1,times_mat(0.0001,padding(grad_w1w2,2,2)));
+	weight2 = subtract(weight2,times_mat(0.0001,padding(grad_w3w4,2,2)));
+	weight3 = subtract(weight3,times_mat(0.0001,padding(grad_w5w6,2,2)));
+	weight4 = subtract(weight4,times_mat(0.0001,padding(grad_w7w8,2,2)));
+	}
 	return 0;
 }
 

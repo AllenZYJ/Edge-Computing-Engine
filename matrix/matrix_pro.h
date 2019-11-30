@@ -227,7 +227,7 @@ void cout_mat(Matrix mid1)
 	{
 		for(int index_y=0;index_y<mid1.col;index_y++)
 		{
-			cout<<mid1.matrix[index_x][index_y]<<" ";
+			cout<<mid1.matrix[index_x][index_y]<<",";
 		}
 		cout<<endl;
 	}
@@ -319,5 +319,17 @@ Matrix mat_sq_loss(Matrix mid1,Matrix mid2)
 		mat_sq.matrix[index_x][0] = pow(mid1.matrix[index_x][0]-mid2.matrix[index_x][0],2);
 	}
 	return mat_sq;
+}
+Matrix padding(Matrix mid1,int shape1,int shape2)
+{
+	Matrix result = CreateMatrix(shape1,shape2);
+    for(int index_x = 0;index_x<shape1;index_x++)
+	{
+		for(int index_y = 0;index_y<shape2;index_y++)
+		{
+			result.matrix[index_x][index_y] = mid1.matrix[index_x][0];
+		}
+	}
+	return result;
 }
 #endif
