@@ -98,7 +98,7 @@ weight3 = subtract(weight3,times_mat(0.0001,padding(grad_w5w6,2,2)));
 weight4 = subtract(weight4,times_mat(0.0001,padding(grad_w7w8,2,2)));
 }
 ```
-```python
+```shell
 ---------epoch: 0------------
 loss: 4.65667
 loss: 3.28273
