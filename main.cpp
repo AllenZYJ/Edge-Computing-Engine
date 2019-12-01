@@ -15,7 +15,7 @@ using namespace std;
 clock_t start, stop;
 double duration;
 int main()
-{
+{/*
 	welcome();	
 	string path = "./data/new_data2.csv";
 	Matrix data = read_csv(path);
@@ -45,37 +45,58 @@ int main()
 	}
 	stop = clock();
     printf("%f\n", (double)(stop - start) / CLOCKS_PER_SEC);
+	*/
 	cout<<"------------autodiff for neraul network-----------"<<endl;
-	Matrix data_mine = CreateRandMat(2,1);
-	Matrix label = CreateMatrix(2,1);
+	Matrix data_mine = CreateMatrix(2,1);
+	change_va(data_mine,0,0,0.55);
+	change_va(data_mine,1,0,0.2);
+	cout<<"data mine"<<endl;
+	cout_mat(data_mine);
+	cout<<"data mine"<<endl;
+	Matrix label = CreateRandMat(2,1);
+	change_va(label,0,0,0.4);
+	change_va(label,1,0,0.8);
+
 	Matrix weight1 = CreateRandMat(2,2);
+	change_va(weight1,0,0,0.1);
+	change_va(weight1,0,1,0.2);
+	change_va(weight1,1,0,0.2);
+	change_va(weight1,1,1,0.4);
+	cout<<"weight1";
+	cout_mat(weight1);
+	cout<<"weight1";
+	Matrix bais1 = ones(2,1);
 	Matrix weight2 = CreateRandMat(2,2);
+	change_va(weight2,0,0,0.5);
+	change_va(weight2,1,0,0.6);
+	change_va(weight2,0,1,0.7);
+	change_va(weight2,1,1,0.8);
+	Matrix bais2 = ones(2,1);	
 	Matrix weight3 = CreateRandMat(2,2);
+	Matrix bais3 = ones(2,1);	
 	Matrix weight4 = CreateRandMat(2,2);
-	for(int epoch = 0;epoch<20;epoch++)
+	Matrix bais4 = ones(2,1);	
+	for(int epoch = 0;epoch<10;epoch++)
 	{
-		cout<<"---------epoch: "<<epoch<<"------------"<<endl;
+	cout<<"---------epoch: "<<epoch<<"------------"<<endl;
 //	cout_mat(weight1);
-	edge_network sequaltial(2,2);
-	Matrix output1 = sequaltial.forward(data_mine,weight1);
-	Matrix output2 = sequaltial.forward(output1,weight2);
-	Matrix output3 = sequaltial.forward(output2,weight3);
-	Matrix output4 = sequaltial.forward(output3,weight4);
-	Matrix output_end = sequaltial.end_layer_backward(label,output4);
-	//get the forward
-	Matrix backward1 = sequaltial.backward(output_end,output3,weight4);
-	Matrix grad_w1w2 = mul_simple(backward1,data_mine);
-	Matrix backward2 = sequaltial.backward(backward1,output2,weight3);
-	Matrix grad_w3w4 = mul_simple(backward2,data_mine);
-	Matrix backward3 = sequaltial.backward(backward2,output1,weight2);
-	Matrix grad_w5w6 = mul_simple(backward3,data_mine);
-	Matrix backward4 = sequaltial.backward(backward3,output4,weight1);
-	Matrix grad_w7w8 = mul_simple(backward4,data_mine);
-	weight1 = subtract(weight1,times_mat(0.0001,padding(grad_w1w2,2,2)));
-	weight2 = subtract(weight2,times_mat(0.0001,padding(grad_w3w4,2,2)));
-	weight3 = subtract(weight3,times_mat(0.0001,padding(grad_w5w6,2,2)));
-	weight4 = subtract(weight4,times_mat(0.0001,padding(grad_w7w8,2,2)));
+	int input_dim = 2;
+	int output_dim = 2;
+	edge_network sequaltial(input_dim,output_dim);
+	Matrix output1 = sequaltial.forward(data_mine,weight1,bais1);
+	Matrix output1_without_act = sequaltial.forward_without_act(data_mine,weight1,bais1);
+	Matrix output2 = sequaltial.forward(output1,weight2,bais2);
+	Matrix output2_without_act = sequaltial.forward_without_act(output1,weight2,bais2);	
+	Matrix output_end = sequaltial.end_layer_backward(label,output2_without_act);
+	Matrix backward3 = sequaltial.backward(output_end,output1_without_act,weight2);
+	Matrix weight_2_grad = mul(output_end,get_T(output1));
+	Matrix weight_1_grad = mul(backward3,get_T(data_mine));
+	weight1 = subtract(weight1,times_mat(0.001,weight_1_grad));
+	bais1 = subtract(bais1,times_mat(0.001,backward3));
+	weight2 = subtract(weight2,times_mat(0.001,weight_2_grad));
+	bais2 = subtract(bais2,times_mat(0.001,output_end));
 	}
+	
 	return 0;
 }
 

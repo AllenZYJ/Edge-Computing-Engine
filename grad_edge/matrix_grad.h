@@ -22,22 +22,42 @@ struct edge_network
 {
 	edge_network(int input, int output){
     }
-	Matrix forward(Matrix data,Matrix weights)
+	Matrix forward(Matrix data,Matrix weights,Matrix bais)
 	{
 	//	cout<<"data: ";
 	//	cout_mat(data);
 	//	cout<<"weights: "<<endl;
+	//	cout_mat(weights);	
+		Matrix output = mul(get_T(weights),data);		
+		output = add(output,bais,0);
+		Matrix output1 = e_sigmoid(output);
+	//	cout<<"----------forward data--------"<<endl;
+	//	cout_mat(data);
+	//	cout<<"---------weight1---------"<<endl;
 	//	cout_mat(weights);
-		Matrix output = mul(weights,data);
-		output = e_sigmoid(output);
-	//	cout<<"forward output: ";
-	//	cout_mat(output);
-	//	cout<<"----------forward finish--------"<<endl;
+	//	cout<<"---------bais----------"<<endl;
+	//	cout_mat(bais);
+	//	cout<<"---------output--------"<<endl;
+	//	cout_mat(output1);		
+		return output1;
+	}
+	Matrix forward_without_act(Matrix data,Matrix weights,Matrix bais)
+	{
+		Matrix output = mul(get_T(weights),data);		
+		output = add(output,bais,0);
+	//	Matrix output1 = e_sigmoid(output);
+	//	cout<<"----------forward data--------"<<endl;
+	//	cout_mat(data);
+	//	cout<<"---------weight1---------"<<endl;
+	//	cout_mat(weights);
+	//	cout<<"---------bais----------"<<endl;
+	//	cout_mat(bais);
+	//	cout<<"---------output--------"<<endl;
+	//	cout_mat(output);		
 		return output;
 	}
 	Matrix backward(Matrix grad_next, Matrix output_before,Matrix weights)
 	{
-		
 	//	cout<<"-----------backward-------------"<<endl;
 	//	cout_mat(grad_next);
 	//	cout<<"-----------grad_next------------"<<endl;
@@ -47,7 +67,23 @@ struct edge_network
 	//	cout<<"-----------TTTTTweights--------------"<<endl;
 	//	cout_mat(padding(mul_simple(mul(get_T(weights),grad_next),output_before),2,2));
 //		cout<<"[[[[[";
-		return mul_simple(mul(get_T(weights),grad_next),output_before);
+	//	cout<<"grad_next:"<<endl;
+	//	cout_mat(grad_next);
+	//	cout<<"weights"<<endl;
+	//	cout_mat(weights);
+		for(int index = 0;index<output_before.row;index++)
+		{
+			Node z = output_before.matrix[index][0];
+			Node sigmoid = 1/(1+(1/exp(z)));
+			change_va(output_before,index,0,sigmoid.gradient(z));
+		}
+	//	cout<<"output_before"<<endl;
+	//	cout_mat(output_before);
+	//	cout<<"mul(weights,grad_next)"<<endl;
+	//	cout_mat(mul(weights,grad_next));
+	//	cout<<"grad_backward: "<<endl;
+	//	cout_mat(mul_simple(mul(weights,grad_next),output_before));
+		return mul_simple(mul(weights,grad_next),output_before);
 
 	}
 	Matrix end_layer_backward(Matrix label,Matrix acti_val)
@@ -57,21 +93,25 @@ struct edge_network
 		int index_x,index_y;
 		for(index_x=0;index_x<loss_act.row;index_x++)
 		{
+		//	cout<<"index: "<<index_x;
 		Node t1 = label.matrix[index_x][0],z31 =acti_val.matrix[index_x][0];
-		Node a13 = 1+exp(z31);
+	//	cout<<"t1: "<<t1<<endl;
+		Node a13 = 1/(1+(1/exp(z31)));
 		Node loss = 0.5*(pow((t1-a13),2));
-		Node act = 1/(1+exp(z31));
+		Node act = 1/(1+(1/exp(z31)));		
 		act_output.matrix[index_x][0] = act.gradient(z31);
 		loss_act.matrix[index_x][0] = loss.gradient(a13);
 	//	cout<<"z31: "<<z31<<endl;
 	//	cout<<"z31_grad: "<<act.gradient(z31)<<endl;
-	//	cout<<"a13: "<<a13<<"t1: "<<t1<<endl;
-		cout<<"loss: "<<loss<<endl;	
-	//	cout<<"gradient: "<<loss.gradient(a13)<<endl;
-		}		
+//		cout<<"a13: "<<a13<<"t1: "<<t1<<endl;
+		cout<<"loss: "<<loss<<endl;
+//		cout<<"a13_gradient: "<<loss.gradient(a13)<<endl;
+		}
 		Matrix mid_grad_end = mul_simple(loss_act,act_output);
-	//	cout<<"[[[[[[[[";
-	//	cout_mat(mid_grad_end);
+		
+//		cout<<"mid_grad_end";
+
+//		cout_mat(mid_grad_end);
 		return mid_grad_end;
 	}
 };
