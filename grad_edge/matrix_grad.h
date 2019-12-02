@@ -11,12 +11,9 @@ using namespace std;
 float sigmoid(float x){
     return 1/(1+exp(x));
 }
-Node mean_square_error(Matrix mid1,Matrix mid2){
-    Node loss;
-    for(size_t i=0 ; i<mid2.row ; i++){
-        loss += pow(mid1.matrix[i]-mid2.matrix[i], 2);
-    }
-    return loss;
+Node sigmoid(Node z){
+   Node sigmoid = 1/(1+(1/exp(z)));
+    return sigmoid;
 }
 struct edge_network
 {
@@ -56,7 +53,7 @@ struct edge_network
 	//	cout_mat(output);		
 		return output;
 	}
-	Matrix backward(Matrix grad_next, Matrix output_before,Matrix weights)
+	Matrix backward(Matrix grad_next, Matrix output_before,Matrix weights,Node p_(Node))
 	{
 	//	cout<<"-----------backward-------------"<<endl;
 	//	cout_mat(grad_next);
@@ -67,26 +64,27 @@ struct edge_network
 	//	cout<<"-----------TTTTTweights--------------"<<endl;
 	//	cout_mat(padding(mul_simple(mul(get_T(weights),grad_next),output_before),2,2));
 //		cout<<"[[[[[";
-	//	cout<<"grad_next:"<<endl;
-	//	cout_mat(grad_next);
-	//	cout<<"weights"<<endl;
-	//	cout_mat(weights);
+		cout<<"grad_next:"<<endl;
+		cout_mat(grad_next);
+		cout<<"weights"<<endl;
+		cout_mat(weights);
 		for(int index = 0;index<output_before.row;index++)
 		{
 			Node z = output_before.matrix[index][0];
-			Node sigmoid = 1/(1+(1/exp(z)));
-			change_va(output_before,index,0,sigmoid.gradient(z));
+//			Node sigmoid =  1/(1+(1/exp(z)));
+			Node anyone = p_(z);
+			change_va(output_before,index,0,anyone.gradient(z));
+			cout<<"grad_edge: "<<anyone.gradient(z)<<endl;
 		}
-	//	cout<<"output_before"<<endl;
-	//	cout_mat(output_before);
-	//	cout<<"mul(weights,grad_next)"<<endl;
-	//	cout_mat(mul(weights,grad_next));
-	//	cout<<"grad_backward: "<<endl;
-	//	cout_mat(mul_simple(mul(weights,grad_next),output_before));
+		cout<<"output_before"<<endl;
+		cout_mat(output_before);
+		cout<<"mul(weights,grad_next)"<<endl;
+		cout_mat(mul(weights,grad_next));
+		cout<<"grad_backward: "<<endl;
+		cout_mat(mul_simple(mul(weights,grad_next),output_before));
 		return mul_simple(mul(weights,grad_next),output_before);
-
 	}
-	Matrix end_layer_backward(Matrix label,Matrix acti_val)
+	Matrix end_layer_backward(Matrix label,Matrix acti_val,Node loss_fun(Node,Node),Node act(Node))
 	{
 		Matrix loss_act = CreateMatrix(acti_val.row,acti_val.col);
 		Matrix act_output = CreateMatrix(acti_val.row,acti_val.col);
@@ -97,7 +95,7 @@ struct edge_network
 		Node t1 = label.matrix[index_x][0],z31 =acti_val.matrix[index_x][0];
 	//	cout<<"t1: "<<t1<<endl;
 		Node a13 = 1/(1+(1/exp(z31)));
-		Node loss = 0.5*(pow((t1-a13),2));
+		Node loss = loss_fun(t1,a13);
 		Node act = 1/(1+(1/exp(z31)));		
 		act_output.matrix[index_x][0] = act.gradient(z31);
 		loss_act.matrix[index_x][0] = loss.gradient(a13);

@@ -24,10 +24,6 @@
 > Apple LLVM version 10.0.1 (clang-1001.0.46.4)
 > Target: x86_64-apple-darwin18.7.0
 > Thread model: posix
->
-> 实现的:
->
-> 进入到clone 之后的目录
 
 ## 安装编译
 
