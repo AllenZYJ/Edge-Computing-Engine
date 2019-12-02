@@ -56,7 +56,6 @@ int main()
 	Matrix label = CreateRandMat(2,1);
 	change_va(label,0,0,0.4);
 	change_va(label,1,0,0.8);
-
 	Matrix weight1 = CreateRandMat(2,2);
 	change_va(weight1,0,0,0.1);
 	change_va(weight1,0,1,0.2);
@@ -76,7 +75,7 @@ int main()
 	Matrix bais3 = ones(2,1);	
 	Matrix weight4 = CreateRandMat(2,2);
 	Matrix bais4 = ones(2,1);	
-	for(int epoch = 0;epoch<10;epoch++)
+	for(int epoch = 0;epoch<1000;epoch++)
 	{
 	cout<<"---------epoch: "<<epoch<<"------------"<<endl;
 //	cout_mat(weight1);
