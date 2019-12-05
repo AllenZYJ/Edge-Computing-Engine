@@ -84,7 +84,7 @@ struct edge_network
 		cout_mat(mul_simple(mul(weights,grad_next),output_before));
 		return mul_simple(mul(weights,grad_next),output_before);
 	}
-	Matrix end_layer_backward(Matrix label,Matrix acti_val,Node loss_fun(Node,Node),Node act(Node))
+	Matrix end_layer_backward(Matrix label,Matrix acti_val,Node loss_fun(Node,Node),Node act_fun(Node))
 	{
 		Matrix loss_act = CreateMatrix(acti_val.row,acti_val.col);
 		Matrix act_output = CreateMatrix(acti_val.row,acti_val.col);
@@ -96,20 +96,18 @@ struct edge_network
 	//	cout<<"t1: "<<t1<<endl;
 		Node a13 = 1/(1+(1/exp(z31)));
 		Node loss = loss_fun(t1,a13);
-		Node act = 1/(1+(1/exp(z31)));		
+		Node act = act_fun(z31);		
 		act_output.matrix[index_x][0] = act.gradient(z31);
 		loss_act.matrix[index_x][0] = loss.gradient(a13);
-	//	cout<<"z31: "<<z31<<endl;
-	//	cout<<"z31_grad: "<<act.gradient(z31)<<endl;
-//		cout<<"a13: "<<a13<<"t1: "<<t1<<endl;
+		cout<<"z31: "<<z31<<endl;
+		cout<<"z31_grad: "<<act.gradient(z31)<<endl;
+		cout<<"a13: "<<a13<<"t1: "<<t1<<endl;
 		cout<<"loss: "<<loss<<endl;
-//		cout<<"a13_gradient: "<<loss.gradient(a13)<<endl;
+		cout<<"a13_gradient: "<<loss.gradient(a13)<<endl;
 		}
 		Matrix mid_grad_end = mul_simple(loss_act,act_output);
-		
-//		cout<<"mid_grad_end";
-
-//		cout_mat(mid_grad_end);
+		cout<<"mid_grad_end";
+		cout_mat(mid_grad_end);
 		return mid_grad_end;
 	}
 };
