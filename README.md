@@ -25,6 +25,10 @@
 > Target: x86_64-apple-darwin18.7.0
 > Thread model: posix
 
+这是什么?
+
+![path](./picture/path.png)
+
 ## 安装编译
 
 git clone git@github.com:AllenZYJ/Edge-Computing-Engine.git
