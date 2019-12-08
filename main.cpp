@@ -29,9 +29,9 @@ return sigmoid_act;
 Node (*loss)(Node,Node) = loss_act;
 Node (*act)(Node) = sigmoid_act;
 int main()
-{/*
-	welcome();	
-	string path = "./data/new_data2.csv";
+{	 	/*
+	   welcome();	
+	   string path = "./data/new_data2.csv";
 	Matrix data = read_csv(path);
 	Matrix bais = CreateMatrix(data.row,1);		
 	data = appply(data,bais,1);
@@ -60,8 +60,8 @@ int main()
 	stop = clock();
     printf("%f\n", (double)(stop - start) / CLOCKS_PER_SEC);
 	*/
+	
 	cout<<"------------autodiff for neraul network-----------"<<endl;
-
 	Matrix data_mine = CreateMatrix(2,1);
 	change_va(data_mine,0,0,0.55);
 	change_va(data_mine,1,0,0.2);
@@ -71,16 +71,11 @@ int main()
 	Matrix label = CreateRandMat(2,1);
     change_va(label,0,0,0.4);
 	change_va(label,1,0,0.8);
-	
 	Matrix weight1 = CreateRandMat(2,2);
 	change_va(weight1,0,0,0.1);
 	change_va(weight1,0,1,0.2);
 	change_va(weight1,1,0,0.2);
 	change_va(weight1,1,1,0.4);
-	
-	cout<<"weight1";
-	cout_mat(weight1);
-	cout<<"weight1";
 	Matrix bais1 = ones(2,1);
 	Matrix weight2 = CreateRandMat(2,2);
 	change_va(weight2,0,0,0.5);
@@ -92,7 +87,6 @@ int main()
 	{
 	cout<<"---------epoch: "<<epoch<<"------------"<<endl;
 	cout_mat(weight1);
-
 	int input_dim = 2;
 	int output_dim = 2;
 	edge_network sequaltial(input_dim,output_dim);
@@ -113,7 +107,30 @@ int main()
 	bais1 = subtract(bais1,times_mat(0.001,backward3));
 	weight2 = subtract(weight2,times_mat(0.001,weight_2_grad));
 	bais2 = subtract(bais2,times_mat(0.001,output_end));
-	}
-	return 0;
-}
+	map<string,int>count_word;
+	string path_word = "mytest.csv";
+	str_Matrix data_readed = read_file(path_word);
+	for(int index_x = 0;index_x<data_readed.row;index_x++)
+	{
+		for(int index_y = 0;index_y<data_readed.col;index_y++)
+		{
+		string word = data_readed.str_matrix[index_x][index_y];
+			if(count_word.count(data_readed.str_matrix[index_x][index_y]) == 0)
+			{
+				count_word[word] = 1;
+			}
+			else
+			{
+				count_word[word]=count_word[word]+1;
+			}
+		}
 
+	}
+		cout<<"class: "<<count_word["class"]<<endl;
+		cout<<"classes: "<<count_word["classes"]<<endl;
+		cout<<"classification: "<<count_word["classification"]<<endl;
+		cout<<"classifiers: "<<count_word["classifiers"]<<endl;
+	return 0;
+
+	}
+}

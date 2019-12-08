@@ -17,7 +17,10 @@ Node sigmoid(Node z){
 }
 struct edge_network
 {
-	edge_network(int input, int output){
+	edge_network(int input, int num_neuron){			
+
+
+
     }
 	Matrix forward(Matrix data,Matrix weights,Matrix bais)
 	{

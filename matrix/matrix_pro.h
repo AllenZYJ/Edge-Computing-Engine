@@ -4,7 +4,6 @@
 #include<stdlib.h>
 #include<string>
 #define random(x) (rand()%x)
-
 /*
 matrix add
 
