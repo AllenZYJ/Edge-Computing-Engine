@@ -64,6 +64,33 @@ make install
 
 ## 新的demo程序实现5层全连接层,可自定义神经元和激活函数,损失函数
 
+全连接层使用方法:
+
+第一层的权重自定义,而后调用forward函数前向传播一层,自动求出激活以后的值,激活函数可自定义.
+
+首先定义一个权重矩阵和偏置矩阵,第一个矩阵的维度大小使用数据列去定义:
+
+```c
+	Matrix bias1 = CreateRandMat(2,1);
+	Matrix weight1 = CreateRandMat(2,data.col);
+```
+
+之后可以输出第一层前向传播的值,同时可以定义下一层的bias的维度, row使用第一层的权重矩阵的行,第二层的权重矩阵的行使用了第一层的输出的行, 而列自行定义即可, 这一点体现了前向传播算法的维度相容. 也就是:
+
+```c
+Matrix output1 = sequaltial.forward(get_T(get_row(data_mine,index)),weight1,bias1);
+```
+
+```c
+Matrix weight2 = CreateRandMat(output1.row,2);
+Matrix bias2 = CreateRandMat(weight2.row,1);
+Matrix output2 = sequaltial.forward(output1,weight2,bias2);
+```
+
+同时第二层的输出也可以求出来,以此类推 .
+
+最终输出代码见nerual_test.cpp ![nerual_test1](/Users/zhangyiji/Documents/code/cpp_demo/my_os/Edge-Computing-Engine/picture/nerual_test1.png)
+
 代码:
 
 ```c

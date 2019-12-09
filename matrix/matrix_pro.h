@@ -331,4 +331,14 @@ Matrix padding(Matrix mid1,int shape1,int shape2)
 	}
 	return result;
 }
+Matrix get_row(Matrix mid1,int index)
+{
+	int index_y = 0;
+	Matrix mid2 = CreateMatrix(1,mid1.col);
+	for(index_y=0;index_y<mid1.col;index_y++)
+	{
+	mid2.matrix[0][index_y] = mid1.matrix[index][index_y];
+	}
+	return mid2;
+}
 #endif

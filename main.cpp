@@ -5,7 +5,7 @@
 #include <math.h>
 #include <fstream>
 #include "./autodiff/node.h"
-#include"./matrix/matrix_def.h"a
+#include"./matrix/matrix_def.h"
 #include"./matrix/matrix_pro.h"
 #include"./welcome/score_wel.cpp"
 #include"./logistic/logistic_def.h"
@@ -29,38 +29,7 @@ return sigmoid_act;
 Node (*loss)(Node,Node) = loss_act;
 Node (*act)(Node) = sigmoid_act;
 int main()
-{	 	/*
-	   welcome();	
-	   string path = "./data/new_data2.csv";
-	Matrix data = read_csv(path);
-	Matrix bais = CreateMatrix(data.row,1);		
-	data = appply(data,bais,1);
-	Matrix y = iloc(data,0,0,3,4);
-	Matrix x_1 = iloc(data,0,0,0,3);
-	Matrix x_2 = get_T(x_1);
-	double alpha = 0.002;
-	int max_epoch = 1;
-	Matrix weight = CreateMatrix(3,1);
-	change_va(weight,0,0,1);
-	change_va(weight,1,0,1);
-	change_va(weight,2,0,1);
-	int epoch = 0;
-	for(epoch = 0;epoch<=max_epoch;epoch++)
-	{
-	cout<<"-----------split-line-----------"<<endl;			
-	Matrix temp_mul = mul(x_1,weight);
-	Matrix h =e_sigmoid(temp_mul);
-	Matrix error = subtract(y,h);
-	Matrix temp_update = mul(x_2,error);
-	Matrix updata = add(weight,times_mat(alpha,temp_update),0);
-	cout_mat(weight);
-	cout<<"epoch: "<<epoch<<" error: "<<matrix_sum(error)<<endl;
-	cout<<"-----------split-line-----------"<<endl;	
-	}
-	stop = clock();
-    printf("%f\n", (double)(stop - start) / CLOCKS_PER_SEC);
-	*/
-	
+{
 	cout<<"------------autodiff for neraul network-----------"<<endl;
 	Matrix data_mine = CreateMatrix(2,1);
 	change_va(data_mine,0,0,0.55);
@@ -107,30 +76,7 @@ int main()
 	bais1 = subtract(bais1,times_mat(0.001,backward3));
 	weight2 = subtract(weight2,times_mat(0.001,weight_2_grad));
 	bais2 = subtract(bais2,times_mat(0.001,output_end));
-	map<string,int>count_word;
-	string path_word = "mytest.csv";
-	str_Matrix data_readed = read_file(path_word);
-	for(int index_x = 0;index_x<data_readed.row;index_x++)
-	{
-		for(int index_y = 0;index_y<data_readed.col;index_y++)
-		{
-		string word = data_readed.str_matrix[index_x][index_y];
-			if(count_word.count(data_readed.str_matrix[index_x][index_y]) == 0)
-			{
-				count_word[word] = 1;
-			}
-			else
-			{
-				count_word[word]=count_word[word]+1;
-			}
-		}
-
-	}
-		cout<<"class: "<<count_word["class"]<<endl;
-		cout<<"classes: "<<count_word["classes"]<<endl;
-		cout<<"classification: "<<count_word["classification"]<<endl;
-		cout<<"classifiers: "<<count_word["classifiers"]<<endl;
+	cout<<"neraul end;"<<endl;
 	return 0;
-
 	}
 }
