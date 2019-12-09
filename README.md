@@ -71,8 +71,8 @@ make install
 首先定义一个权重矩阵和偏置矩阵,第一个矩阵的维度大小使用数据列去定义:
 
 ```c
-	Matrix bias1 = CreateRandMat(2,1);
-	Matrix weight1 = CreateRandMat(2,data.col);
+Matrix bias1 = CreateRandMat(2,1);
+Matrix weight1 = CreateRandMat(2,data.col);
 ```
 
 之后可以输出第一层前向传播的值,同时可以定义下一层的bias的维度, row使用第一层的权重矩阵的行,第二层的权重矩阵的行使用了第一层的输出的行, 而列自行定义即可, 这一点体现了前向传播算法的维度相容. 也就是:
