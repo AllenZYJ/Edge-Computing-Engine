@@ -60,16 +60,11 @@ int main()
 	int output_dim = 2;
 	edge_network sequaltial(input_dim,output_dim);
 	Matrix output1 = sequaltial.forward(data_mine,weight1,bais1);
-	//output1 acti_val;
 	Matrix output1_without_act = sequaltial.forward_without_act(data_mine,weight1,bais1);
-	//output1_without_act without activation;
 	Matrix output2 = sequaltial.forward(output1,weight2,bais2);
 	Matrix output2_without_act = sequaltial.forward_without_act(output1,weight2,bais2);	
 	Matrix output_end = sequaltial.end_layer_backward(label,output2_without_act,*loss,*act);
-	//last output layer should feed the value without activation;
-	//output_end : the gradient of loss layer;
 	Matrix backward3 = sequaltial.backward(output_end,output1_without_act,weight2,*act);
-	//backward3: the gradient of the behind layer;
 	Matrix weight_2_grad = mul(output_end,get_T(output1));
 	Matrix weight_1_grad = mul(backward3,get_T(data_mine));
 	weight1 = subtract(weight1,times_mat(0.001,weight_1_grad));
