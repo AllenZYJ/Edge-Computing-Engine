@@ -1,5 +1,4 @@
 <div align=center><img src="./picture/01.svg"/></div>
-
 # Edge-Engine
 
 ## Edge : 一个开源的科学计算引擎
@@ -61,6 +60,20 @@ make install
 ```shell
 ➜  edge-computing-engine git:(master) ✗ ./main
 ```
+
+序贯模型api使用方法:
+
+edge_network(int input, int num_neuron)
+
+作为序列模型api
+
+edge_network作为一个类型存在,位于matrix_grad.h中结构体类型的数据
+
+定义了前向传播函数,前向传播无激活版,反向传播,末层反向传播,四大最常用的函数主体.
+
+完整的序列模型:
+
+![image-20200128154352842](/Users/zhangyiji/Documents/code/cpp_demo/my_os/Edge-Computing-Engine/image-20200128154352842.png)
 
 ## 新的demo程序实现5层全连接层,可自定义神经元和激活函数,损失函数
 
@@ -498,7 +511,6 @@ Something :
 
 
 <div align = center><img src = './picture/星月.svg'></div>
-
 
 
  个人小站:[极度空间](http://likedge.top/)

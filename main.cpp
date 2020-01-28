@@ -32,25 +32,13 @@ int main()
 {
 	cout<<"------------autodiff for neraul network-----------"<<endl;
 	Matrix data_mine = CreateMatrix(2,1);
-	change_va(data_mine,0,0,0.55);
-	change_va(data_mine,1,0,0.2);
 	cout<<"data mine"<<endl;
 	cout_mat(data_mine);
 	cout<<"data mine"<<endl;
 	Matrix label = CreateRandMat(2,1);
-    change_va(label,0,0,0.4);
-	change_va(label,1,0,0.8);
 	Matrix weight1 = CreateRandMat(2,2);
-	change_va(weight1,0,0,0.1);
-	change_va(weight1,0,1,0.2);
-	change_va(weight1,1,0,0.2);
-	change_va(weight1,1,1,0.4);
 	Matrix bais1 = ones(2,1);
 	Matrix weight2 = CreateRandMat(2,2);
-	change_va(weight2,0,0,0.5);
-	change_va(weight2,1,0,0.6);
-    change_va(weight2,0,1,0.7);
-	change_va(weight2,1,1,0.8);
 	Matrix bais2 = ones(2,1);
 	for(int epoch = 0;epoch<1;epoch++)
 	{
