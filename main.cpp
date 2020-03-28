@@ -16,6 +16,7 @@ clock_t start, stop;
 double duration;
 Node z=1;
 Node t1 = 1,a13 = 1;
+/*自定义的损失函数*/
 Node loss_act(Node t1,Node a13)
 {
 	 Node loss = 0.5*(pow((t1-a13),2));
