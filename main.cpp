@@ -27,6 +27,7 @@ Node sigmoid_act(Node z)
 Node sigmoid_act = 1/(1+(1/exp(z)));
 return sigmoid_act;
 }
+//loss
 Node (*loss)(Node,Node) = loss_act;
 Node (*act)(Node) = sigmoid_act;
 int main()
