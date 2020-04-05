@@ -5,10 +5,20 @@
 
 [README for English_version](./README_EN.md)
 
+声明：本项目禁止闭源商用，如有需要请和作者取得联系
+
+email: zk@likedge.top
+
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000) ](https://github.com/AllenZYJ/Edge-Computing-Engine/blob/add-license-1/LICENSE)![](https://img.shields.io/badge/Bulid-Version1.0-green.svg)
 
-> 项目开始日期 : 2019/10/01
 
+
+------
+
+
+
+> 项目开始日期 : 2019/10/01
+>
 > 目前项目总代码 : 810 行
 >
 > 测试 : main.cpp | nerual_network.cpp | 新增全连接神经网络架构(新增全连接网络正向传播和反向传播的测试demo)
