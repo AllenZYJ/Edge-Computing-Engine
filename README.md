@@ -8,7 +8,8 @@
 声明：本项目禁止闭源商用，如有需要请和作者取得联系
 
 email: zk@likedge.top
-[![GitHub license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://raw.githubusercontent.com/tesseract-ocr/tesseract/master/LICENSE)
+
+<br>[![GitHub license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://raw.githubusercontent.com/tesseract-ocr/tesseract/master/LICENSE)</br>
 
 ------
 
