@@ -38,11 +38,13 @@ email: zk@likedge.top
 
 ## 安装编译
 
+```
 git clone git@github.com:AllenZYJ/Edge-Computing-Engine.git
 
-cd to this dir `
+cd to root_diff
+```
 
-进入root目录:
+进入root_diff目录:
 
 执行
 
