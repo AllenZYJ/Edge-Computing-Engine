@@ -41,10 +41,10 @@ email: zk@likedge.top
 ```
 git clone git@github.com:AllenZYJ/Edge-Computing-Engine.git
 
-cd to root_diff
+cd to install_diff
 ```
 
-进入root_diff目录:
+进入install_diff目录:
 
 执行
 
