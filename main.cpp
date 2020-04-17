@@ -19,7 +19,7 @@ Node t1 = 1,a13 = 1;
 /*自定义的损失函数*/
 Node loss_act(Node t1,Node a13)
 {
-	 Node loss = 0.5*(pow((t1-a13),2));
+	 Node loss =  0.5*(pow((t1-a13),2));
 	 return loss;
 }
 Node sigmoid_act(Node z)
@@ -32,7 +32,7 @@ Node (*loss)(Node,Node) = loss_act;
 Node (*act)(Node) = sigmoid_act;
 int main()
 {
-	//begin
+	//begin 
 	cout<<"---------autodiff for neraul network-----------"<<endl;
 	Matrix data_mine = CreateMatrix(2,1);
 	cout<<"data mine"<<endl;

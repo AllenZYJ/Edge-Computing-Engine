@@ -341,4 +341,12 @@ Matrix get_row(Matrix mid1,int index)
 	}
 	return mid2;
 }
+Matrix conv_test(Matrix mid1,int stride = 1,int kernel_size = 3)
+{
+	Matrix kernel = CreateRandMat(kernel_size,kernel_size);
+	cout_mat(kernel);
+	Matrix crop_pic = iloc(mid1,0,kernel.col,0,kernel.row);
+	Matrix result = mul(crop_pic,kernel);
+	return result;
+}
 #endif
