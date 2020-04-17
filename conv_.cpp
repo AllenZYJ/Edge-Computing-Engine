@@ -17,7 +17,7 @@ double duration;
 int main()
 {
     welcome();
-    cout_mat(conv_test(CreateRandMat(3,3),1,2));
+    cout<<(conv_test(CreateRandMat(3,3),1,2))<<endl;
     return 0;
 
 }

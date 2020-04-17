@@ -62,8 +62,6 @@ Matrix subtract(Matrix mid1,Matrix mid2)
 	{
 		for(int j=0; j<mid1.col; j++)
 		{
-			//cout<<" mid1.matrix[i][j]"<< mid1.matrix[i][j]<<"mid2.matrix[i][j]"<<mid2.matrix[i][j]<<endl;
-
 			result_subtract.matrix[i][j] = mid1.matrix[i][j]-mid2.matrix[i][j];
 		}
 	}
@@ -242,7 +240,7 @@ Matrix iloc(Matrix mid1,int start_x=0,int end_x=0,int start_y=0,int end_y=0)
 	{
 		end_x = mid1.row;
 	}
-	cout<<mid1.row<<end_x<<" "<<start_x<<" "<<end_y<<" "<<start_y<<endl;
+	// cout<<mid1.row<<end_x<<" "<<start_x<<" "<<end_y<<" "<<start_y<<endl;
 	int new_row = end_x-start_x;
 	int new_col = end_y-start_y;
 //	cout<<"nc"<<new_col<<" nr"<<new_row<<endl;
@@ -251,8 +249,6 @@ Matrix iloc(Matrix mid1,int start_x=0,int end_x=0,int start_y=0,int end_y=0)
 	{	
 		for(int index_y=start_y;index_y<end_y;++index_y)
 		{
-		//	cout<<"start: "<<index_x<<",end: "<<index_y<<endl;
-		//	cout<<"re: "<<mid1.matrix[index_x][index_y]<<endl;
 		mid_return.matrix[index_x-start_x][index_y-start_y] = mid1.matrix[index_x][index_y];
 		}
 	}
@@ -341,12 +337,13 @@ Matrix get_row(Matrix mid1,int index)
 	}
 	return mid2;
 }
-Matrix conv_test(Matrix mid1,int stride = 1,int kernel_size = 3)
+double conv_test(Matrix mid1,int stride = 1,int kernel_size = 3)
 {
 	Matrix kernel = CreateRandMat(kernel_size,kernel_size);
 	cout_mat(kernel);
 	Matrix crop_pic = iloc(mid1,0,kernel.col,0,kernel.row);
-	Matrix result = mul(crop_pic,kernel);
+	cout_mat(crop_pic);
+	double result = matrix_sum(mul_simple(crop_pic,kernel));
 	return result;
 }
 #endif
