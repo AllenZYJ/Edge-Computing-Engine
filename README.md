@@ -1,5 +1,9 @@
+
+
 <div align=center><img src="./picture/01.svg"/></div>
 # Edge-Engine
+
+
 
 ## Edge : 一个开源的科学计算引擎
 
@@ -31,6 +35,12 @@ email: zk@likedge.top
 > Apple LLVM version 10.0.1 (clang-1001.0.46.4)
 > Target: x86_64-apple-darwin18.7.0
 > Thread model: posix
+
+<img src="image-20200418210521131.png" alt="image-20200418210521131"  />
+
+
+
+------
 
 这是什么?
 

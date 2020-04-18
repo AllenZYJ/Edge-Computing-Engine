@@ -17,7 +17,7 @@ double duration;
 int main()
 {
     welcome();
-    conv_test(CreateRandMat(128,128),1,3);
+    conv_test(CreateRandMat(3,3),3,1,3);
     return 0;
 
 }

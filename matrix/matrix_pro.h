@@ -168,7 +168,7 @@ double matrix_mean(Matrix mid1)
 	double ele = mid1.row*mid1.col;
 	return matrix_sum(mid1)/ele;
 }
-Matrix appply(Matrix mid1,Matrix mid2,int axis = 0)
+Matrix mat_apply(Matrix mid1,Matrix mid2,int axis = 0)
 {
 	int new_row = mid1.row+mid2.row;
 	int new_col = mid1.col+mid2.col;
@@ -367,17 +367,25 @@ Matrix get_row(Matrix mid1,int index)
 	  0	0 0 0
 	
 	*/
-double conv_test(Matrix mid1,int output_channels = 3,int stride = 1,int kernel_size = 3,int mode = 0)
+double conv_test(Matrix mid1,int output_channels = 3,int stride = 1,int kernel_size = 3,int mode = 0,int padding = 0)
 {
-	cout_mat(mid1);
-	cout<<"---------"<<endl;
-	Matrix kernel = CreateRandMat(kernel_size,kernel_size);
-	cout_mat(kernel);
+	// cout_mat(mid1);
+	Matrix filters[output_channels];
+	for(int filter_index = 0;filter_index<output_channels;filter_index++)
+	{
+		Matrix kernel = CreateRandMat(kernel_size,kernel_size);
+		filters[filter_index] = kernel;		
+		cout<<"---------"<<endl;
+		cout_mat(filters[filter_index]);
+	}
 	if(mode == 0)
 	{
-		for(int x_ = 0;x_<mid1.row-1;x_+=stride)
+		Matrix kernel = CreateRandMat(kernel_size,kernel_size);
+		cout<<"-----mid1------"<<endl;
+		cout_mat(mid1);
+		for(int x_ = 0;x_<(mid1.row-kernel_size)/stride;x_+=stride)
 		{
-			for(int y_ = 0;y_<mid1.col-1;y_+=stride)
+			for(int y_ = 0;y_<(mid1.col-kernel_size)/stride;y_+=stride)
 			{
 			Matrix crop_pic = iloc(mid1,x_,x_+kernel.col,y_,y_+kernel.row);
 			cout<<x_<<","<<y_<<endl;
