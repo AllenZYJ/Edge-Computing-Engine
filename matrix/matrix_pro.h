@@ -337,13 +337,55 @@ Matrix get_row(Matrix mid1,int index)
 	}
 	return mid2;
 }
-double conv_test(Matrix mid1,int stride = 1,int kernel_size = 3)
+	/*
+	0:
+	filter : 2*2
+	img : 3*3
+	0:img_piexl
+	1:filter element
+	  1 1
+	  1	1 0 0
+		0 0 0
+		0 0 0
+	1:
+	filter : 2*2
+	img : 3*3
+	0:img_piexl
+	1:filter element
+	  1 1 1
+	  1	1 1 0
+	  1	1 1 0
+		0 0 0
+	2:
+	filter : 2*2
+	img : 3*3
+	0:img_piexl
+	1:filter element
+	  1 1 1 0
+	  1	1 1 0
+	  1	1 1 0
+	  0	0 0 0
+	
+	*/
+double conv_test(Matrix mid1,int output_channels = 3,int stride = 1,int kernel_size = 3,int mode = 0)
 {
+	cout_mat(mid1);
+	cout<<"---------"<<endl;
 	Matrix kernel = CreateRandMat(kernel_size,kernel_size);
 	cout_mat(kernel);
-	Matrix crop_pic = iloc(mid1,0,kernel.col,0,kernel.row);
-	cout_mat(crop_pic);
-	double result = matrix_sum(mul_simple(crop_pic,kernel));
-	return result;
+	if(mode == 0)
+	{
+		for(int x_ = 0;x_<mid1.row-1;x_+=stride)
+		{
+			for(int y_ = 0;y_<mid1.col-1;y_+=stride)
+			{
+			Matrix crop_pic = iloc(mid1,x_,x_+kernel.col,y_,y_+kernel.row);
+			cout<<x_<<","<<y_<<endl;
+			cout_mat(crop_pic);
+			}
+		}
+	}
+	// double result = matrix_sum(mul_simple(crop_pic,kernel));
+	return 0.0;
 }
 #endif

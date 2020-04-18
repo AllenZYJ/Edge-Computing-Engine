@@ -17,8 +17,7 @@ double duration;
 int main()
 {
     welcome();
-    cout<<"new branch"<<endl;
-    cout<<(conv_test(CreateRandMat(3,3),1,2))<<endl;
+    conv_test(CreateRandMat(128,128),1,3);
     return 0;
 
 }
