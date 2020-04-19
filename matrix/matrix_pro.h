@@ -383,12 +383,13 @@ double conv_test(Matrix mid1,int output_channels = 3,int stride = 1,int kernel_s
 		Matrix kernel = CreateRandMat(kernel_size,kernel_size);
 		cout<<"-----mid1------"<<endl;
 		cout_mat(mid1);
-		for(int x_ = 0;x_<(mid1.row-kernel_size)/stride;x_+=stride)
+		cout<<"-----=====------"<<endl;	
+		for(int x_ = 0;x_<=(mid1.row-kernel_size)/stride;x_+=stride)
 		{
-			for(int y_ = 0;y_<(mid1.col-kernel_size)/stride;y_+=stride)
+			for(int y_ = 0;y_<=(mid1.col-kernel_size)/stride;y_+=stride)
 			{
 			Matrix crop_pic = iloc(mid1,x_,x_+kernel.col,y_,y_+kernel.row);
-			cout<<x_<<","<<y_<<endl;
+			cout<<"iloc begin_x: "<<x_<<","<<"end: "<<x_+kernel.col<<"-stride = 1,kernel_size = 3,padding = None,-begin_y: "<<y_<<","<<"end_y: "<<y_+kernel.row<<endl;
 			cout_mat(crop_pic);
 			}
 		}
