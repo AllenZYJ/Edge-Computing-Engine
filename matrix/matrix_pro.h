@@ -367,7 +367,7 @@ Matrix get_row(Matrix mid1,int index)
 	  0	0 0 0
 	
 	*/
-double conv_test(Matrix mid1,int output_channels = 3,int stride = 1,int kernel_size = 3,int mode = 0,int padding = 0)
+double conv_test(Matrix mid1,int input_dim = 3,int output_channels = 3,int stride = 1,int kernel_size = 2,int mode = 0,int padding = 0)
 {
 	// cout_mat(mid1);
 	Matrix filters[output_channels];
@@ -380,21 +380,25 @@ double conv_test(Matrix mid1,int output_channels = 3,int stride = 1,int kernel_s
 	}
 	if(mode == 0)
 	{
-		Matrix kernel = CreateRandMat(kernel_size,kernel_size);
-		cout<<"-----mid1------"<<endl;
+		Matrix conv_result = CreateMatrix(((mid1.row-kernel_size)/stride)+1,((mid1.col-kernel_size)/stride)+1);
+		Matrix kernel = CreateMatrix(kernel_size,kernel_size);
+		cout<<"--------- kernels: --------"<<endl;
+		cout_mat(kernel);
+		cout<<"--------- mid1 ---------"<<endl;
+		cout<<"row: "<<mid1.row<<" , "<<"col: "<<mid1.col<<endl;
 		cout_mat(mid1);
-		cout<<"-----=====------"<<endl;	
+		cout<<"--------- output: ---------"<<endl;	
 		for(int x_ = 0;x_<=(mid1.row-kernel_size)/stride;x_+=stride)
 		{
 			for(int y_ = 0;y_<=(mid1.col-kernel_size)/stride;y_+=stride)
 			{
 			Matrix crop_pic = iloc(mid1,x_,x_+kernel.col,y_,y_+kernel.row);
-			cout<<"iloc begin_x: "<<x_<<","<<"end: "<<x_+kernel.col<<"-stride = 1,kernel_size = 3,padding = None,-begin_y: "<<y_<<","<<"end_y: "<<y_+kernel.row<<endl;
-			cout_mat(crop_pic);
+			change_va(conv_result,x_,y_,matrix_sum(mul_simple(crop_pic,kernel)));
 			}
 		}
+		cout<<"row: "<<conv_result.row<<" , "<<"col: "<<conv_result.col<<endl;
+		cout_mat(conv_result);
 	}
-	// double result = matrix_sum(mul_simple(crop_pic,kernel));
 	return 0.0;
 }
 #endif

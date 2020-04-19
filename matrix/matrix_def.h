@@ -59,7 +59,7 @@ Matrix CreateMatrix(int ro,int co)
     {
         for(int j=0; j<co; j++)
         {
-            inputMatrix[i][j] = 0;
+            inputMatrix[i][j] = 1;
         }
     }
 	m.col = co;
