@@ -81,6 +81,14 @@ make install
 ➜  edge-computing-engine git:(master) ✗ ./main
 ```
 
+最新卷积实现：
+
+```c++
+double conv_test(Matrix mid1,int input_dim = 3,int output_channels = 3,int stride = 1,int kernel_size = 2,int mode = 0,int padding = 0)
+```
+
+
+
 序贯模型api使用方法:
 
 edge_network(int input, int num_neuron)

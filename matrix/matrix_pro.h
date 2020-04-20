@@ -337,57 +337,9 @@ Matrix get_row(Matrix mid1,int index)
 	}
 	return mid2;
 }
-	/*
-	0:
-	filter : 2*2
-	img : 3*3
-	0:img_piexl
-	1:filter element
-	  1 1
-	  1	1 0 0
-		0 0 0
-		0 0 0
-	1:
-	filter : 2*2
-	img : 3*3
-	0:img_piexl
-	1:filter element
-	  1 1 1
-	  1	1 1 0
-	  1	1 1 0
-		0 0 0
-	2:
-	filter : 2*2
-	img : 3*3
-	0:img_piexl
-	1:filter element
-	  1 1 1 0
-	  1	1 1 0
-	  1	1 1 0
-	  0	0 0 0
-	
-	*/
-double conv_test(Matrix mid1,int input_dim = 3,int output_channels = 3,int stride = 1,int kernel_size = 2,int mode = 0,int padding = 0)
+Matrix conv_element(Matrix mid1,Matrix kernel,int kernel_size = 2,int stride = 1)
 {
-	// cout_mat(mid1);
-	Matrix filters[output_channels];
-	for(int filter_index = 0;filter_index<output_channels;filter_index++)
-	{
-		Matrix kernel = CreateRandMat(kernel_size,kernel_size);
-		filters[filter_index] = kernel;		
-		cout<<"---------"<<endl;
-		cout_mat(filters[filter_index]);
-	}
-	if(mode == 0)
-	{
-		Matrix conv_result = CreateMatrix(((mid1.row-kernel_size)/stride)+1,((mid1.col-kernel_size)/stride)+1);
-		Matrix kernel = CreateMatrix(kernel_size,kernel_size);
-		cout<<"--------- kernels: --------"<<endl;
-		cout_mat(kernel);
-		cout<<"--------- mid1 ---------"<<endl;
-		cout<<"row: "<<mid1.row<<" , "<<"col: "<<mid1.col<<endl;
-		cout_mat(mid1);
-		cout<<"--------- output: ---------"<<endl;	
+	Matrix conv_result = CreateMatrix(((mid1.row-kernel_size)/stride)+1,((mid1.col-kernel_size)/stride)+1);
 		for(int x_ = 0;x_<=(mid1.row-kernel_size)/stride;x_+=stride)
 		{
 			for(int y_ = 0;y_<=(mid1.col-kernel_size)/stride;y_+=stride)
@@ -396,9 +348,67 @@ double conv_test(Matrix mid1,int input_dim = 3,int output_channels = 3,int strid
 			change_va(conv_result,x_,y_,matrix_sum(mul_simple(crop_pic,kernel)));
 			}
 		}
-		cout<<"row: "<<conv_result.row<<" , "<<"col: "<<conv_result.col<<endl;
-		cout_mat(conv_result);
+		// cout<<"row: "<<conv_result.row<<" , "<<"col: "<<conv_result.col<<endl;
+		// cout_mat(conv_result);
+		return conv_result;
+		}
+	/*
+	parameter: 
+		Matrix mid1,
+		int input_dim = 3
+		int output_channels = 3
+		int stride = 1
+		int kernel_size = 2
+		int mode = 0
+		int padding = 0
+	*/
+double conv_test(Matrix mid1,int input_dim = 3,int output_channels = 3,int stride = 1,int kernel_size = 2,int mode = 0,int padding = 0)
+{
+	// cout_mat(mid1);
+	Matrix filters[output_channels][input_dim];
+	for(int channel_index = 0;channel_index<input_dim;channel_index++)
+	{
+		for(int filter_index = 0;filter_index<output_channels;filter_index++)
+			{
+				Matrix kernel = ones(kernel_size,kernel_size);
+				filters[channel_index][filter_index] = kernel;		
+				// cout<<"---------"<<endl;
+				// cout<<"channel: "<<channel_index<<", index: "<<filter_index<<endl;
+				// cout_mat(filters[channel_index][filter_index]);
+			}
+	}
+	if(mode == 0)
+	{
+		cout<<"input_img:"<<endl;
+		cout_mat(mid1);
+		Matrix conv_result = CreateMatrix(((mid1.row-kernel_size)/stride)+1,((mid1.col-kernel_size)/stride)+1);
+		Matrix kernel = ones(kernel_size,kernel_size);
+		cout<<"--------- kernels: 3x3--------"<<endl;
+		cout_mat(kernel);
+		cout<<"--------- mid1 ---------"<<endl;
+		cout<<"row: "<<mid1.row<<" , "<<"col: "<<mid1.col<<endl;
+		cout_mat(mid1);
+		cout<<"--------- output: ---------"<<endl;	
+		Matrix feature_maps[output_channels];
+		for(int filter_idx = 0;filter_idx<output_channels;filter_idx++)
+		{	
+			Matrix sum_rgb = CreateMatrix(((mid1.row-kernel_size)/stride)+1,((mid1.col-kernel_size)/stride)+1);
+
+		for(int channel_idx=0;channel_idx<input_dim;channel_idx++)
+		{
+			sum_rgb = add(sum_rgb,conv_element(mid1,filters[filter_idx][channel_idx],kernel_size,stride),0);
+			cout<<"sum_rgb"<<"filters_index: "<<filter_idx<<" "<<endl;
+			cout_mat(sum_rgb);
+		}
+		feature_maps[filter_idx]=sum_rgb;
+	}
+	for(int i = 0;i < output_channels;i++)
+	{
+		cout<<"==========filter: "<<i<<"========="<<endl;
+		cout_mat(feature_maps[i]);
+
 	}
 	return 0.0;
+}
 }
 #endif
