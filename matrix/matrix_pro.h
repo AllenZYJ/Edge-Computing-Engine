@@ -365,6 +365,12 @@ Matrix conv_element(Matrix mid1,Matrix kernel,int kernel_size = 2,int stride = 1
 double conv_test(Matrix mid1,int input_dim = 3,int output_channels = 3,int stride = 1,int kernel_size = 2,int mode = 0,int padding = 0)
 {
 	// cout_mat(mid1);
+	Matrix mid_rgb[input_dim];
+	for(int rgb_idx = 0;rgb_idx<input_dim;rgb_idx++)
+	{
+		mid_rgb[rgb_idx] = CreateRandMat(mid1.row,mid1.col);
+
+	}
 	Matrix filters[output_channels][input_dim];
 	for(int channel_index = 0;channel_index<input_dim;channel_index++)
 	{
@@ -379,34 +385,31 @@ double conv_test(Matrix mid1,int input_dim = 3,int output_channels = 3,int strid
 	}
 	if(mode == 0)
 	{
-		cout<<"input_img:"<<endl;
-		cout_mat(mid1);
+		// cout<<"input_img:"<<endl;
+		// cout_mat(mid1);
 		Matrix conv_result = CreateMatrix(((mid1.row-kernel_size)/stride)+1,((mid1.col-kernel_size)/stride)+1);
 		Matrix kernel = ones(kernel_size,kernel_size);
-		cout<<"--------- kernels: 3x3--------"<<endl;
-		cout_mat(kernel);
-		cout<<"--------- mid1 ---------"<<endl;
-		cout<<"row: "<<mid1.row<<" , "<<"col: "<<mid1.col<<endl;
-		cout_mat(mid1);
-		cout<<"--------- output: ---------"<<endl;	
+		// cout<<"--------- kernels: 3x3--------"<<endl;
+		// cout_mat(kernel);
+		// cout<<"--------- output: ---------"<<endl;	
 		Matrix feature_maps[output_channels];
 		for(int filter_idx = 0;filter_idx<output_channels;filter_idx++)
 		{	
 			Matrix sum_rgb = CreateMatrix(((mid1.row-kernel_size)/stride)+1,((mid1.col-kernel_size)/stride)+1);
-
 		for(int channel_idx=0;channel_idx<input_dim;channel_idx++)
 		{
-			sum_rgb = add(sum_rgb,conv_element(mid1,filters[filter_idx][channel_idx],kernel_size,stride),0);
-			cout<<"sum_rgb"<<"filters_index: "<<filter_idx<<" "<<endl;
-			cout_mat(sum_rgb);
+			// cout<<"---------rgb: "<<channel_idx<<"---------"<<endl;
+			// cout_mat(mid_rgb[channel_idx]);
+			sum_rgb = add(sum_rgb,conv_element(mid_rgb[channel_idx],filters[channel_idx][filter_idx],kernel_size,stride),0);
+			// cout<<"sum_rgb"<<"filters_index: "<<filter_idx<<" "<<endl;
+			// cout_mat(sum_rgb);
 		}
 		feature_maps[filter_idx]=sum_rgb;
 	}
 	for(int i = 0;i < output_channels;i++)
 	{
-		cout<<"==========filter: "<<i<<"========="<<endl;
-		cout_mat(feature_maps[i]);
-
+		// cout<<"==========filter: "<<i<<"========="<<endl;
+		// cout_mat(feature_maps[i]);
 	}
 	return 0.0;
 }
