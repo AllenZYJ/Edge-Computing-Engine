@@ -1,3 +1,16 @@
+/*
+ *
+███████╗██████╗  ██████╗ ███████╗                ███████╗███╗   ██╗ ██████╗ ██╗███╗   ██╗███████╗
+██╔════╝██╔══██╗██╔════╝ ██╔════╝                ██╔════╝████╗  ██║██╔════╝ ██║████╗  ██║██╔════╝
+█████╗  ██║  ██║██║  ███╗█████╗                  █████╗  ██╔██╗ ██║██║  ███╗██║██╔██╗ ██║█████╗
+██╔══╝  ██║  ██║██║   ██║██╔══╝                  ██╔══╝  ██║╚██╗██║██║   ██║██║██║╚██╗██║██╔══╝
+███████╗██████╔╝╚██████╔╝███████╗                ███████╗██║ ╚████║╚██████╔╝██║██║ ╚████║███████╗
+╚══════╝╚═════╝  ╚═════╝ ╚══════╝                ╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝╚══════╝
+Author：Edge
+Web：likedge.top
+Date：20200925
+*/
+
 #include<iostream>
 #include<ctime>
 #include<string>
@@ -32,6 +45,7 @@ Node (*loss)(Node,Node) = loss_act;
 Node (*act)(Node) = sigmoid_act;
 int main()
 {
+	welcome();
 	//begin 
 	cout<<"---------autodiff for neraul network-----------"<<endl;
 	Matrix data_mine = CreateMatrix(2,1);
@@ -43,10 +57,10 @@ int main()
 	Matrix bais1 = ones(2,1);
 	Matrix weight2 = CreateRandMat(2,2);
 	Matrix bais2 = ones(2,1);
-	for(int epoch = 0;epoch<1;epoch++)
+	for(int epoch = 0;epoch<5;epoch++)
 	{
 	cout<<"---------epoch: "<<epoch<<"------------"<<endl;
-	cout_mat(weight1);
+	// cout_mat(weight1);
 	int input_dim = 2;
 	int output_dim = 2;
 	edge_network sequaltial(input_dim,output_dim);
@@ -63,6 +77,6 @@ int main()
 	weight2 = subtract(weight2,times_mat(0.001,weight_2_grad));
 	bais2 = subtract(bais2,times_mat(0.001,output_end));
 	cout<<"neraul end;"<<endl;
-	return 0;
 	}
+		return 0;
 }
