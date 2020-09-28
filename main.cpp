@@ -1,5 +1,4 @@
 /*
- *
 ███████╗██████╗  ██████╗ ███████╗                ███████╗███╗   ██╗ ██████╗ ██╗███╗   ██╗███████╗
 ██╔════╝██╔══██╗██╔════╝ ██╔════╝                ██╔════╝████╗  ██║██╔════╝ ██║████╗  ██║██╔════╝
 █████╗  ██║  ██║██║  ███╗█████╗                  █████╗  ██╔██╗ ██║██║  ███╗██║██╔██╗ ██║█████╗
@@ -45,24 +44,27 @@ Node (*loss)(Node,Node) = loss_act;
 Node (*act)(Node) = sigmoid_act;
 int main()
 {
+	Matrix data_1 = ones(1,3);
+	Matrix data_2 = ones(3,1);
+	cout_mat(mul(data_1,data_2));
 	welcome();
 	//begin 
 	cout<<"---------autodiff for neraul network-----------"<<endl;
-	Matrix data_mine = CreateMatrix(2,1);
+	Matrix data_mine = ones(3,3);
 	cout<<"data mine"<<endl;
 	cout_mat(data_mine);
 	cout<<"data mine"<<endl;
-	Matrix label = CreateRandMat(2,1);
-	Matrix weight1 = CreateRandMat(2,2);
-	Matrix bais1 = ones(2,1);
-	Matrix weight2 = CreateRandMat(2,2);
-	Matrix bais2 = ones(2,1);
-	for(int epoch = 0;epoch<5;epoch++)
+	Matrix label = CreateRandMat(3,1);
+	Matrix weight1 = CreateRandMat(3,3);
+	Matrix bais1 = ones(3,1);
+	Matrix weight2 = CreateRandMat(3,3);
+	Matrix bais2 = ones(3,1);
+	for(int epoch = 0;epoch<10;epoch++)
 	{
 	cout<<"---------epoch: "<<epoch<<"------------"<<endl;
-	// cout_mat(weight1);
-	int input_dim = 2;
-	int output_dim = 2;
+	cout_mat(weight1);
+	int input_dim = 3;
+	int output_dim = 3;
 	edge_network sequaltial(input_dim,output_dim);
 	Matrix output1 = sequaltial.forward(data_mine,weight1,bais1);
 	Matrix output1_without_act = sequaltial.forward_without_act(data_mine,weight1,bais1);

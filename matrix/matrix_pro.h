@@ -1,12 +1,15 @@
-#ifndef MATRIX_PRO
-#define MATRIX_PRO
-#include<iostream>
-#include<stdlib.h>
-#include<string>
-#define random(x) (rand()%x)
 /*
-matrix add
+███████╗██████╗  ██████╗ ███████╗                ███████╗███╗   ██╗ ██████╗ ██╗███╗   ██╗███████╗
+██╔════╝██╔══██╗██╔════╝ ██╔════╝                ██╔════╝████╗  ██║██╔════╝ ██║████╗  ██║██╔════╝
+█████╗  ██║  ██║██║  ███╗█████╗                  █████╗  ██╔██╗ ██║██║  ███╗██║██╔██╗ ██║█████╗
+██╔══╝  ██║  ██║██║   ██║██╔══╝                  ██╔══╝  ██║╚██╗██║██║   ██║██║██║╚██╗██║██╔══╝
+███████╗██████╔╝╚██████╔╝███████╗                ███████╗██║ ╚████║╚██████╔╝██║██║ ╚████║███████╗
+╚══════╝╚═════╝  ╚═════╝ ╚══════╝                ╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝╚══════╝
+Author：Edge
+Web：likedge.top
+Date：20200925
 
+matrix add
 flag stand use binary or not default 1
 
 move_ele change the x,y to y,x
@@ -15,7 +18,19 @@ get_T :get the matrix transpose
 input:Matrix a;
 output:Matrix a.transpose
 
+and -- just test
+---------------------------------------------------------------
+if you have the better answer on it , it is nothing, just test~
+---------------------------------------------------------------
+
 */
+#ifndef MATRIX_PRO
+#define MATRIX_PRO
+#include<iostream>
+#include<stdlib.h>
+#include<string>
+#define random(x) (rand()%x)
+
 void move_ele(int &ele1, int &ele2)
 {
   ele1 ^= ele2 ^= ele1 ^= ele2;
@@ -95,6 +110,7 @@ Matrix times_mat(double times,Matrix mid1)
     return mid1;
 }
 
+
 Matrix get_T(Matrix mid1)
 {
 	Matrix mid2 = CreateMatrix(mid1.col,mid1.row);
@@ -107,6 +123,8 @@ Matrix get_T(Matrix mid1)
 	}
 	return mid2;
 }
+
+
 double* flatten(Matrix mid1)
 {
 	int size = mid1.row*mid1.col;
@@ -121,6 +139,8 @@ double* flatten(Matrix mid1)
 	}
 	return balance;
 }
+
+
 Matrix matrix_rs(Matrix mid1,int rs_row,int rs_col)
 {
 
@@ -150,6 +170,8 @@ Matrix matrix_rs(Matrix mid1,int rs_row,int rs_col)
 	}
 	return result;
 }
+
+
 double matrix_sum(Matrix mid1)
 {
 	double sum = 0;

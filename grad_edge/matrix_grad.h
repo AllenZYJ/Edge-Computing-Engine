@@ -73,6 +73,7 @@ struct edge_network
 		Node t1 = label.matrix[index_x][0],z31 =acti_val.matrix[index_x][0];
 		Node a13 = 1/(1+(1/exp(z31)));
 		Node loss = loss_fun(t1,a13);
+		cout<<"loss:"<<loss<<endl;
 		Node act = act_fun(z31);		
 		act_output.matrix[index_x][0] = act.gradient(z31);
 		loss_act.matrix[index_x][0] = loss.gradient(a13);
