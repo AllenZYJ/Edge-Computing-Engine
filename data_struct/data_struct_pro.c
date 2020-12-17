@@ -13,29 +13,12 @@ Date：20201213
 #define random(x) (rand()%x)
 link_list::link_list()
 {
-    // lnode node_1(1,2);
-    // lnode node_2(9,3);
-    // cout<<node_1.data<<endl;
-    // cout<<node_1.next_index<<endl;
     cout<<"test"<<endl;
 }
-// link_list::link_list(int *head,int n )
-// {
-//     this->link_list_head =(lnode*)malloc(sizeof(lnode));
-//     for(int index_link_node=0;index_link_node<n;index_link_node++)
-//     {
-//         _NODE_=(lnode*)malloc(sizeof(lnode));
-//         // nodeindoor->data=index_link_node;
-//         // cout<<"index_link_node:"<<nodeindoor->data<<endl;
-//         this->_NODE_=(lnode*)malloc(sizeof(lnode));
-//         this->link_list_head->next_index=&this->_NODE_;
-//         this->_NODE_->data=index_link_node;
-//         cout<<this->_NODE_->data<<endl;
-//     }
-//     cout<<"test2"<<endl;
-// }
 
 
+//init function on link_list
+//n:len
 link_list::link_list(int n)
 {
     this->len=n;
@@ -55,6 +38,7 @@ link_list::link_list(int n)
 
     }
 }
+//travel around the link_list
 void list_ergodic(link_list link_list_ergodic)
 {
     lnode *ldir_head=link_list_ergodic.link_list_head;
@@ -64,6 +48,7 @@ void list_ergodic(link_list link_list_ergodic)
         ldir_head=ldir_head->next_index;
     }
 }
+//insert element for what u input,in this index
 void insert_element_ll(int index_toinsert,link_list ll_toinsert,int to_insertele)
 {
     lnode *insert_p=ll_toinsert.link_list_head;
@@ -81,8 +66,20 @@ void insert_element_ll(int index_toinsert,link_list ll_toinsert,int to_insertele
         insert_p=insert_p->next_index;
     }
 }
-// void dele_element(int index_todele,link_list ll_toinsert,int to_insertele)
-// {
+//delete the element from where you index
+void dele_element_ll(int index_todele,link_list ll_todele)
+{
+    lnode *dele_p=ll_todele.link_list_head;
+    for(int index_move=0;index_move<ll_todele.len;index_move++)
+    {
+        if(index_move==index_todele-1)
+        {
+            lnode *node1=(lnode*)malloc(sizeof(lnode));
+            lnode *old_index_to_dele=dele_p->next_index;
+            dele_p->next_index=old_index_to_dele->next_index;
+        }
+        dele_p=dele_p->next_index;
+    }
 
-// }
+}
 

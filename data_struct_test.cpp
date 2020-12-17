@@ -31,12 +31,14 @@ int main()
 {
     // Node_link_list c(3);
     int len=10;
-    link_list list1 = link_list(30);
+    link_list list1 = link_list(300);
     //遍历
     list_ergodic(list1);
     cout<<"----------------"<<endl;
     insert_element_ll(5,list1,10);
     list_ergodic(list1);
     cout<<"----------------"<<endl;
+    dele_element_ll(119,list1);
+    list_ergodic(list1);
     return 1;
 }

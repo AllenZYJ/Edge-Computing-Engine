@@ -41,5 +41,6 @@ class link_list{
     link_list(int n);
     void list_ergodic(link_list link_list_ergodic);
     void insert_element_ll(int index_toinsert,link_list ll_toinsert);
+    void dele_element_ll(int index_todele,link_list ll_todele);
 };
 #endif
