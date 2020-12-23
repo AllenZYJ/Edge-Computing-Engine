@@ -41,8 +41,9 @@ link_list::link_list(int n)
 //travel around the link_list
 void list_ergodic(link_list link_list_ergodic)
 {
+    cout<<"len:"<<link_list_ergodic.len<<endl;
     lnode *ldir_head=link_list_ergodic.link_list_head;
-    for(int i = 0;i<link_list_ergodic.len;i++){
+    for(int i = 0;i<=link_list_ergodic.len;i++){
         
         cout<<"list["<<i<<"]:"<<ldir_head->data<<endl;
         ldir_head=ldir_head->next_index;
@@ -80,6 +81,27 @@ void dele_element_ll(int index_todele,link_list ll_todele)
         }
         dele_p=dele_p->next_index;
     }
+
+}
+void insert_end_ll(int to_insert_end,link_list ll_toinsert_end)
+{
+
+    lnode *end_p=ll_toinsert_end.link_list_head;
+    for(int index_move_toend=0;index_move_toend<=ll_toinsert_end.len;index_move_toend++)
+    {
+        cout<<index_move_toend<<endl;
+        if(index_move_toend==ll_toinsert_end.len)
+        {
+            lnode *node_to_insert_end=(lnode*)malloc(sizeof(lnode));
+            node_to_insert_end->data=to_insert_end;
+            cout<<index_move_toend<<endl;
+            end_p->next_index=node_to_insert_end;
+        }
+        end_p=end_p->next_index;
+    }
+    ll_toinsert_end.len+=1;
+    cout<<ll_toinsert_end.len<<endl;
+    //insert element to end of link_list
 
 }
 
