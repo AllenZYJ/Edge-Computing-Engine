@@ -32,3 +32,18 @@ jobs:
         run: gcc -v 
       - name: lsa
         run: ls -a
+      - name: make and install autodiff
+        run: cd install_diff
+      - name: make and install_1
+        run: make
+      - name: make and install_2
+        run: make install
+      - name: success info
+        run: echo success install autodiff!
+      - name: back to ..
+        run: cd ..
+      - name: build
+        run: g++ main.cpp -o ma -lautodiff
+      - name: run
+        run: ./ma
+
