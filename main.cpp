@@ -50,6 +50,7 @@ int main()
 	cout_mat(mul(data_1,data_2));
 	welcome();
 	//begin 
+    cout<<"auto build on gcc"<<endl;
 	cout<<"---------autodiff for neraul network-----------"<<endl;
 	Matrix data_mine = ones(3,3);
 	cout<<"data mine"<<endl;
