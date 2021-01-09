@@ -31,4 +31,6 @@ jobs:
       - name: Run gcc and test the version
         run: gcc -v 
       - name: lsa
-        run: ls - 
+        run: ls -a
+
+      - name: Run a one-line script
