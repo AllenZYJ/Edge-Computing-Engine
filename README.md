@@ -27,7 +27,8 @@ email: zk@likedge.top
 >
 > 测试环境:
 >
-> MacBook Pro
+> 1.MacBook Pro
+> 2.debian+gcc：Linux version 4.19.121-linuxkit (root@buildkitsandbox) (gcc version 9.2.0 (Alpine 9.2.0)) #1 SMP Tue Dec 1 17:50:32 UTC 2020（理论上可以推广到所有linux发行版本）
 >
 > 编译器环境:
 >
