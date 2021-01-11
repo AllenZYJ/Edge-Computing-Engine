@@ -34,13 +34,13 @@ jobs:
         run: ls -a
       - name: install_diff dir
         run: ls -a
-        working-directory: ./auto_diff
+        working-directory: ./autodiff
       - name: make and install_1
         run: make
-        working-directory: ./auto_diff
+        working-directory: ./autodiff
       - name: make and install_2
         run: make install
-        working-directory: ./autodiff_diff
+        working-directory: ./autodiff
       - name: success info
         run: echo success install autodiff!
       - name: build
