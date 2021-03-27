@@ -27,7 +27,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo Hello, Macos!
+        run: echo Hello, ubuntu!
       - name: Run gcc and test the version
         run: gcc -v 
       - name: lsa
