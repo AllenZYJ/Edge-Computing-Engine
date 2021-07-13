@@ -13,6 +13,8 @@
 
 email: zk@likedge.top
 
+深度学习模型交流群：499027005
+
 <br>[![GitHub license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://raw.githubusercontent.com/tesseract-ocr/tesseract/master/LICENSE)</br>
 
 ------
@@ -532,7 +534,6 @@ Something :
 > 5. 更多的细节参见目前最新的代码
 > 6. 欢迎star和关注.
 > 7. autodiff部分感谢国外博主Omar的思路提醒.
->
 
 ------
 
