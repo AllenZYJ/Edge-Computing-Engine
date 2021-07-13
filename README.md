@@ -101,7 +101,7 @@ edge_network作为一个类型存在,位于matrix_grad.h中结构体类型的数
 
 完整的序列模型:
 
-![image-20200128154352842](/Users/zhangyiji/Documents/code/cpp_demo/my_os/Edge-Computing-Engine/image-20200128154352842.png)
+![image-20200128154352842](image-20200128154352842.png)
 
 ## 新的demo程序实现5层全连接层,可自定义神经元和激活函数,损失函数
 
