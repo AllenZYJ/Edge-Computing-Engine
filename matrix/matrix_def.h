@@ -2,7 +2,9 @@
 #define MATRIX_DEF
 #pragma once
 #include<iostream>
-#include<sys/malloc.h>
+#include<malloc.h>
+// Macos #include<sys/malloc.h>
+
 #include<stdio.h>
 #include<string>
 using namespace std;

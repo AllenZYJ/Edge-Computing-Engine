@@ -45,33 +45,33 @@ Node (*loss)(Node,Node) = loss_act;
 Node (*act)(Node) = sigmoid_act;
 int main()
 {
-	Matrix data_1 = ones(1,3);
-	Matrix data_2 = ones(3,1);
+	Matrix data_1 = ones(1,30);
+	Matrix data_2 = ones(30,1);
 	cout_mat(mul(data_1,data_2));
 	welcome();
 	//begin 
     cout<<"auto build on gcc"<<endl;
 	cout<<"---------autodiff for neraul network-----------"<<endl;
-	Matrix data_mine = ones(3,3);
+	Matrix data_mine = ones(30,30);
 	cout<<"data mine"<<endl;
 	cout_mat(data_mine);
 	cout<<"data mine"<<endl;
-	Matrix label = CreateRandMat(3,1);
+	Matrix label = CreateRandMat(30,1);
 	cout_mat(label);
-	Matrix weight1 = CreateRandMat(3,3);
+	Matrix weight1 = CreateRandMat(30,30);
 	cout<<"weight"<<endl;
 	cout_mat(weight1);
-	Matrix bais1 = ones(3,1);
+	Matrix bais1 = ones(30,1);
 	cout_mat(bais1);
 
-	Matrix weight2 = CreateRandMat(3,3);
-	Matrix bais2 = ones(3,1);
+	Matrix weight2 = CreateRandMat(30,30);
+	Matrix bais2 = ones(30,1);
 	for(int epoch = 0;epoch<10;epoch++)
 	{
 		cout<<"---------epoch: "<<epoch<<"------------"<<endl;
 		cout_mat(weight1);
-		int input_dim = 3;
-		int output_dim = 3;
+		int input_dim = 30;
+		int output_dim = 30;
 		edge_network sequaltial(input_dim,output_dim);
 		// define the network
 		Matrix output1 = sequaltial.forward(data_mine,weight1,bais1);
