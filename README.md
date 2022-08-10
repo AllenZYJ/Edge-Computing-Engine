@@ -6,6 +6,7 @@
 
 
 ## Edge : 一个开源的科学计算引擎
+<div align=center><img src="./pics/yyy.gif" alt="yyy"  /></div>
 
 [README for English_version](./README_EN.md)
 
@@ -33,7 +34,6 @@ machine learning group：499027005
 > Apple LLVM version 10.0.1 (clang-1001.0.46.4)
 > Target: x86_64-apple-darwin18.7.0
 > Thread model: posix
-<img src="./pics/yyy.gif" alt="yyy"  />
 <img src="image-20200418210521131.png" alt="image-20200418210521131"  />
 
 
