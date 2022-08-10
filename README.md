@@ -1,7 +1,6 @@
 
 
-<!-- <div align=center><img src="./picture/01.svg"/></div> -->
-<div align=center><img src="./pic/yyy.gif"/></div>
+<div align=center><img src="./picture/01.svg"/></div>
 # Edge-Engine
 
 
@@ -34,7 +33,7 @@ machine learning group：499027005
 > Apple LLVM version 10.0.1 (clang-1001.0.46.4)
 > Target: x86_64-apple-darwin18.7.0
 > Thread model: posix
-
+<img src="yyy.gif" alt="yyy"  />
 <img src="image-20200418210521131.png" alt="image-20200418210521131"  />
 
 
