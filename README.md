@@ -1,6 +1,7 @@
 
 
-<div align=center><img src="./picture/01.svg"/></div>
+<!-- <div align=center><img src="./picture/01.svg"/></div> -->
+<div align=center><img src="./pic/yyy.gif"/></div>
 # Edge-Engine
 
 
@@ -9,11 +10,9 @@
 
 [README for English_version](./README_EN.md)
 
-声明：本项目禁止闭源商用，如有需要请和作者取得联系
-
 email: zk@likedge.top
 
-深度学习模型交流群：499027005
+machine learning group：499027005
 
 <br>[![GitHub license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://raw.githubusercontent.com/tesseract-ocr/tesseract/master/LICENSE)</br>
 
@@ -22,8 +21,6 @@ email: zk@likedge.top
 
 
 > 项目开始日期 : 2019/10/01
->
-> 目前项目总代码 : 810 行
 >
 > 测试 : main.cpp | nerual_network.cpp | 新增全连接神经网络架构(新增全连接网络正向传播和反向传播的测试demo)
 >
