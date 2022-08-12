@@ -11,8 +11,10 @@
 [README for English_version](./README_EN.md)
 
 email: zk@likedge.top
+WeChat group：
+<div align=center><img src="./pics/wechat.jpg" alt="wechat"  /></div>
 
-machine learning group：499027005
+machine learning QQgroup：499027005
 
 <br>[![GitHub license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://raw.githubusercontent.com/tesseract-ocr/tesseract/master/LICENSE)</br>
 
