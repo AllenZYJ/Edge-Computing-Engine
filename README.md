@@ -6,12 +6,13 @@
 
 
 ## Edge : 一个开源的科学计算引擎
-<div align=center><img src="./pics/yyy.gif" alt="yyy"  /></div>
+<!-- <div align=center><img src="./pics/yyy.gif" alt="yyy"  /></div> -->
 
 [README for English_version](./README_EN.md)
 
-email: zk@likedge.top
-WeChat group：
+email: zk@likedge.top  
+欢迎交流：
+WeChat
 <div align=center><img src="./pics/wechat.jpg" alt="wechat"  /></div>
 
 machine learning QQgroup：499027005
