@@ -2,8 +2,8 @@
 #define MATRIX_DEF
 #pragma once
 #include <iostream>
-#include <malloc.h>
-// Macos #include<sys/malloc.h>
+// #include <malloc.h>//ubuntu
+#include<sys/malloc.h>//macos
 
 #include <stdio.h>
 #include <string>
