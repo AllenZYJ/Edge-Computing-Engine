@@ -45,6 +45,10 @@ jobs:
         run: echo success install autodiff!
       - name: build
         run: g++ main.cpp -o ma -lautodiff
+      - name: build_conv_test
+        run: g++ conv_.cpp -o conv_ -lautodiff
       - name: run
         run: ./ma
+      - name: run conv test
+        run: ./conv_
 
