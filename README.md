@@ -11,11 +11,7 @@
 [README for English_version](./README_EN.md)
 
 email: zk@likedge.top  
-欢迎交流：
-WeChat
-<div align=center><img src="./pics/wechat.jpg" alt="wechat"  /></div>
 
-machine learning QQgroup：499027005
 
 <br>[![GitHub license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://raw.githubusercontent.com/tesseract-ocr/tesseract/master/LICENSE)</br>
 
@@ -536,7 +532,11 @@ Something :
 
 ------
 
+欢迎交流：
+WeChat
+<div align=center><img src="./pics/wechat.jpg" alt="wechat"  /></div>
 
+machine learning QQgroup：499027005
 
 <div align = center><img src = './picture/星月.svg'></div>
 
