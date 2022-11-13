@@ -6,12 +6,12 @@
 
 
 ## Edge : 一个开源的科学计算引擎
-<!-- <div align=center><img src="./pics/yyy.gif" alt="yyy"  /></div> -->
 
 [README for English_version](./README_EN.md)
 
-email: zk@likedge.top  
+声明：本项目禁止闭源商用，如有需要请和作者取得联系
 
+email: zk@likedge.top
 
 <br>[![GitHub license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://raw.githubusercontent.com/tesseract-ocr/tesseract/master/LICENSE)</br>
 
@@ -20,6 +20,8 @@ email: zk@likedge.top
 
 
 > 项目开始日期 : 2019/10/01
+>
+> 目前项目总代码 : 810 行
 >
 > 测试 : main.cpp | nerual_network.cpp | 新增全连接神经网络架构(新增全连接网络正向传播和反向传播的测试demo)
 >
@@ -33,6 +35,7 @@ email: zk@likedge.top
 > Apple LLVM version 10.0.1 (clang-1001.0.46.4)
 > Target: x86_64-apple-darwin18.7.0
 > Thread model: posix
+
 <img src="image-20200418210521131.png" alt="image-20200418210521131"  />
 
 
@@ -98,7 +101,7 @@ edge_network作为一个类型存在,位于matrix_grad.h中结构体类型的数
 
 完整的序列模型:
 
-![image-20200128154352842](image-20200128154352842.png)
+![image-20200128154352842](/Users/zhangyiji/Documents/code/cpp_demo/my_os/Edge-Computing-Engine/image-20200128154352842.png)
 
 ## 新的demo程序实现5层全连接层,可自定义神经元和激活函数,损失函数
 
@@ -529,14 +532,11 @@ Something :
 > 5. 更多的细节参见目前最新的代码
 > 6. 欢迎star和关注.
 > 7. autodiff部分感谢国外博主Omar的思路提醒.
+>
 
 ------
 
-欢迎交流：
-WeChat
-<div align=center><img src="./pics/wechat.jpg" alt="wechat"  /></div>
 
-machine learning QQgroup：499027005
 
 <div align = center><img src = './picture/星月.svg'></div>
 

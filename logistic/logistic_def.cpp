@@ -1,8 +1,8 @@
-#include <iostream>
-#include "../matrix/matrix_def.cpp"
-#include "../welcome/score_wel.cpp"
-#include "../matrix/matrix_pro.cpp"
-#include <math.h>
+#include<iostream>
+#include"../matrix/matrix_def.cpp"
+#include"../welcome/score_wel.cpp"
+#include"../matrix/matrix_pro.cpp"
+#include<math.h>
 /*
 ███████╗██████╗  ██████╗ ███████╗                ███████╗███╗   ██╗ ██████╗ ██╗███╗   ██╗███████╗
 ██╔════╝██╔══██╗██╔════╝ ██╔════╝                ██╔════╝████╗  ██║██╔════╝ ██║████╗  ██║██╔════╝
@@ -16,5 +16,5 @@ Date：20200925
 */
 double sigmoid_def()
 {
-    cout << exp(2) << endl;
+cout<<exp(2)<<endl;
 }
