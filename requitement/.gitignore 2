@@ -1,0 +1,4 @@
+.gmake
+obj/
+bin/
+lib/
