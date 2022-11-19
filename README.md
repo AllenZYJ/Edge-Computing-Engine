@@ -38,7 +38,7 @@ email: zk@likedge.top
 > Target: x86_64-apple-darwin18.7.0
 > Thread model: posix
 
-<img src="image-20200418210521131.png" alt="image-20200418210521131"  />
+<img src="picture/image-20200418210521131.png" alt="image-20200418210521131"  />
 
 
 
@@ -111,7 +111,7 @@ edge_network作为一个类型存在,位于matrix_grad.h中结构体类型的数
 
 完整的序列模型:
 
-![image-20200128154352842](image-20200128154352842.png)
+![image-20200128154352842](picture/image-20200128154352842.png)
 
 ### 实现5层全连接层,可自定义神经元和激活函数,损失函数
 
