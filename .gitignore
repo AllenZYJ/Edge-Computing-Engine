@@ -3,3 +3,4 @@ ma
 *.a
 conv_test
 .DS_Store
+test.cpp
