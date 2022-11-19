@@ -11,6 +11,14 @@ Date：20200925
 */
 
 #include<iostream>
+#ifdef __APPLE__
+#include <sys/malloc.h>
+#else
+#include <malloc.h>
+#endif
+#include<stdio.h>
+#include<stdlib.h>
+
 #include<ctime>
 #include<string>
 #include <time.h>

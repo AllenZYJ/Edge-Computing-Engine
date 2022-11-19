@@ -26,11 +26,7 @@ if you have the better answer on it , it is nothing, just test~
 */
 #ifndef MATRIX_PRO
 #define MATRIX_PRO
-#include<iostream>
-#include<stdlib.h>
-#include<string>
 #define random(x) (rand()%x)
-
 void move_ele(int &ele1, int &ele2)
 {
   ele1 ^= ele2 ^= ele1 ^= ele2;

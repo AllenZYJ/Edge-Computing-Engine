@@ -10,6 +10,7 @@ class conv2d: public edge_layer
 public:
     void layer_call()
     {
+        cout_mat(ones(3,3));
         std::cout << "call back from conv2d layer" << std::endl;
     }
     conv2d(int input_dime);

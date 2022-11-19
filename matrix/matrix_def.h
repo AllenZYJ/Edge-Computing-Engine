@@ -1,14 +1,6 @@
 #ifndef MATRIX_DEF
 #define MATRIX_DEF
 #pragma once
-#include<iostream>
-#ifdef __APPLE__
-#include <sys/malloc.h>
-#else
-#include <malloc.h>
-#endif
-#include<stdio.h>
-#include<string>
 using namespace std;
 /*
 ███████╗██████╗  ██████╗ ███████╗                ███████╗███╗   ██╗ ██████╗ ██╗███╗   ██╗███████╗
