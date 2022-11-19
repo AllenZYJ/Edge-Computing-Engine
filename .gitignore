@@ -1,2 +1,4 @@
 *.o
 ma
+*.a
+conv_test
