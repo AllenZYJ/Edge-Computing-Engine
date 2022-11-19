@@ -242,6 +242,7 @@ Matrix head(Matrix mid1)
 }
 void cout_mat(Matrix mid1)
 {
+	cout<<"["<<endl;
 	for(int index_x = 0;index_x<mid1.row;index_x++)
 	{
 		for(int index_y=0;index_y<mid1.col;index_y++)
@@ -250,6 +251,7 @@ void cout_mat(Matrix mid1)
 		}
 		cout<<endl;
 	}
+	cout<<"]"<<endl;
 }
 //iloc [x1,x2,y1,y2]
 Matrix iloc(Matrix mid1,int start_x=0,int end_x=0,int start_y=0,int end_y=0)
@@ -386,11 +388,11 @@ Matrix conv_element(Matrix mid1,Matrix kernel,int kernel_size = 2,int stride = 1
 	*/
 double conv_test(Matrix mid1,int input_dim = 3,int output_channels = 3,int stride = 1,int kernel_size = 2,int mode = 0,int padding = 0)
 {
-	// cout_mat(mid1);
+	cout_mat(mid1);
 	Matrix mid_rgb[input_dim];
 	for(int rgb_idx = 0;rgb_idx<input_dim;rgb_idx++)
 	{
-		mid_rgb[rgb_idx] = CreateRandMat(mid1.row,mid1.col);
+		mid_rgb[rgb_idx] = ones(mid1.row,mid1.col);
 
 	}
 	Matrix filters[output_channels][input_dim];
@@ -400,9 +402,6 @@ double conv_test(Matrix mid1,int input_dim = 3,int output_channels = 3,int strid
 			{
 				Matrix kernel = ones(kernel_size,kernel_size);
 				filters[channel_index][filter_index] = kernel;		
-				// cout<<"---------"<<endl;
-				// cout<<"channel: "<<channel_index<<", index: "<<filter_index<<endl;
-				// cout_mat(filters[channel_index][filter_index]);
 			}
 	}
 	if(mode == 0)

@@ -21,13 +21,15 @@ email: zk@likedge.top
 
 > 项目开始日期 : 2019/10/01
 >
-> 目前项目总代码 : 810 行
+> 测试 : main.cpp | nerual_network.cpp | 
 >
-> 测试 : main.cpp | nerual_network.cpp | 新增全连接神经网络架构(新增全连接网络正向传播和反向传播的测试demo)
+> 2022年11月19日12:28:29：实现卷积神经网络单元前向传播
+>
+> 2019年10月01日12:28:56：新增全连接神经网络架构(新增全连接网络正向传播和反向传播的测试demo)
 >
 > 测试环境:
 >
-> MacBook Pro
+> MacBook Pro、ubuntu
 >
 > 编译器环境:
 >
@@ -46,7 +48,7 @@ email: zk@likedge.top
 
 ![path](./picture/path.png)
 
-## 安装编译
+## 快速开始
 
 ```
 git clone git@github.com:AllenZYJ/Edge-Computing-Engine.git
@@ -66,32 +68,40 @@ make install
 编译demo入口程序
 
 ```shell
-➜  edge-computing-engine git:(master) ✗ g++ main.cpp -o ma -lautodiff
+g++ main.cpp -o main -lautodiff
 ```
 
 或者BP测试程序
 
 ```shell
-➜  edge-computing-engine git:(master) ✗ g++ nerual_network.cpp -o ma
+g++ nerual_network.cpp -o main
 ```
 
 运行
 
 ```shell
-➜  edge-computing-engine git:(master) ✗ ./main
+./main
 ```
 
-最新卷积实现：
+## 算子系列
+
+卷积：
 
 ```c++
 double conv_test(Matrix mid1,int input_dim = 3,int output_channels = 3,int stride = 1,int kernel_size = 2,int mode = 0,int padding = 0)
 ```
 
+测试：
 
+```c
+g++ conv_test.cpp -o conv_test -lautodiff && ./conv_test
+```
 
-序贯模型api使用方法:
+### 模型定义方法:
 
+```c
 edge_network(int input, int num_neuron)
+```
 
 作为序列模型api
 
@@ -101,9 +111,9 @@ edge_network作为一个类型存在,位于matrix_grad.h中结构体类型的数
 
 完整的序列模型:
 
-![image-20200128154352842](/Users/zhangyiji/Documents/code/cpp_demo/my_os/Edge-Computing-Engine/image-20200128154352842.png)
+![image-20200128154352842](image-20200128154352842.png)
 
-## 新的demo程序实现5层全连接层,可自定义神经元和激活函数,损失函数
+### 实现5层全连接层,可自定义神经元和激活函数,损失函数
 
 全连接层使用方法:
 
@@ -130,7 +140,7 @@ Matrix output2 = sequaltial.forward(output1,weight2,bias2);
 
 同时第二层的输出也可以求出来,以此类推 .
 
-最终输出代码见nerual_test.cpp ![nerual_test1](/Users/zhangyiji/Documents/code/cpp_demo/my_os/Edge-Computing-Engine/picture/nerual_test1.png)
+最终输出代码见nerual_test.cpp ![nerual_test1](./picture/nerual_test1.png)
 
 代码:
 
@@ -305,11 +315,9 @@ epoch: 100 error: 6.05895
 
 - [x] 创建随机权重矩阵接口
 
+- [x] 卷积神经网络定义(包括但不限于卷积核,池化层定义,自定义损失接口).
+
   ### 即将着手开发:
-
-- [ ] 卷积神经网络定义(包括但不限于卷积核,池化层定义,自定义损失接口).
-
-- [ ] 随机森林算法封装.
 
 - [ ] 主流网络架构实现.
 
