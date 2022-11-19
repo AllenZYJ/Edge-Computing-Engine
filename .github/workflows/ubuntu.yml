@@ -32,8 +32,6 @@ jobs:
         run: echo Hello, Macos!
       - name: Run gcc and test the version
         run: gcc -v 
-      - name: lsa
-        run: ls -a
       - name: install_diff dir
         run: ls -a
         working-directory: ./install_diff
