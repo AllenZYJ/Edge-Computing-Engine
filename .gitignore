@@ -2,3 +2,4 @@
 ma
 *.a
 conv_test
+.DS_Store
