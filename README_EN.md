@@ -33,9 +33,13 @@ How to install and run the demo:
 
 `git clone git@github.com:AllenZYJ/Edge-Computing-Engine.git`
 
-`cd to this dir `
+`cd to install `_diff
 
-`g++ main.cpp -o main`
+make
+
+make install
+
+`g++ main.cpp -o main` -lautodiff
 
 `./main`
 
