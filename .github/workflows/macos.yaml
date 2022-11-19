@@ -47,9 +47,9 @@ jobs:
       - name: build
         run: g++ main.cpp -o ma -lautodiff
       - name: build_conv_test
-        run: g++ conv_.cpp -o conv_ -lautodiff
+        run: g++ conv_test.cpp -o conv_test -lautodiff
       - name: run
         run: ./ma
       - name: run conv test
-        run: ./conv_
+        run: ./conv_test
 
