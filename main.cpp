@@ -23,7 +23,6 @@ Date：20200925
 #include"./logistic/logistic_def.h"
 #include"./file_pro/data_read.h"
 #include"./grad_edge/matrix_grad.h"
-#include"./data_struct/data_struct_pro.h"
 using namespace std;
 clock_t start, stop;
 double duration;
