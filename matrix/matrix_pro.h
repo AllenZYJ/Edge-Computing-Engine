@@ -63,7 +63,10 @@ Matrix add(Matrix mid1,Matrix mid2,int flag=1)
 	else{return mid1;}
 	return mid1;
 }
-
+// Matrix3d cat(Matrix mid1,Matrix mid2,int flag=1)
+// {
+// 	CreateMatrix3d(1, 3, 2);
+// }
 //subtract use default
 
 Matrix subtract(Matrix mid1,Matrix mid2)
@@ -253,8 +256,9 @@ void cout_mat(Matrix mid1)
 	cout<<"]"<<endl;
 }
 void cout_mat3d(Matrix3d mat3d){
+
     int i,j,k;
-    cout<<"["<<endl;
+    cout<<"-----["<<endl;
     for(i = 0 ; i < mat3d.dep ; i++)
        {
     	cout<<"["<<endl;
@@ -273,7 +277,7 @@ void cout_mat3d(Matrix3d mat3d){
        }
 
     }
-    cout<<"]"<<endl;
+    cout<<"]-----"<<endl;
 
 }
 //iloc [x1,x2,y1,y2]

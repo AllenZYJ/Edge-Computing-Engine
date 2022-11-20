@@ -2,7 +2,7 @@ class edge_layer
 {
 public:
     virtual ~edge_layer() {}
-    virtual int layer_call() = 0;
+    virtual Matrix3d layer_call() = 0;
 };
 
 class conv2d: public edge_layer
@@ -17,7 +17,7 @@ public:
     int kernel_size;
     int mode;
     int padding;
-    int layer_call() 
+    Matrix3d layer_call() 
     {
     Matrix output;
     cout_mat(mid1);
@@ -61,15 +61,12 @@ public:
         }
         feature_maps[filter_idx]=sum_rgb;
     }
-    output = feature_maps[0];
-    cout_mat(output);
-    for(int i = 1;i < output_channels;i++)
+    Matrix3d output3d = CreateMatrix3d(output_channels,feature_maps[0].row,feature_maps[0].col);
+    for(int i = 0;i < output_channels;i++)
     {
-        cout<<"==========filter: "<<i<<"========="<<endl;
-        output = mat_apply(output,feature_maps[i],1);
+        output3d.matrix3d[i] = feature_maps[i].matrix;
     }
-    cout_mat(get_T(output));
-    return 98;
+    return output3d;
     }
 }
 };
@@ -88,12 +85,12 @@ public:
     int arg1bn;
     int arg2bn;
     bn(int bn_input_dime,int bn_output_dim);    
-    int layer_call()
-    {
+    // int layer_call()
+    // {
 
-        std::cout << "call back from bn" << arg1bn <<"="<<arg2bn<<std::endl;
-        return 99;
-    }
+    //     std::cout << "call back from bn" << arg1bn <<"="<<arg2bn<<std::endl;
+    //     return 99;
+    // }
 };
 bn::bn(int bn_input_dime,int bn_output_dim){
     arg2bn = bn_input_dime;
@@ -102,11 +99,11 @@ bn::bn(int bn_input_dime,int bn_output_dim){
 class fc : public edge_layer
 {
 public:
-    int layer_call()
-    {
-        std::cout << "call back from fc" << std::endl;
-        return 100;
-    }
+    // int layer_call()
+    // {
+    //     std::cout << "call back from fc" << std::endl;
+    //     return 100;
+    // }
 };
 // enum LAYER_TYPE
 // {

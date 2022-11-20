@@ -86,7 +86,6 @@ void dele_matrix(Matrix3d mat3d){
     free(mat3d.matrix3d);
 }
 
-
 Matrix3d CreateMatrix3d(int depth, int width, int highth) {
     Matrix3d m;
     int i, j, k;
@@ -103,7 +102,7 @@ Matrix3d CreateMatrix3d(int depth, int width, int highth) {
     for (i = 0; i < depth; i++) {
         for (j = 0; j < width; j++) {
             for (k = 0; k < highth; k++) {
-                Matrix_1[i][j][k] = 0.1;
+                Matrix_1[i][j][k] = 0.0;
             }
         }
     }
@@ -114,7 +113,9 @@ Matrix3d CreateMatrix3d(int depth, int width, int highth) {
     m.matrix3d = Matrix_1;
     return m;
 }
-
+void getshape(Matrix3d mid1){
+    cout<<"shape:("<<mid1.dep<<","<<mid1.wid<<","<<mid1.high<<")"<<endl;
+}
 Matrix ones(int ro, int co) {
     Matrix m;
     int row, col;
