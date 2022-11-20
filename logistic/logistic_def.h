@@ -1,7 +1,3 @@
-#include"../matrix/matrix_def.h"
-#include"../matrix/matrix_pro.h"
-#include<math.h>
-#include<iostream>
 using namespace std;
 /*
 ███████╗██████╗  ██████╗ ███████╗                ███████╗███╗   ██╗ ██████╗ ██╗███╗   ██╗███████╗
