@@ -16,14 +16,15 @@ Date：20200925
 #include <fstream>
 #include <iostream>
 #include <string>
-
-#include "./autodiff/node.h"
-#include "./file_pro/data_read.h"
-#include "./grad_edge/matrix_grad.h"
-#include "./logistic/logistic_def.h"
 #include "./matrix/matrix_def.h"
 #include "./matrix/matrix_pro.h"
+#include "./logistic/logistic_def.h"
+#include "./autodiff/node.h"
+#include "./grad_edge/matrix_grad.h"
+
+#include "./root/include/edgelayer.h"
 #include "./welcome/score_wel.cpp"
+#include "./file_pro/data_read.h"
 using namespace std;
 clock_t start, stop;
 double duration;
