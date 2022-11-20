@@ -187,6 +187,9 @@ double matrix_mean(Matrix mid1)
 	return matrix_sum(mid1)/ele;
 }
 Matrix mat_apply(Matrix mid1,Matrix mid2,int axis = 0)
+// axis = 1:mat1,mat2 => mat1mat2
+// asix = 0:mat1,mat2 => mat1
+// 						 mat2
 {
 	int new_row = mid1.row+mid2.row;
 	int new_col = mid1.col+mid2.col;
