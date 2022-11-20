@@ -252,6 +252,30 @@ void cout_mat(Matrix mid1)
 	}
 	cout<<"]"<<endl;
 }
+void cout_mat3d(Matrix3d mat3d){
+    int i,j,k;
+    cout<<"["<<endl;
+    for(i = 0 ; i < mat3d.dep ; i++)
+       {
+    	cout<<"["<<endl;
+
+       for(j = 0 ; j <mat3d.wid  ; j++)
+       {
+              for(k = 0 ; k < mat3d.high ;k++)
+              {
+                    cout<<mat3d.matrix3d[i][j][k]<<" ";
+                    if(k == mat3d.high-1){cout<<endl;}
+
+              }
+                    if(j == mat3d.wid-1 ){cout<<"],"<<endl;}
+
+              // cout<<endl;
+       }
+
+    }
+    cout<<"]"<<endl;
+
+}
 //iloc [x1,x2,y1,y2]
 Matrix iloc(Matrix mid1,int start_x=0,int end_x=0,int start_y=0,int end_y=0)
 {

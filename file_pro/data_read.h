@@ -1,8 +1,3 @@
-#include"../matrix/matrix_pro.h"
-#include"../matrix/matrix_def.h"
-#include<iostream>
-#include<fstream>
-#include<string>
 #include<typeinfo>
 #include<cstring>
 using namespace std;
