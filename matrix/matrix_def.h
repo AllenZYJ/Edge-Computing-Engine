@@ -114,7 +114,7 @@ Matrix3d CreateMatrix3d(int depth, int width, int highth) {
     return m;
 }
 void getshape(Matrix3d mid1){
-    cout<<"shape:("<<mid1.dep<<","<<mid1.wid<<","<<mid1.high<<")"<<endl;
+    cout<<"EDGE Matrix Shape:("<<mid1.dep<<","<<mid1.wid<<","<<mid1.high<<")"<<endl;
 }
 Matrix ones(int ro, int co) {
     Matrix m;
