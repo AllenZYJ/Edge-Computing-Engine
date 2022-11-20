@@ -24,7 +24,7 @@ public:
     Matrix mid_rgb[input_dim];
     for(int rgb_idx = 0;rgb_idx<input_dim;rgb_idx++)
     {
-        mid_rgb[rgb_idx] = ones(mid1.row,mid1.col);
+        mid_rgb[rgb_idx] = mid1;
 
     }
     Matrix filters[output_channels][input_dim];

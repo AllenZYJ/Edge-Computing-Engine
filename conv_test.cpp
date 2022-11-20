@@ -30,9 +30,9 @@ clock_t start, stop;
 double duration;
 int main() {
     welcome();
-    conv_test(ones(3, 3), 3, 6, 1, 2, 0, 0);
-    Matrix3d a = CreateMatrix3d(12, 3, 12);
-    cout_mat3d(a);
-    std::cout<<"------"<<endl;
+    conv_test(CreateRandMat(3, 3), 3, 6, 1, 2, 0, 0);
+    // Matrix3d a = CreateMatrix3d(12, 3, 12);
+    // cout_mat3d(a);
+    // std::cout<<"------"<<endl;
     return 0;
 }
