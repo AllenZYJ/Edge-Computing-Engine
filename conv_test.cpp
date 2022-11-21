@@ -28,9 +28,12 @@ Date：20200925
 using namespace std;
 clock_t start, stop;
 double duration;
-int main() {
+int main()
+{
     welcome();
-    conv_test(CreateRandMat(3, 3), 3, 6, 1, 2, 0, 0);
+    Matrix3d a = CreateMatrix3d(3, 3, 5);
+    cout_mat(get_mat2d_mat3d(a, 1));
+    conv_test(CreateMatrix3d(3, 3, 3), 3, 6, 1, 2, 0, 0);
     // Matrix3d a = CreateMatrix3d(12, 3, 12);
     // cout_mat3d(a);
     // std::cout<<"------"<<endl;
