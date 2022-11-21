@@ -26,16 +26,22 @@ Date：20200925
 #include "./welcome/score_wel.cpp"
 #include "./file_pro/data_read.h"
 using namespace std;
-clock_t start, stop;
+clock_t start_t, end_t;
 double duration;
 int main()
 {
     welcome();
     Matrix3d a = CreateMatrix3d(3, 3, 5);
-    cout_mat(get_mat2d_mat3d(a, 1));
-    conv_test(CreateMatrix3d(3, 3, 3), 3, 6, 1, 2, 0, 0);
-    // Matrix3d a = CreateMatrix3d(12, 3, 12);
-    // cout_mat3d(a);
-    // std::cout<<"------"<<endl;
+    cout_mat3d(a);
+    start_t = clock();
+    Matrix3d result = conv_test(CreateMatrix3d(3, 64, 64), 3, 6, 2, 3, 0, 0);
+    end_t = clock();
+    double total_t = (double)(end_t - start_t) / CLOCKS_PER_SEC;
+    printf("CPU duration：%f\n", total_t);
+    getshape(result);
+    Matrix4d mat4d = CreateMatrix4d(2, 3, 3, 3);
+    cout_mat3d(mat4d.matrix4d[0]);
+    mat4d.matrix4d[0] = a;
+    cout_mat3d(mat4d.matrix4d[0]);
     return 0;
 }
