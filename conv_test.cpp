@@ -31,17 +31,17 @@ double duration;
 int main()
 {
     welcome();
-    Matrix3d a = CreateMatrix3d(3, 3, 5);
-    cout_mat3d(a);
-    start_t = clock();
-    Matrix3d result = conv_test(CreateMatrix3d(3, 64, 64), 3, 6, 2, 3, 0, 0);
-    end_t = clock();
-    double total_t = (double)(end_t - start_t) / CLOCKS_PER_SEC;
-    printf("CPU duration：%f\n", total_t);
-    getshape(result);
-    Matrix4d mat4d = CreateMatrix4d(2, 3, 3, 3);
-    cout_mat3d(mat4d.matrix4d[0]);
-    mat4d.matrix4d[0] = a;
-    cout_mat3d(mat4d.matrix4d[0]);
+    edge_layer *conv2d_1 = new conv2d(CreateMatrix3d(3, 64, 64), 3, 6, 1, 2, 0, 0);
+    if (conv2d_1 != NULL)
+    {
+        start_t = clock();
+        Matrix3d output_conv = conv2d_1->layer_call();
+        end_t = clock();
+        double total_t = (double)(end_t - start_t) / CLOCKS_PER_SEC;
+        printf("CPU duration：%f\n", total_t);
+        // cout_mat3d(output_conv);
+        getshape(output_conv);
+        conv2d_1 = NULL;
+    }
     return 0;
 }
