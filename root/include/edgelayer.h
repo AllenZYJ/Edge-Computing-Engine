@@ -2,7 +2,7 @@ class edge_layer
 {
 public:
     virtual ~edge_layer() {}
-    virtual Matrix3d layer_call(Matrix3d mid1) = 0;
+    virtual Matrix3d forward(Matrix3d mid1) = 0;
 };
 
 class conv2d : public edge_layer
@@ -17,7 +17,7 @@ public:
     int kernel_size;
     int mode;
     int padding;
-    Matrix3d layer_call(Matrix3d mid1)
+    Matrix3d forward(Matrix3d mid1)
     {
         Matrix output;
         Matrix mid_rgb[input_dim];
@@ -111,21 +111,4 @@ public:
 //     conv_2d,
 //     batchnormal,
 //     fullconnect
-// };
-
-// class LayerFactory
-// {
-// public:
-//     edge_layer *CreateLayer(LAYER_TYPE type,int indime = 3)
-//     {
-//         switch (type)
-//         {
-//         case conv_2d:
-//             return new conv2d(indime);
-//             break;
-//         default:
-//             return NULL;
-//             break;
-//         }
-//     }
 // };
