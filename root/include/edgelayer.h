@@ -88,6 +88,7 @@ public:
     Matrix3d forward(Matrix3d mid1)
     {
         Matrix3d output_bn = CreateMatrix3d(1, 2, 3);
+        float mean_bn = matrix_mean(mid1.matrix3d[0]);
         return output_bn;
     }
 };
