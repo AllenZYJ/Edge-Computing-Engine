@@ -82,20 +82,19 @@ conv2d::conv2d(Matrix3d mid_1, int in_channel, int out_channle, int _stride, int
 class bn : public edge_layer
 {
 public:
-    int arg1bn;
-    int arg2bn;
+    int beta;
+    int gamma;
     bn(int bn_input_dime, int bn_output_dim);
-    // int layer_call()
-    // {
-
-    //     std::cout << "call back from bn" << arg1bn <<"="<<arg2bn<<std::endl;
-    //     return 99;
-    // }
+    Matrix3d forward(Matrix3d mid1)
+    {
+        Matrix3d output_bn = CreateMatrix3d(1, 2, 3);
+        return output_bn;
+    }
 };
-bn::bn(int bn_input_dime, int bn_output_dim)
+bn::bn(int beta_bn, int gamma_bn)
 {
-    arg2bn = bn_input_dime;
-    arg1bn = bn_output_dim;
+    beta = beta_bn;
+    gamma = gamma_bn;
 }
 class fc : public edge_layer
 {
