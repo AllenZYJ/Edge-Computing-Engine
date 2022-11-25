@@ -11,7 +11,6 @@ Date：20200925
 */
 #include <math.h>
 #include <time.h>
-
 #include <ctime>
 #include <fstream>
 #include <iostream>
@@ -41,8 +40,7 @@ int main()
     Matrix3d output_conv3 = conv2d_3->forward(output_conv2);
     end_t = clock();
     double total_t = (double)(end_t - start_t) / CLOCKS_PER_SEC;
-    printf("CPU duration：%f\n", total_t);
-    // cout_mat3d(output_conv);
+    printf("CPUduration：%f\n", total_t);
     getshape(output_conv3);
     return 0;
 }
