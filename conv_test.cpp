@@ -23,12 +23,15 @@ Date：20200925
 #include "./root/include/edgelayer.h"
 #include "./welcome/score_wel.cpp"
 #include "./file_pro/data_read.h"
+#include <iomanip>
+
 using namespace std;
 clock_t start_t, end_t;
 double duration;
 int main()
 {
     welcome();
+    cout<<setprecision(13);
     Matrix3d mat_call = CreateMatrix3d(3, 64, 64);
     Matrix3d mat_call2 = CreateMatrix3d(3, 64, 64);
     edge_layer *conv2d_1 = new conv2d(CreateMatrix3d(3, 64, 64), 3, 12, 1, 2, 0, 0);
@@ -42,5 +45,18 @@ int main()
     double total_t = (double)(end_t - start_t) / CLOCKS_PER_SEC;
     printf("CPUduration：%f\n", total_t);
     getshape(output_conv3);
+    Matrix b = ones(1,3);
+    b.matrix[0][0] = 2;
+    b.matrix[0][1] = 2;
+    b.matrix[0][2] = 8;
+    cout<<matrix_sum(matrix_power(subtract_ele(b,matrix_mean(b))))/2<<endl;
+    cout<<matrix_var(b)<<endl;
+    cout_mat(matrix_division(b,0.3));
+    Matrix3d c = CreateMatrix3d(1,1,3);
+    c.matrix3d[0] = b;
+    edge_layer *bn_1 = new bn(0.1,0.2);
+    Matrix3d output_bn1 = bn_1->forward(c);
+    cout_mat3d(output_bn1);
+    // cout<<matrix_var(b)<<endl;
     return 0;
 }

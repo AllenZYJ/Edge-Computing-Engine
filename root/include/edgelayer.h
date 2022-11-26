@@ -87,8 +87,13 @@ public:
     bn(int bn_input_dime, int bn_output_dim);
     Matrix3d forward(Matrix3d mid1)
     {
-        Matrix3d output_bn = CreateMatrix3d(1, 2, 3);
-        float mean_bn = matrix_mean(mid1.matrix3d[0]);
+        Matrix3d output_bn = CreateMatrix3d(1, 1, 3);
+        double mean_bn = matrix_mean(mid1.matrix3d[0]);
+        double var_bn = matrix_var(mid1.matrix3d[0]);
+        cout<<"sqrt var:"<<sqrt(var_bn)<<endl;
+        output_bn.matrix3d[0] = subtract_ele(mid1.matrix3d[0],mean_bn);
+        cout_mat(output_bn.matrix3d[0]);
+        output_bn.matrix3d[0] = matrix_division(output_bn.matrix3d[0],sqrt(var_bn));
         return output_bn;
     }
 };
