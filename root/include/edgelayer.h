@@ -82,9 +82,9 @@ conv2d::conv2d(Matrix3d mid_1, int in_channel, int out_channle, int _stride, int
 class bn : public edge_layer
 {
 public:
-    int beta;
-    int gamma;
-    bn(int bn_input_dime, int bn_output_dim);
+    double beta = 0.1;
+    double gamma = 0.1;
+    bn(double bn_input_dime, double bn_output_dim);
     Matrix3d forward(Matrix3d mid1)
     {
         Matrix3d output_bn = CreateMatrix3d(1, 1, 3);
@@ -92,12 +92,16 @@ public:
         double var_bn = matrix_var(mid1.matrix3d[0]);
         cout<<"sqrt var:"<<sqrt(var_bn)<<endl;
         output_bn.matrix3d[0] = subtract_ele(mid1.matrix3d[0],mean_bn);
-        cout_mat(output_bn.matrix3d[0]);
+        cout<<"beta:"<<beta<<endl;
         output_bn.matrix3d[0] = matrix_division(output_bn.matrix3d[0],sqrt(var_bn));
+        cout_mat(output_bn.matrix3d[0]);
+        output_bn.matrix3d[0] = times_mat(beta,output_bn.matrix3d[0]);
+        output_bn.matrix3d[0] = add_ele(output_bn.matrix3d[0],gamma);
+        cout_mat(output_bn.matrix3d[0]);
         return output_bn;
     }
 };
-bn::bn(int beta_bn, int gamma_bn)
+bn::bn(double beta_bn, double gamma_bn)
 {
     beta = beta_bn;
     gamma = gamma_bn;

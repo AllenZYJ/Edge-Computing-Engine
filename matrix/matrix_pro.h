@@ -96,6 +96,18 @@ Matrix subtract_ele(Matrix mid1, float to_subtract)
 	}
 	return result_subtract;
 }
+Matrix add_ele(Matrix mid1, float to_add)
+{
+	Matrix result_add = ones(mid1.row, mid1.col);
+	for (int i = 0; i < mid1.row; i++)
+	{
+		for (int j = 0; j < mid1.col; j++)
+		{
+			result_add.matrix[i][j] = mid1.matrix[i][j] + to_add;
+		}
+	}
+	return result_add;
+}
 Matrix matrix_division(Matrix mid1,double todivision)
 {
 	Matrix result_d = ones(mid1.row, mid1.col);
