@@ -84,7 +84,7 @@ class bn : public edge_layer
 public:
     double beta = 0.1;
     double gamma = 0.1;
-    bn(double bn_input_dime, double bn_output_dim);
+    bn(double beta, double gamma);
     Matrix3d forward(Matrix3d mid1)
     {
         Matrix3d output_bn = CreateMatrix3d(1, 1, 3);
