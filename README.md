@@ -1,10 +1,9 @@
 
 
-<div align=center><img src="./picture/01.svg"/></div>
+<!-- <div align=center><img src="./picture/01.svg"/></div> -->
+<div align=center><img src="picture/image-20200418210521131.png" alt="image-20200418210521131"  /></div>
+
 # Edge-Engine
-
-
-
 ## Edge : 一个开源的科学计算引擎
 
 [README for English_version](./README_EN.md)
@@ -38,7 +37,6 @@ email: zk@likedge.top
 > Target: x86_64-apple-darwin18.7.0
 > Thread model: posix
 
-<img src="picture/image-20200418210521131.png" alt="image-20200418210521131"  />
 
 
 
