@@ -87,17 +87,20 @@ public:
     bn(double beta, double gamma);
     Matrix3d forward(Matrix3d mid1)
     {
-        Matrix3d output_bn = CreateMatrix3d(1, 1, 3);
-        double mean_bn = matrix_mean(mid1.matrix3d[0]);
-        double var_bn = matrix_var(mid1.matrix3d[0]);
-        cout<<"sqrt var:"<<sqrt(var_bn)<<endl;
-        output_bn.matrix3d[0] = subtract_ele(mid1.matrix3d[0],mean_bn);
-        cout<<"beta:"<<beta<<endl;
-        output_bn.matrix3d[0] = matrix_division(output_bn.matrix3d[0],sqrt(var_bn));
-        cout_mat(output_bn.matrix3d[0]);
-        output_bn.matrix3d[0] = times_mat(beta,output_bn.matrix3d[0]);
-        output_bn.matrix3d[0] = add_ele(output_bn.matrix3d[0],gamma);
-        cout_mat(output_bn.matrix3d[0]);
+        Matrix3d output_bn = CreateMatrix3d(mid1.dep, mid1.wid, mid1.high);
+        for (int i = 0; i < mid1.dep; i++)
+        {
+            double mean_bn = matrix_mean(mid1.matrix3d[i]);
+            double var_bn = matrix_var(mid1.matrix3d[i]);
+            cout << "sqrt var:" << sqrt(var_bn) << endl;
+            output_bn.matrix3d[i] = subtract_ele(mid1.matrix3d[i], mean_bn);
+            cout << "beta:" << beta << endl;
+            output_bn.matrix3d[i] = matrix_division(output_bn.matrix3d[i], sqrt(var_bn));
+            cout_mat(output_bn.matrix3d[i]);
+            output_bn.matrix3d[i] = times_mat(beta, output_bn.matrix3d[i]);
+            output_bn.matrix3d[i] = add_ele(output_bn.matrix3d[i], gamma);
+            cout_mat(output_bn.matrix3d[i]);
+        }
         return output_bn;
     }
 };
