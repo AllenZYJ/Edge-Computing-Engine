@@ -270,7 +270,7 @@ double matrix_var(Matrix mid1)
 {
 	double ele = mid1.row * mid1.col;
 	ele = ele - 1;
-	double sum_mid1 = matrix_sum(matrix_power(subtract_ele(mid1, matrix_mean(mid1)))) + 0.000001;
+	double sum_mid1 = matrix_sum(matrix_power(subtract_ele(mid1, matrix_mean(mid1)))) + 1E-5;
 	double var = sum_mid1 / ele;
 	return var;
 }

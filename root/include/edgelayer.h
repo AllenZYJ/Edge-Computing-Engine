@@ -96,10 +96,10 @@ public:
             output_bn.matrix3d[i] = subtract_ele(mid1.matrix3d[i], mean_bn);
             // cout << "beta:" << beta << endl;
             output_bn.matrix3d[i] = matrix_division(output_bn.matrix3d[i], sqrt(var_bn));
-            // cout_mat(output_bn.matrix3d[i]);
+            cout_mat(output_bn.matrix3d[i]);
             output_bn.matrix3d[i] = times_mat(beta, output_bn.matrix3d[i]);
             output_bn.matrix3d[i] = add_ele(output_bn.matrix3d[i], gamma);
-            // cout_mat(output_bn.matrix3d[i]);
+            cout_mat(output_bn.matrix3d[i]);
         }
         return output_bn;
     }
