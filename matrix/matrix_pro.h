@@ -108,14 +108,15 @@ Matrix add_ele(Matrix mid1, float to_add)
 	}
 	return result_add;
 }
-Matrix matrix_division(Matrix mid1,double todivision)
+Matrix matrix_division(Matrix mid1, double todivision)
 {
 	Matrix result_d = ones(mid1.row, mid1.col);
 	for (int i = 0; i < mid1.row; i++)
 	{
 		for (int j = 0; j < mid1.col; j++)
-		{	cout<<mid1.matrix[i][j]<<"/"<<todivision<<endl;
-			result_d.matrix[i][j] = mid1.matrix[i][j]/todivision;
+		{
+			// cout << mid1.matrix[i][j] << "/" << todivision << endl;
+			result_d.matrix[i][j] = mid1.matrix[i][j] / todivision;
 		}
 	}
 	return result_d;
@@ -127,7 +128,7 @@ Matrix matrix_power(Matrix mid1)
 	{
 		for (int j = 0; j < mid1.col; j++)
 		{
-			result_power.matrix[i][j] = mid1.matrix[i][j]*mid1.matrix[i][j];
+			result_power.matrix[i][j] = mid1.matrix[i][j] * mid1.matrix[i][j];
 		}
 	}
 	return result_power;
@@ -258,11 +259,10 @@ double matrix_mean(Matrix mid1)
 float matrix_var(Matrix mid1)
 {
 	double ele = mid1.row * mid1.col;
-	ele = ele-1;
-	float sum_mid1 = matrix_sum(matrix_power(subtract_ele(mid1,matrix_mean(mid1))))+0.000001;
-	float var = sum_mid1/ele;
+	ele = ele - 1;
+	float sum_mid1 = matrix_sum(matrix_power(subtract_ele(mid1, matrix_mean(mid1)))) + 0.000001;
+	float var = sum_mid1 / ele;
 	return var;
-
 }
 
 Matrix mat_apply(Matrix mid1, Matrix mid2, int axis = 0)
