@@ -84,7 +84,7 @@ Matrix subtract(Matrix mid1, Matrix mid2)
 	}
 	return result_subtract;
 }
-Matrix subtract_ele(Matrix mid1, float to_subtract)
+Matrix subtract_ele(Matrix mid1, double to_subtract)
 {
 	Matrix result_subtract = ones(mid1.row, mid1.col);
 	for (int i = 0; i < mid1.row; i++)
@@ -96,7 +96,7 @@ Matrix subtract_ele(Matrix mid1, float to_subtract)
 	}
 	return result_subtract;
 }
-Matrix add_ele(Matrix mid1, float to_add)
+Matrix add_ele(Matrix mid1, double to_add)
 {
 	Matrix result_add = ones(mid1.row, mid1.col);
 	for (int i = 0; i < mid1.row; i++)
@@ -256,12 +256,22 @@ double matrix_mean(Matrix mid1)
 	double ele = mid1.row * mid1.col;
 	return matrix_sum(mid1) / ele;
 }
-float matrix_var(Matrix mid1)
+double matrix3d_mean(Matrix3d mid1)
+{
+	double output_mean = 0.00;
+	for (int i = 0; i < mid1.dep; i++)
+	{
+		output_mean += matrix_mean(mid1.matrix3d[i]);
+	}
+	output_mean = output_mean / mid1.dep;
+	return output_mean;
+}
+double matrix_var(Matrix mid1)
 {
 	double ele = mid1.row * mid1.col;
 	ele = ele - 1;
-	float sum_mid1 = matrix_sum(matrix_power(subtract_ele(mid1, matrix_mean(mid1)))) + 0.000001;
-	float var = sum_mid1 / ele;
+	double sum_mid1 = matrix_sum(matrix_power(subtract_ele(mid1, matrix_mean(mid1)))) + 0.000001;
+	double var = sum_mid1 / ele;
 	return var;
 }
 

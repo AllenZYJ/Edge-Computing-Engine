@@ -34,6 +34,7 @@ int main()
     cout << setprecision(13);
     Matrix3d mat_call = CreateMatrix3d(3, 64, 64);
     Matrix3d mat_call2 = CreateMatrix3d(3, 64, 64);
+    cout << matrix3d_mean(mat_call) << endl;
     edge_layer *conv2d_1 = new conv2d(CreateMatrix3d(3, 64, 64), 3, 12, 1, 2, 0, 0);
     edge_layer *conv2d_2 = new conv2d(CreateMatrix3d(12, 63, 63), 12, 24, 7, 7, 0, 0);
     edge_layer *conv2d_3 = new conv2d(CreateMatrix3d(24, 9, 9), 24, 128, 1, 3, 0, 0);
