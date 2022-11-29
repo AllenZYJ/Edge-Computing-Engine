@@ -11,7 +11,7 @@ Email: zk@likedge.top
 
 [![Edge support](https://img.shields.io/badge/SUPPORT-Macos-brightgreen)](https://support.apple.com/downloads/macos)
 [![Edge support](https://img.shields.io/badge/SUPPORT-Ubuntu-brightgreen)](https://ubuntu.com/download/server)
-[![Edge passing](https://img.shields.io/github/workflow/status/AllenZYJ/Edge-Computing-Engine/Ubuntu-test?label=Edge-Engine)](https://github.com/AllenZYJ/Edge-Computing-Engine/actions)
+[![Edge passing](https://img.shields.io/badge/Edge--CI-passing-blue)](https://github.com/AllenZYJ/Edge-Computing-Engine/actions)
 [![GitHub license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://raw.githubusercontent.com/tesseract-ocr/tesseract/master/LICENSE)
 
 
