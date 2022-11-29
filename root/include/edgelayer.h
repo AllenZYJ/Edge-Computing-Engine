@@ -25,13 +25,14 @@ public:
         {
             mid_rgb[rgb_idx] = mid1.matrix3d[rgb_idx];
         }
-        Matrix filters[output_channels][input_dim];
+        Matrix3d filters = CreateMatrix3d(output_channels, kernel_size, kernel_size);
+        // Matrix filters[output_channels][input_dim];
         for (int channel_index = 0; channel_index < input_dim; channel_index++)
         {
             for (int filter_index = 0; filter_index < output_channels; filter_index++)
             {
                 Matrix kernel = ones(kernel_size, kernel_size);
-                filters[channel_index][filter_index] = kernel;
+                filters.matrix3d[filter_index] = kernel;
             }
         }
         if (mode == 0)
@@ -53,7 +54,7 @@ public:
                 Matrix sum_rgb = CreateMatrix(((mid1.wid - kernel_size) / stride) + 1, ((mid1.high - kernel_size) / stride) + 1);
                 for (int channel_idx = 0; channel_idx < input_dim; channel_idx++)
                 {
-                    sum_rgb = add(sum_rgb, conv_element(mid_rgb[channel_idx], filters[channel_idx][filter_idx], kernel_size, stride), 0);
+                    sum_rgb = add(sum_rgb, conv_element(mid_rgb[channel_idx], filters.matrix3d[filter_idx], kernel_size, stride), 0);
                     // cout << "sum_rgb"
                     //  << "filters_index: " << filter_idx << " " << endl;
                     // cout_mat(sum_rgb);

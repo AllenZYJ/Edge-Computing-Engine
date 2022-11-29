@@ -41,6 +41,7 @@ int main()
     start_t = clock();
     Matrix3d output_conv = conv2d_1->forward(mat_call2);
     Matrix3d output_conv2 = conv2d_2->forward(output_conv);
+    getshape(output_conv2);
     Matrix3d output_conv3 = conv2d_3->forward(output_conv2);
     Matrix3d output_bn1 = bn_1->forward(output_conv3);
     cout << matrix3d_mean(output_bn1) << endl;
