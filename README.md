@@ -8,7 +8,7 @@
 email: zk@likedge.top
 
 [![GitHub license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://raw.githubusercontent.com/tesseract-ocr/tesseract/master/LICENSE)
-![GitHub license](https://img.shields.io/github/workflow/status/AllenZYJ/Edge-Computing-Engine/Ubuntu-test?label=Edge-Engine)
+[![Edge passing](https://img.shields.io/github/workflow/status/AllenZYJ/Edge-Computing-Engine/Ubuntu-test?label=Edge-Engine)](https://github.com/AllenZYJ/Edge-Computing-Engine/actions)
 
 </div>
 
