@@ -4,13 +4,20 @@
 <div align=center><img src="picture/image-20200418210521131.png" alt="image-20200418210521131"  /></div>
 
 <div align=center><h1>Edge-Engine</h1></div>
-<div align=center><h2>一个开源的科学计算引擎</h2>
-email: zk@likedge.top
+<div align=center>一个开源的科学计算引擎
 
-[![GitHub license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://raw.githubusercontent.com/tesseract-ocr/tesseract/master/LICENSE)
+
+Email: zk@likedge.top
+
+[![Edge support](https://img.shields.io/badge/SUPPORT-Macos-brightgreen)](https://support.apple.com/downloads/macos)
+[![Edge support](https://img.shields.io/badge/SUPPORT-Ubuntu-brightgreen)](https://ubuntu.com/download/server)
 [![Edge passing](https://img.shields.io/github/workflow/status/AllenZYJ/Edge-Computing-Engine/Ubuntu-test?label=Edge-Engine)](https://github.com/AllenZYJ/Edge-Computing-Engine/actions)
+[![GitHub license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://raw.githubusercontent.com/tesseract-ocr/tesseract/master/LICENSE)
+
+
 
 </div>
+
 
 ------
 
