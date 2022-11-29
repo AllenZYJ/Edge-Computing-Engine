@@ -7,8 +7,11 @@
 <div align=center><h2>一个开源的科学计算引擎</h2>
 email: zk@likedge.top
 
-[![GitHub license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)</div>](https://raw.githubusercontent.com/tesseract-ocr/tesseract/master/LICENSE)
+[![GitHub license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://raw.githubusercontent.com/tesseract-ocr/tesseract/master/LICENSE)
+![GitHub license](https://img.shields.io/github/workflow/status/AllenZYJ/Edge-Computing-Engine/Ubuntu-test?label=Edge-Engine)
+
 </div>
+
 ------
 
 
