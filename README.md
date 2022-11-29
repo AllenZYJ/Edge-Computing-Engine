@@ -3,17 +3,12 @@
 <!-- <div align=center><img src="./picture/01.svg"/></div> -->
 <div align=center><img src="picture/image-20200418210521131.png" alt="image-20200418210521131"  /></div>
 
-# Edge-Engine
-## Edge : 一个开源的科学计算引擎
-
-[README for English_version](./README_EN.md)
-
-声明：本项目禁止闭源商用，如有需要请和作者取得联系
-
+<div align=center><h1>Edge-Engine</h1></div>
+<div align=center><h2>一个开源的科学计算引擎</h2>
 email: zk@likedge.top
 
-[![GitHub license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://raw.githubusercontent.com/tesseract-ocr/tesseract/master/LICENSE)
-
+[![GitHub license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)</div>](https://raw.githubusercontent.com/tesseract-ocr/tesseract/master/LICENSE)
+</div>
 ------
 
 
