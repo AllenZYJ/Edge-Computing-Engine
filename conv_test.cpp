@@ -36,7 +36,7 @@ int main()
     Matrix3d mat_call2 = CreateMatrix3d(3, 64, 64);
     edge_layer *conv2d_1 = new conv2d(CreateMatrix3d(3, 64, 64), 3, 12, 1, 2, 0, 0);
     edge_layer *conv2d_2 = new conv2d(CreateMatrix3d(12, 63, 63), 12, 24, 7, 7, 0, 0);
-    edge_layer *conv2d_3 = new conv2d(CreateMatrix3d(24, 9, 9), 24, 2, 3, 3, 0, 0);
+    edge_layer *conv2d_3 = new conv2d(CreateMatrix3d(24, 9, 9), 24, 1, 3, 3, 0, 0);
     edge_layer *bn_1 = new bn(0.1, 0.2);
     start_t = clock();
     Matrix3d output_conv = conv2d_1->forward(mat_call2);

@@ -340,7 +340,7 @@ void cout_mat(Matrix mid1)
 	{
 		for (int index_y = 0; index_y < mid1.col; index_y++)
 		{
-			cout << mid1.matrix[index_x][index_y] << ",";
+			cout << mid1.matrix[index_x][index_y] << " | ";
 		}
 		cout << endl;
 	}
