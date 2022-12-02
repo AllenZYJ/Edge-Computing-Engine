@@ -23,7 +23,7 @@ Date：20200925
 #include "./root/include/edgelayer.h"
 #include "./welcome/score_wel.cpp"
 #include "./file_pro/data_read.h"
-#include <iomanip>
+// #include <iomanip>
 
 using namespace std;
 clock_t start_t, end_t;
@@ -50,5 +50,11 @@ int main()
     printf("CPUduration：%f\n", total_t);
     getshape(output_conv3);
     getshape(output_bn1);
+    std::cout.imbue(std::locale("en_US.utf8"));
+    std::cout << "Left fill:\n"
+              << std::left << std::setfill(' ')
+              << std::setw(12) << -1.23 << '\n'
+              << std::setw(12) << std::hex << 42 << '\n'
+              << std::setw(12) << std::put_money(123, true) << "\n\n";
     return 0;
 }

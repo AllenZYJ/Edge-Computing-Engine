@@ -27,6 +27,10 @@ if you have the better answer on it , it is nothing, just test~
 #ifndef MATRIX_PRO
 #define MATRIX_PRO
 #define random(x) (rand() % x)
+#include <iomanip>
+
+using namespace std;
+
 void move_ele(int &ele1, int &ele2)
 {
 	ele1 ^= ele2 ^= ele1 ^= ele2;
@@ -340,9 +344,9 @@ void cout_mat(Matrix mid1)
 	{
 		for (int index_y = 0; index_y < mid1.col; index_y++)
 		{
-			cout << mid1.matrix[index_x][index_y] << " | ";
+			cout << std::right << std::setw(mid1.col * 6) << std::setfill(' ') << mid1.matrix[index_x][index_y];
 		}
-		cout << endl;
+		cout << "\n";
 	}
 	cout << "]" << endl;
 }
