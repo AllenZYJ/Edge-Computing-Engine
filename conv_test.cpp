@@ -26,8 +26,13 @@ Date：20200925
 // #include <iomanip>
 
 using namespace std;
+
 clock_t start_t, end_t;
 double duration;
+#include"opencv4/opencv2/imgcodecs.hpp"
+// #include <opencv2/imgcodecs.hpp>
+using namespace cv;
+
 int main()
 {
     welcome();
@@ -50,6 +55,8 @@ int main()
     printf("CPUduration：%f\n", total_t);
     getshape(output_conv3);
     getshape(output_bn1);
-
-    return 0;
+    string img_path = "/workspaces/Edge-Computing-Engine/picture/apply_axis_0.png";     //定义图片的相对路径
+    Mat img = imread(img_path);
+    cout<<"img.from opencv"<<endl;
+    cout<<img.cols<<endl;
 }

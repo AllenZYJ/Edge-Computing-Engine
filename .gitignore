@@ -5,3 +5,7 @@ conv_test
 .DS_Store
 test.cpp
 .vscode
+opencv-4.6.0/*
+CMakeFiles/
+CMakeDownloadLog.txt
+opencv-4.6.0.zip
