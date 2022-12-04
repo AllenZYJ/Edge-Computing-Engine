@@ -29,8 +29,8 @@ using namespace std;
 
 clock_t start_t, end_t;
 double duration;
-#include"opencv4/opencv2/imgcodecs.hpp"
-// #include <opencv2/imgcodecs.hpp>
+// #include"opencv4/opencv2/imgcodecs.hpp"
+#include <opencv2/imgcodecs.hpp>
 using namespace cv;
 
 int main()
@@ -59,4 +59,5 @@ int main()
     Mat img = imread(img_path);
     cout<<"img.from opencv"<<endl;
     cout<<img.cols<<endl;
+    cout << "【Python风格】" << endl << format(img, Formatter::FMT_PYTHON) << endl << endl;
 }

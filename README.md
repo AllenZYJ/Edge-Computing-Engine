@@ -108,6 +108,14 @@ double conv_test(Matrix mid1,int input_dim = 3,int output_channels = 3,int strid
 ```c
 g++ conv_test.cpp -o conv_test -lautodiff && ./conv_test
 ```
+## Opencv c++
+```c
+cd to opencv4.x.x/build
+cmake  ../opencv-4.x
+cmake --build .
+
+g++ conv_test.cpp -o ma -lautodiff -I /usr/local/include/opencv4 -L/usr/local/lib -lopencv_imgcodecs -lopencv_core
+```
 
 ### 模型定义方法:
 
