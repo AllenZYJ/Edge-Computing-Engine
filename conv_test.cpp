@@ -59,5 +59,5 @@ int main()
     Mat img = imread(img_path);
     cout<<"img.from opencv"<<endl;
     cout<<img.cols<<endl;
-    cout << "【Python风格】" << endl << format(img, Formatter::FMT_PYTHON) << endl << endl;
+    cout<< format(img, Formatter::FMT_PYTHON) << endl << endl;
 }
