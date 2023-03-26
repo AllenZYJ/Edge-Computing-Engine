@@ -30,8 +30,8 @@ using namespace std;
 clock_t start_t, end_t;
 double duration;
 // #include"opencv4/opencv2/imgcodecs.hpp"
-#include <opencv2/imgcodecs.hpp>
-using namespace cv;
+// #include <opencv2/imgcodecs.hpp>
+// using namespace cv;
 
 int main()
 {
@@ -55,9 +55,13 @@ int main()
     printf("CPUduration：%f\n", total_t);
     getshape(output_conv3);
     getshape(output_bn1);
-    string img_path = "/workspaces/Edge-Computing-Engine/picture/apply_axis_0.png";     //定义图片的相对路径
-    Mat img = imread(img_path);
-    cout<<"img.from opencv"<<endl;
-    cout<<img.cols<<endl;
-    cout<< format(img, Formatter::FMT_PYTHON) << endl << endl;
+    Matrix to_rot = CreateRandMat(3,5);
+    cout_mat(to_rot);
+    Matrix mat_call_rot180ed = rot180(to_rot);
+    cout_mat(mat_call_rot180ed);
+    // string img_path = "/workspaces/Edge-Computing-Engine/picture/apply_axis_0.png";     //定义图片的相对路径
+    // Mat img = imread(img_path);
+    // cout<<"img.from opencv"<<endl;
+    // cout<<img.cols<<endl;
+    // cout<< format(img, Formatter::FMT_PYTHON) << endl << endl;
 }

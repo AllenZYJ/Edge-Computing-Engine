@@ -9,3 +9,10 @@ opencv-4.6.0/*
 CMakeFiles/
 CMakeDownloadLog.txt
 opencv-4.6.0.zip
+main
+.gitignore
+.gitignore
+install_diff/bin/gradient_descent
+install_diff/bin/simple
+.gitignore
+install_diff/bin/ann

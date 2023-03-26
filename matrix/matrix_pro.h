@@ -550,4 +550,17 @@ Matrix3d conv_test(Matrix3d mid1, int input_dim = 3, int output_channels = 3, in
 		}
 	}
 }
+
+Matrix rot180(Matrix input) {
+    int height = input.row;
+    int width = input.col;
+    Matrix output = CreateMatrix(height, width);
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            output.matrix[i][j] = input.matrix[height - 1 - i][width - 1 - j];
+        }
+    }
+    return output;
+}
+
 #endif
