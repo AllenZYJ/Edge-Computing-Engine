@@ -22,7 +22,6 @@ Date：20200925
 #include "./grad_edge/matrix_grad.h"
 #include "./root/include/edgelayer.h"
 #include "./welcome/score_wel.cpp"
-#include "./file_pro/data_read.h"
 // #include <iomanip>
 
 using namespace std;
