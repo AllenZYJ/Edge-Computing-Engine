@@ -32,6 +32,7 @@ str_Matrix read_file(string &file_path)
 {
 	int count_rows = 0,count_col = 0;
 	ifstream infile;
+	string data;
 	infile.open(file_path);
 	while(!infile.eof())
 	{
