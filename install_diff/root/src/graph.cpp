@@ -1,4 +1,5 @@
 #include "../include/graph.h"
+#include <cstddef>
 
 Graph* Graph::instance = 0;
 long int Graph::uid_counter = 1;

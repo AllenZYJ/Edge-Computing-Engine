@@ -4,7 +4,6 @@
 #include <map>
 #include <vector>
 #include <utility>
-
 class Graph {
     private:
         std::map<long int, std::vector<std::pair<double, long int> > > nodes;
