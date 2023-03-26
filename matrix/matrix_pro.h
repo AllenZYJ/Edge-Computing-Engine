@@ -337,30 +337,42 @@ Matrix head(Matrix mid1)
 	}
 	return mid_return;
 }
-void cout_mat(Matrix mid1)
+#include <iomanip> // 包含iomanip头文件
+
+void cout_mat(const Matrix& m)
 {
-	cout << "[" << endl;
-	for (int index_x = 0; index_x < mid1.row; index_x++)
-	{
-		for (int index_y = 0; index_y < mid1.col; index_y++)
-		{
-			cout << std::right << std::setw(mid1.col * 6) << std::setfill(' ') << mid1.matrix[index_x][index_y];
-		}
-		cout << "\n";
-	}
-	cout << "]" << endl;
+    // 设置每个元素输出宽度为12，小数点后保留6位
+    cout << "[" << endl;
+    cout << fixed << setprecision(6);
+    for (int i = 0; i < m.row; i++)
+    {
+        for (int j = 0; j < m.col; j++)
+        {
+            cout << "\033[38;2;255;175;0m" // 设置前景色为橙色
+                 << setw(12) << m.matrix[i][j] << " "
+                 << "\033[0m"; // 恢复默认颜色
+        }
+        cout << endl;
+    }
+    cout << "]" << endl;
 }
+
 void cout_mat3d(Matrix3d mat3d)
 {
+    int separator_length = 20 + to_string(mat3d.dep).length();
+    cout << "\033[1;38;5;208m" << string(separator_length, '=') << "\033[0m" << endl;
 
-	int i, j, k;
-	cout << "-----[" << endl;
-	for (i = 0; i < mat3d.dep; i++)
-	{
-		cout_mat(mat3d.matrix3d[i]);
-	}
-	cout << "]-----" << endl;
+    // 遍历每个矩阵并打印
+    for (int i = 0; i < mat3d.dep; i++)
+    {
+        cout << "Matrix " << i << ":" << endl;
+        cout_mat(mat3d.matrix3d[i]);
+        cout << endl;
+    }
+
+    cout << "\033[1;38;5;208m" << string(separator_length, '=') << "\033[0m" << endl;
 }
+
 // iloc [x1,x2,y1,y2]
 Matrix iloc(Matrix mid1, int start_x = 0, int end_x = 0, int start_y = 0, int end_y = 0)
 {
@@ -437,14 +449,15 @@ Matrix mat_sq_loss(Matrix mid1, Matrix mid2)
 	}
 	return mat_sq;
 }
-Matrix padding(Matrix mid1, int shape1, int shape2)
+Matrix edge_padding(Matrix mid1, int shape1, int shape2)
 {
 	Matrix result = CreateMatrix(shape1, shape2);
+	cout_mat(result);
 	for (int index_x = 0; index_x < shape1; index_x++)
 	{
 		for (int index_y = 0; index_y < shape2; index_y++)
 		{
-			result.matrix[index_x][index_y] = mid1.matrix[index_x][0];
+			result.matrix[index_x][index_y] = mid1.matrix[index_x][index_y];
 		}
 	}
 	return result;
@@ -474,29 +487,7 @@ Matrix conv_element(Matrix mid1, Matrix kernel, int kernel_size = 2, int stride 
 	// cout_mat(conv_result);
 	return conv_result;
 }
-/*
-parameter:
-	Matrix mid1,
-	int input_dim = 3
-	int output_channels = 3
-	int stride = 1
-	int kernel_size = 2
-	int mode = 0
-	int padding = 0
-*/
-// Matrix get_mat2d_mat3d(Matrix3d mi3d1, int get_index)
-// {
-// 	Matrix result = CreateMatrix(mi3d1.wid, mi3d1.high);
-// 	int i, j, k;
-// 	for (j = 0; j < mi3d1.wid; j++)
-// 	{
-// 		for (k = 0; k < mi3d1.high; k++)
-// 		{
-// 			result.matrix[j][k] = mi3d1.matrix3d[get_index][j][k];
-// 		}
-// 	}
-// 	return result;
-// }
+
 Matrix3d conv_test(Matrix3d mid1, int input_dim = 3, int output_channels = 3, int stride = 1, int kernel_size = 2, int mode = 0, int padding = 0)
 {
 	{
@@ -517,17 +508,10 @@ Matrix3d conv_test(Matrix3d mid1, int input_dim = 3, int output_channels = 3, in
 		}
 		if (mode == 0)
 		{
-			// cout << "input_img:" << endl;
-			// for (int i = 0; i < input_dim; i++)
-			// {
-			// 	// cout << "---------rgb: " << i << "---------" << endl;
-			// 	// cout_mat(mid_rgb[i]);
-			// }
+
 			Matrix conv_result = CreateMatrix(((mid1.wid - kernel_size) / stride) + 1, ((mid1.high - kernel_size) / stride) + 1);
 			Matrix kernel = ones(kernel_size, kernel_size);
-			// cout << "--------- kernels: 3x3--------" << endl;
-			// cout_mat(kernel);
-			// cout << "--------- output: ---------" << endl;
+
 			Matrix feature_maps[output_channels];
 			for (int filter_idx = 0; filter_idx < output_channels; filter_idx++)
 			{
@@ -535,21 +519,87 @@ Matrix3d conv_test(Matrix3d mid1, int input_dim = 3, int output_channels = 3, in
 				for (int channel_idx = 0; channel_idx < input_dim; channel_idx++)
 				{
 					sum_rgb = add(sum_rgb, conv_element(mid_rgb[channel_idx], filters[channel_idx][filter_idx], kernel_size, stride), 0);
-					// cout << "sum_rgb"
-					//  << "filters_index: " << filter_idx << " " << endl;
-					// cout_mat(sum_rgb);
+
 				}
 				feature_maps[filter_idx] = sum_rgb;
 			}
 			Matrix3d output3d = CreateMatrix3d(output_channels, feature_maps[0].row, feature_maps[0].col);
-			// for (int i = 0; i < output_channels; i++)
-			// {
-			// 	output3d.matrix3d[i] = feature_maps[i].matrix;
-			// }
+
 			return output3d;
 		}
 	}
 }
+Matrix3d conv_test_with_output(Matrix3d mid1, int input_dim = 3, int output_channels = 3, int stride = 1, int kernel_size = 2, int mode = 0, int padding = 1)
+{
+	int padding_wid = stride - (mid1.wid - kernel_size) % stride;
+	if (padding_wid==stride){padding_wid = 0;}
+	int padding_high = stride - (mid1.high - kernel_size) % stride;
+	if (padding_high==stride){padding_high = 0;}
+	cout<<mid1.wid<<kernel_size<<stride<<padding_wid<<padding_high<<endl;
+    // 将3D矩阵中的每个RGB通道提取出来，存入mid_rgb数组中
+    Matrix mid_rgb[input_dim];
+    for (int rgb_idx = 0; rgb_idx < input_dim; rgb_idx++)
+    {	
+		mid_rgb[rgb_idx] = edge_padding(mid1.matrix3d[rgb_idx], mid1.matrix3d[rgb_idx].row + padding_high, mid1.matrix3d[rgb_idx].col + padding_wid);
+		cout_mat(mid_rgb[rgb_idx]);
+	}
+
+    // 构造卷积核数组
+    Matrix filters[output_channels][input_dim];
+    for (int channel_index = 0; channel_index < input_dim; channel_index++)
+    {
+        for (int filter_index = 0; filter_index < output_channels; filter_index++)
+        {
+            Matrix kernel = ones(kernel_size, kernel_size);
+            filters[channel_index][filter_index] = kernel;
+        }
+    }
+
+    if (mode == 0)
+    {
+        // 计算卷积结果
+        Matrix kernel = ones(kernel_size, kernel_size);
+        Matrix feature_maps[output_channels];
+
+		cout<<"padding wid:"<<padding_wid<<endl;
+        for (int filter_idx = 0; filter_idx < output_channels; filter_idx++)
+        {
+            Matrix sum_rgb = CreateMatrix(((mid1.wid - kernel_size) / stride) + 1, ((mid1.high - kernel_size) / stride) + 1);
+            for (int channel_idx = 0; channel_idx < input_dim; channel_idx++)
+            {
+                // 计算单个RGB通道的卷积结果
+                Matrix element = conv_element(mid_rgb[channel_idx], filters[channel_idx][filter_idx], kernel_size, stride);
+                cout << "Mid RGB[" << channel_idx << "] convolution with Filter[" << filter_idx << "] : " << endl;
+                cout_mat(mid_rgb[channel_idx]);
+                cout << " * " << endl;
+                cout_mat(filters[channel_idx][filter_idx]);
+                cout << " = " << endl;
+                cout_mat(element);
+                cout << endl;
+
+                // 将不同RGB通道的卷积结果进行叠加
+                sum_rgb = add(sum_rgb, element, 0);
+            }
+            feature_maps[filter_idx] = sum_rgb;
+            cout << "Feature map [" << filter_idx << "] : " << endl;
+            cout_mat(sum_rgb);
+            cout << endl;
+        }
+
+        // 构造3D矩阵，将不同的特征图存储在不同的深度上
+        Matrix3d output3d = CreateMatrix3d(output_channels, feature_maps[0].row, feature_maps[0].col);
+        for (int i = 0; i < output_channels; i++)
+        {
+            output3d.matrix3d[i] = feature_maps[i];
+        }
+        cout << "Output : " << endl;
+        cout_mat3d(output3d);
+        cout << endl;
+        return output3d;
+    }
+}
+
+
 
 Matrix rot180(Matrix input) {
     int height = input.row;

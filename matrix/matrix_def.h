@@ -103,59 +103,6 @@ Matrix CreateRandMat(int x_dim, int y_dim)
     }
     return result;
 }
-// void dele_matrix(Matrix3d mat3d)
-// {
-//     int i, j, k;
-//     for (j = 0; j < mat3d.wid; j++)
-//     {
-//         for (k = 0; k < mat3d.high; k++)
-//         {
-//             // std::cout<<mat3d.matrix3d[i][j][k]<<endl;
-//             free(mat3d.matrix3d[j][k]);
-//         }
-//     }
-//     for (i = 0; i < mat3d.dep; i++)
-//     {
-//         free(mat3d.matrix3d[i]);
-//     }
-//     free(mat3d.matrix3d);
-// }
-
-// Matrix3d CreateMatrix3d(int depth, int width, int highth)
-// {
-//     Matrix3d m;
-//     int i, j, k;
-//     float ***Matrix_1;
-//     Matrix_1 = (float ***)malloc(depth * sizeof(float **));
-//     for (i = 0; i < depth; i++)
-//     {
-//         *(Matrix_1 + i) = (float **)malloc(width * sizeof(float *));
-//     }
-//     for (i = 0; i < depth; i++)
-//     {
-//         for (j = 0; j < width; j++)
-//         {
-//             *(*(Matrix_1 + i) + j) = (float *)malloc(highth * sizeof(float));
-//         }
-//     }
-//     for (i = 0; i < depth; i++)
-//     {
-//         for (j = 0; j < width; j++)
-//         {
-//             for (k = 0; k < highth; k++)
-//             {
-//                 double temp_val = (rand() % 30000) * 0.0001 - 1;
-//                 Matrix_1[i][j][k] = temp_val;
-//             }
-//         }
-//     }
-
-//     m.dep = depth;
-//     m.wid = width;
-//     m.high = highth;
-//     m.matrix3d = Matrix_1;
-//     return m;
-// }
 Matrix ones(int ro, int co)
 {
     Matrix m;
