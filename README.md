@@ -480,9 +480,7 @@ function:
 ------
 ## 矩阵 padding
 
-mid1.wid: 10, kernel_size: 3, stride: 3, padding_wid: 2
-mid1.wid: 10, kernel_size: 3, stride: 3, padding_wid: 2, padding_high: 2
-|     |      |      |      |      |      |      |      |      |      |      |      |
+|mid1.wid: 10,|kernel_size: 3| stride: 3 |padding_wid: 2 | padding_high: 2|      |      |      |      |      |      |      |
 | --- | ---  | ---  | ---  | ---  | ---  | ---  | ---  | ---  | ---  | ---  | ---  |
 | 0   | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    |
 | 0   | -0.626600 | 0.810600 | 1.072900 | 1.111000 | 0.556900 | 0.345700 | -0.279100 | 1.001200 | 1.785300 | -0.735700 | 0    |
