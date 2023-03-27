@@ -54,5 +54,6 @@ int main()
     printf("CPUduration：%f\n", total_t);
     getshape(output_conv3);
     getshape(output_bn1);
+    
 
 }

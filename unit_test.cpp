@@ -20,9 +20,8 @@ double duration;
 int main()
 {
     welcome();
-    cout_mat3d(CreateMatrix3d(3,5,4));
-    Matrix3d a = conv_test_with_output(CreateMatrix3d(3,5,4),3,4,2,2,0,0);
-    cout_mat3d(a);
+    cout_mat(CreateMatrix(10,9));
+    Matrix3d a = conv_test_with_output(CreateMatrix3d(3,10,10),3,4,3,3,0,0);
+    // cout_mat3d(a);
     return 0;
-
 }

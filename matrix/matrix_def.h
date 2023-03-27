@@ -125,7 +125,7 @@ Matrix ones(int ro, int co)
     m.matrix = inputMatrix;
     return m;
 }
-Matrix3d CreateMatrix3d(int depth, int width, int highth)
+Matrix3d CreateMatrix3d(int depth, int height, int width)
 {
     Matrix3d m;
     int i, j, k;
@@ -133,13 +133,14 @@ Matrix3d CreateMatrix3d(int depth, int width, int highth)
     Matrix_1 = (Matrix *)malloc(depth * sizeof(Matrix));
     for (i = 0; i < depth; i++)
     {
-        Matrix temp_matrix = CreateRandMat(width, highth);
+        Matrix temp_matrix = CreateRandMat(width, height);
         Matrix_1[i] = temp_matrix;
     }
 
     m.dep = depth;
-    m.wid = width;
-    m.high = highth;
+    m.wid = height;
+    m.high = width;
+    // exchange the value 
     m.matrix3d = Matrix_1;
     return m;
 }

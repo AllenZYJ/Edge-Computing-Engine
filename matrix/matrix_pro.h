@@ -28,7 +28,7 @@ if you have the better answer on it , it is nothing, just test~
 #define MATRIX_PRO
 #define random(x) (rand() % x)
 #include <iomanip>
-
+#include "matrix_def.h"
 using namespace std;
 
 void move_ele(int &ele1, int &ele2)
@@ -449,19 +449,47 @@ Matrix mat_sq_loss(Matrix mid1, Matrix mid2)
 	}
 	return mat_sq;
 }
+// Matrix edge_padding(Matrix mid1, int shape1, int shape2)
+// {
+// 	Matrix result = CreateMatrix(shape1, shape2);
+// 	cout_mat(result);
+// 	for (int index_x = 0; index_x < shape1; index_x++)
+// 	{
+// 		for (int index_y = 0; index_y < shape2; index_y++)
+// 		{
+// 			result.matrix[index_x][index_y] = mid1.matrix[index_x][index_y];
+// 		}
+// 	}
+// 	return result;
+// }
+
 Matrix edge_padding(Matrix mid1, int shape1, int shape2)
 {
-	Matrix result = CreateMatrix(shape1, shape2);
-	cout_mat(result);
-	for (int index_x = 0; index_x < shape1; index_x++)
-	{
-		for (int index_y = 0; index_y < shape2; index_y++)
-		{
-			result.matrix[index_x][index_y] = mid1.matrix[index_x][index_y];
-		}
-	}
-	return result;
+    Matrix result = CreateMatrix(shape1, shape2);
+    int mid1_rows = mid1.row;
+    int mid1_cols = mid1.col;
+    int top_pad = (shape1 - mid1_rows) / 2;
+    int bottom_pad = shape1 - mid1_rows - top_pad;
+    int left_pad = (shape2 - mid1_cols) / 2;
+    int right_pad = shape2 - mid1_cols - left_pad;
+    for (int i = 0; i < shape1; i++)
+    {
+        for (int j = 0; j < shape2; j++)
+        {
+            if (i < top_pad || i >= (mid1_rows + top_pad) || j < left_pad || j >= (mid1_cols + left_pad))
+            {
+                // Padding with "edge"
+                result.matrix[i][j] = 0.0;
+            }
+            else
+            {
+                result.matrix[i][j] = mid1.matrix[i - top_pad][j - left_pad];
+            }
+        }
+    }
+    return result;
 }
+
 Matrix get_row(Matrix mid1, int index)
 {
 	int index_y = 0;
@@ -531,18 +559,25 @@ Matrix3d conv_test(Matrix3d mid1, int input_dim = 3, int output_channels = 3, in
 }
 Matrix3d conv_test_with_output(Matrix3d mid1, int input_dim = 3, int output_channels = 3, int stride = 1, int kernel_size = 2, int mode = 0, int padding = 1)
 {
+	cout_mat3d(mid1);
 	int padding_wid = stride - (mid1.wid - kernel_size) % stride;
+	cout << "mid1.wid: " << mid1.wid << ", kernel_size: " << kernel_size << ", stride: " << stride 
+     << ", padding_wid: " << padding_wid << endl;
 	if (padding_wid==stride){padding_wid = 0;}
 	int padding_high = stride - (mid1.high - kernel_size) % stride;
 	if (padding_high==stride){padding_high = 0;}
-	cout<<mid1.wid<<kernel_size<<stride<<padding_wid<<padding_high<<endl;
+	cout << "mid1.wid: " << mid1.wid << ", kernel_size: " << kernel_size << ", stride: " << stride 
+	     << ", padding_wid: " << padding_wid << ", padding_high: " << padding_high << endl;
     // 将3D矩阵中的每个RGB通道提取出来，存入mid_rgb数组中
     Matrix mid_rgb[input_dim];
     for (int rgb_idx = 0; rgb_idx < input_dim; rgb_idx++)
     {	
 		mid_rgb[rgb_idx] = edge_padding(mid1.matrix3d[rgb_idx], mid1.matrix3d[rgb_idx].row + padding_high, mid1.matrix3d[rgb_idx].col + padding_wid);
 		cout_mat(mid_rgb[rgb_idx]);
+
 	}
+	getshape(mid1);
+
 
     // 构造卷积核数组
     Matrix filters[output_channels][input_dim];
