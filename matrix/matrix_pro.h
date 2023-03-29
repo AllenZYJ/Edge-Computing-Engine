@@ -489,6 +489,27 @@ Matrix edge_padding(Matrix mid1, int shape1, int shape2)
     }
     return result;
 }
+Matrix4d CreatePadding4d(Matrix4d X, int pad)
+{
+    int N = X.batch;
+    int C = X.dep;
+    int H = X.wid;
+    int W = X.high;
+    int H_pad = H + 2 * pad;
+    int W_pad = W + 2 * pad;
+    Matrix4d X_pad = CreateMatrix4d(N, C, H_pad, W_pad);
+    for (int n = 0; n < N; n++) 
+    {
+        for (int c = 0; c < C; c++) 
+        {
+            Matrix mid1 = X.matrix4d[n].matrix3d[c];
+            Matrix mid2 = edge_padding(mid1, H_pad, W_pad);
+            X_pad.matrix4d[n].matrix3d[c] = mid2;
+            // free_mat(mid1);
+        }
+    }
+    return X_pad;
+}
 
 Matrix get_row(Matrix mid1, int index)
 {
@@ -557,7 +578,13 @@ Matrix3d conv_test(Matrix3d mid1, int input_dim = 3, int output_channels = 3, in
 		}
 	}
 }
-Matrix3d conv_test_with_output(Matrix3d mid1, int input_dim = 3, int output_channels = 3, int stride = 1, int kernel_size = 2, int mode = 0, int padding = 1)
+Matrix3d conv_test_with_output(Matrix3d mid1, 
+								int input_dim = 3, 
+								int output_channels = 3, 
+								int stride = 1, 
+								int kernel_size = 2, 
+								int mode = 0, 
+								int padding = 1)
 {
 	cout_mat3d(mid1);
 	int padding_wid = stride - (mid1.wid - kernel_size) % stride;
@@ -632,7 +659,7 @@ Matrix3d conv_test_with_output(Matrix3d mid1, int input_dim = 3, int output_chan
         cout << endl;
         return output3d;
     }
-}
+} 
 
 
 
@@ -647,5 +674,63 @@ Matrix rot180(Matrix input) {
     }
     return output;
 }
+// void conv_backward(Matrix4d X, Matrix4d W, Matrix4d dZ, Matrix4d &dX, Matrix4d &dW, float &db, int stride, int pad)
+// {
+//     int N, F, H_out, W_out, C, HH, WW;
 
+//     N = X.batch;
+//     F = W.batch;
+//     H_out = dZ.wid;
+//     W_out = dZ.high;
+//     C = X.dep;
+//     HH = W.dep;
+//     WW = W.wid;
+
+//     // Allocate memory for the gradients
+//     dX = CreateMatrix4d(N, C, X.wid, X.high);
+//     dW = CreateMatrix4d(F, C, WW, HH);
+//     Matrix db_mat = CreateMatrix(1, F);
+
+//     // Zero-initialize the gradients
+//     zeros_mat4d(dX);
+//     zeros_mat4d(dW);
+//     zeros_mat(db_mat);
+
+//     // Compute the gradients
+//     for (int n = 0; n < N; ++n)
+//     {
+//         for (int f = 0; f < F; ++f)
+//         {
+//             for (int i = 0; i < H_out; ++i)
+//             {
+//                 for (int j = 0; j < W_out; ++j)
+//                 {
+//                     int h_start = i * stride - pad;
+//                     int w_start = j * stride - pad;
+//                     for (int c = 0; c < C; ++c)
+//                     {
+//                         for (int hh = 0; hh < HH; ++hh)
+//                         {
+//                             for (int ww = 0; ww < WW; ++ww)
+//                             {
+//                                 if ((h_start + hh >= 0) && (h_start + hh < X.wid) && (w_start + ww >= 0) && (w_start + ww < X.high))
+//                                 {
+//                                     // Compute dX
+//                                     dX.matrix4d[n].matrix3d[c].matrix[h_start + hh][w_start + ww] += W.matrix4d[f].matrix3d[c].matrix[hh][ww] * dZ.matrix4d[n].matrix3d[f].matrix[i][j];
+//                                     // Compute dW
+//                                     dW.matrix4d[f].matrix3d[c].matrix[hh][ww] += X.matrix4d[n].matrix3d[c].matrix[h_start + hh][w_start + ww] * dZ.matrix4d[n].matrix3d[f].matrix[i][j];
+//                                 }
+//                             }
+//                         }
+//                     }
+//                     // Compute db
+//                     db_mat.matrix[0][f] += dZ.matrix4d[n].matrix3d[f].matrix[i][j];
+//                 }
+//             }
+//         }
+//     }
+
+//     // Compute the average of db
+//     db = db_mat.matrix[0][0] / N;
+// }
 #endif
