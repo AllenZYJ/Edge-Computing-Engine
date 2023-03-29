@@ -173,6 +173,10 @@ void getshape(Matrix3d mid1)
 {
     cout << "EDGE Matrix Shape:(" << mid1.dep << "," << mid1.wid << "," << mid1.high << ")" << endl;
 }
+void getshape4d(Matrix4d m) {
+    cout << "EDGE Matrix Shape: (" << m.batch << "," << m.dep << "," << m.wid << "," << m.high << ")" << endl;
+}
+
 
 void cout_strmat(str_Matrix mid1)
 {

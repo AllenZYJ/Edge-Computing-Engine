@@ -372,6 +372,22 @@ void cout_mat3d(Matrix3d mat3d)
 
     cout << "\033[1;38;5;208m" << string(separator_length, '=') << "\033[0m" << endl;
 }
+void cout_mat4d(Matrix4d mat4d)
+{
+    int separator_length = 20 + to_string(mat4d.batch).length();
+    cout << "\033[1;38;5;208m" << string(separator_length, '=') << "\033[0m" << endl;
+
+    // 遍历每个矩阵并打印
+    for (int i = 0; i < mat4d.batch; i++)
+    {
+        cout << "Batch " << i << ":" << endl;
+        cout_mat3d(mat4d.matrix4d[i]);
+        cout << endl;
+    }
+
+    cout << "\033[1;38;5;208m" << string(separator_length, '=') << "\033[0m" << endl;
+}
+
 
 // iloc [x1,x2,y1,y2]
 Matrix iloc(Matrix mid1, int start_x = 0, int end_x = 0, int start_y = 0, int end_y = 0)
@@ -662,7 +678,6 @@ Matrix3d conv_test_with_output(Matrix3d mid1,
 } 
 
 
-
 Matrix rot180(Matrix input) {
     int height = input.row;
     int width = input.col;
@@ -674,63 +689,35 @@ Matrix rot180(Matrix input) {
     }
     return output;
 }
-// void conv_backward(Matrix4d X, Matrix4d W, Matrix4d dZ, Matrix4d &dX, Matrix4d &dW, float &db, int stride, int pad)
-// {
-//     int N, F, H_out, W_out, C, HH, WW;
 
-//     N = X.batch;
-//     F = W.batch;
-//     H_out = dZ.wid;
-//     W_out = dZ.high;
-//     C = X.dep;
-//     HH = W.dep;
-//     WW = W.wid;
+Matrix4d batch_conv_test(Matrix4d mid4, 
+                         int input_dim = 3, 
+                         int output_channels = 3, 
+                         int stride = 1, 
+                         int kernel_size = 2, 
+                         int mode = 0, 
+                         int padding = 1)
+{
+    Matrix3d *output3d_arr = (Matrix3d *)malloc(mid4.batch * sizeof(Matrix3d));
 
-//     // Allocate memory for the gradients
-//     dX = CreateMatrix4d(N, C, X.wid, X.high);
-//     dW = CreateMatrix4d(F, C, WW, HH);
-//     Matrix db_mat = CreateMatrix(1, F);
+    for (int batch_idx = 0; batch_idx < mid4.batch; batch_idx++)
+    {
+        Matrix3d mid3 = mid4.matrix4d[batch_idx];
 
-//     // Zero-initialize the gradients
-//     zeros_mat4d(dX);
-//     zeros_mat4d(dW);
-//     zeros_mat(db_mat);
+        Matrix3d output3d = conv_test_with_output(mid3, input_dim, output_channels, stride, kernel_size, mode, padding);
 
-//     // Compute the gradients
-//     for (int n = 0; n < N; ++n)
-//     {
-//         for (int f = 0; f < F; ++f)
-//         {
-//             for (int i = 0; i < H_out; ++i)
-//             {
-//                 for (int j = 0; j < W_out; ++j)
-//                 {
-//                     int h_start = i * stride - pad;
-//                     int w_start = j * stride - pad;
-//                     for (int c = 0; c < C; ++c)
-//                     {
-//                         for (int hh = 0; hh < HH; ++hh)
-//                         {
-//                             for (int ww = 0; ww < WW; ++ww)
-//                             {
-//                                 if ((h_start + hh >= 0) && (h_start + hh < X.wid) && (w_start + ww >= 0) && (w_start + ww < X.high))
-//                                 {
-//                                     // Compute dX
-//                                     dX.matrix4d[n].matrix3d[c].matrix[h_start + hh][w_start + ww] += W.matrix4d[f].matrix3d[c].matrix[hh][ww] * dZ.matrix4d[n].matrix3d[f].matrix[i][j];
-//                                     // Compute dW
-//                                     dW.matrix4d[f].matrix3d[c].matrix[hh][ww] += X.matrix4d[n].matrix3d[c].matrix[h_start + hh][w_start + ww] * dZ.matrix4d[n].matrix3d[f].matrix[i][j];
-//                                 }
-//                             }
-//                         }
-//                     }
-//                     // Compute db
-//                     db_mat.matrix[0][f] += dZ.matrix4d[n].matrix3d[f].matrix[i][j];
-//                 }
-//             }
-//         }
-//     }
+        output3d_arr[batch_idx] = output3d;
+    }
 
-//     // Compute the average of db
-//     db = db_mat.matrix[0][0] / N;
-// }
+    Matrix4d output4d = CreateMatrix4d(mid4.batch, output_channels, output3d_arr[0].wid, output3d_arr[0].high);
+    for (int batch_idx = 0; batch_idx < mid4.batch; batch_idx++)
+    {
+        output4d.matrix4d[batch_idx] = output3d_arr[batch_idx];
+    }
+    return output4d;
+}
+
+
+
+
 #endif
