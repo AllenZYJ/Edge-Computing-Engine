@@ -505,7 +505,7 @@ Matrix4d CreatePadding4d(Matrix4d X, int pad)
             Matrix mid1 = X.matrix4d[n].matrix3d[c];
             Matrix mid2 = edge_padding(mid1, H_pad, W_pad);
             X_pad.matrix4d[n].matrix3d[c] = mid2;
-            // free_mat(mid1);
+            free_mat(mid1);
         }
     }
     return X_pad;

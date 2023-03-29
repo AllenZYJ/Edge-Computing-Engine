@@ -39,6 +39,14 @@ typedef struct
     int batch, dep, wid, high;
     Matrix3d *matrix4d;
 } Matrix4d;
+void free_mat(Matrix mat)
+{
+    for (int i = 0; i < mat.row; i++) 
+    {
+        free(mat.matrix[i]);
+    }
+    free(mat.matrix);
+}
 int change_va(Matrix Matrix, int index_x, int index_y, float value)
 {
     Matrix.matrix[index_x][index_y] = value;
@@ -177,5 +185,6 @@ void cout_strmat(str_Matrix mid1)
         cout << endl;
     }
 }
+
 
 #endif
