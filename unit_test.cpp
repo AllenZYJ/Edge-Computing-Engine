@@ -35,15 +35,14 @@ int main()
     // 执行卷积计算
     Matrix4d output4d = batch_conv_test(mid4, 3, 13, 1, 2, 0, 1);
     getshape4d(output4d);
-
     // 打印结果
     cout << "Input: " << endl;
     cout_mat4d(mid4);
-    getshape4d(mid4);
     cout << endl;
     cout << "Output: " << endl;
     cout_mat4d(output4d);
     cout << endl;
+    getshape4d(output4d);
 
     // cout_mat3d(a);
     return 0;
