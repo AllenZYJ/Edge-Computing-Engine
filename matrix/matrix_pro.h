@@ -595,34 +595,52 @@ Matrix3d conv_test(Matrix3d mid1, int input_dim = 3, int output_channels = 3, in
 	}
 }
 Matrix3d conv_test_with_output(Matrix3d mid1, 
-								int input_dim = 3, 
-								int output_channels = 3, 
-								int stride = 1, 
-								int kernel_size = 2, 
-								int mode = 0, 
-								int padding = 1)
-{
-	cout_mat3d(mid1);
-	int padding_wid = stride - (mid1.wid - kernel_size) % stride;
-	cout << "mid1.wid: " << mid1.wid << ", kernel_size: " << kernel_size << ", stride: " << stride 
-     << ", padding_wid: " << padding_wid << endl;
-	if (padding_wid==stride){padding_wid = 0;}
-	int padding_high = stride - (mid1.high - kernel_size) % stride;
-	if (padding_high==stride){padding_high = 0;}
-	cout << "mid1.wid: " << mid1.wid << ", kernel_size: " << kernel_size << ", stride: " << stride 
-	     << ", padding_wid: " << padding_wid << ", padding_high: " << padding_high << endl;
-    // 将3D矩阵中的每个RGB通道提取出来，存入mid_rgb数组中
+                                int input_dim = 3, 
+                                int output_channels = 3, 
+                                int stride = 1, 
+                                int kernel_size = 2, 
+                                int mode = 0, 
+                                int padding = 0, 
+                                bool verbose = false)
+	{
+    if (verbose) {
+        cout << "Input Matrix3d: " << endl;
+        cout_mat3d(mid1);
+        cout << "Parameters: input_dim = " << input_dim 
+             << ", output_channels = " << output_channels 
+             << ", stride = " << stride 
+             << ", kernel_size = " << kernel_size 
+             << ", mode = " << mode 
+             << ", padding = " << padding << endl;
+    }
+
+    // Compute padding widths and heights
+    int padding_wid = stride - (mid1.wid - kernel_size) % stride;
+    if (padding_wid == stride) {
+        padding_wid = 0;
+    }
+    int padding_high = stride - (mid1.high - kernel_size) % stride;
+    if (padding_high == stride) {
+        padding_high = 0;
+    }
+    if (verbose) {
+        cout << "Padding widths: " << padding_wid << ", padding heights: " << padding_high << endl;
+    }
+
+    // Pad each RGB channel in the 3D matrix
     Matrix mid_rgb[input_dim];
     for (int rgb_idx = 0; rgb_idx < input_dim; rgb_idx++)
-    {	
-		mid_rgb[rgb_idx] = edge_padding(mid1.matrix3d[rgb_idx], mid1.matrix3d[rgb_idx].row + padding_high, mid1.matrix3d[rgb_idx].col + padding_wid);
-		cout_mat(mid_rgb[rgb_idx]);
+    {   
+        mid_rgb[rgb_idx] = edge_padding(mid1.matrix3d[rgb_idx], 
+                                         mid1.matrix3d[rgb_idx].row + padding_high, 
+                                         mid1.matrix3d[rgb_idx].col + padding_wid);
+        if (verbose) {
+            cout << "RGB[" << rgb_idx << "] channel after padding: " << endl;
+            cout_mat(mid_rgb[rgb_idx]);
+        }
+    }
 
-	}
-	getshape(mid1);
-
-
-    // 构造卷积核数组
+    // Construct filters
     Matrix filters[output_channels][input_dim];
     for (int channel_index = 0; channel_index < input_dim; channel_index++)
     {
@@ -633,50 +651,50 @@ Matrix3d conv_test_with_output(Matrix3d mid1,
         }
     }
 
-    if (mode == 0)
+    // Compute convolution results for each filter
+    Matrix kernel = ones(kernel_size, kernel_size);
+    Matrix feature_maps[output_channels];
+    for (int filter_idx = 0; filter_idx < output_channels; filter_idx++)
     {
-        // 计算卷积结果
-        Matrix kernel = ones(kernel_size, kernel_size);
-        Matrix feature_maps[output_channels];
-
-		cout<<"padding wid:"<<padding_wid<<endl;
-        for (int filter_idx = 0; filter_idx < output_channels; filter_idx++)
+        Matrix sum_rgb = CreateMatrix(((mid1.wid - kernel_size) / stride) + 1, 
+                                      ((mid1.high - kernel_size) / stride) + 1);
+        for (int channel_idx = 0; channel_idx < input_dim; channel_idx++)
         {
-            Matrix sum_rgb = CreateMatrix(((mid1.wid - kernel_size) / stride) + 1, ((mid1.high - kernel_size) / stride) + 1);
-            for (int channel_idx = 0; channel_idx < input_dim; channel_idx++)
-            {
-                // 计算单个RGB通道的卷积结果
-                Matrix element = conv_element(mid_rgb[channel_idx], filters[channel_idx][filter_idx], kernel_size, stride);
-                cout << "Mid RGB[" << channel_idx << "] convolution with Filter[" << filter_idx << "] : " << endl;
+            // Compute convolution result for a single RGB channel and a single filter
+            Matrix element = conv_element(mid_rgb[channel_idx], 
+                                          filters[channel_idx][filter_idx], 
+                                          kernel_size, stride);
+            if (verbose) {
+                cout << "Convolution of RGB[" << channel_idx << "] channel with Filter[" 
+                     << filter_idx << "] : " << endl;
                 cout_mat(mid_rgb[channel_idx]);
                 cout << " * " << endl;
                 cout_mat(filters[channel_idx][filter_idx]);
                 cout << " = " << endl;
                 cout_mat(element);
                 cout << endl;
-
-                // 将不同RGB通道的卷积结果进行叠加
-                sum_rgb = add(sum_rgb, element, 0);
             }
-            feature_maps[filter_idx] = sum_rgb;
-            cout << "Feature map [" << filter_idx << "] : " << endl;
-            cout_mat(sum_rgb);
-            cout << endl;
-        }
-
-        // 构造3D矩阵，将不同的特征图存储在不同的深度上
-        Matrix3d output3d = CreateMatrix3d(output_channels, feature_maps[0].row, feature_maps[0].col);
-        for (int i = 0; i < output_channels; i++)
-        {
-            output3d.matrix3d[i] = feature_maps[i];
-        }
-        cout << "Output : " << endl;
-        cout_mat3d(output3d);
-        cout << endl;
-        return output3d;
+            // Sum convolution results for each RGB channel
+        sum_rgb = add(sum_rgb, element, 0);
     }
-} 
-
+    feature_maps[filter_idx] = sum_rgb;
+    if (verbose) {
+        cout << "Feature map [" << filter_idx << "] : " << endl;
+        cout_mat(feature_maps[filter_idx]);
+    }
+	}
+	// Construct 3D matrix to store different feature maps at different depths
+	Matrix3d output3d = CreateMatrix3d(output_channels, feature_maps[0].row, feature_maps[0].col);
+	for (int i = 0; i < output_channels; i++)
+	{
+	    output3d.matrix3d[i] = feature_maps[i];
+	}
+	if (verbose) {
+	    cout << "Output Matrix3d: " << endl;
+	    cout_mat3d(output3d);
+	}
+	return output3d;
+	}
 
 Matrix rot180(Matrix input) {
     int height = input.row;
@@ -696,16 +714,13 @@ Matrix4d batch_conv_test(Matrix4d mid4,
                          int stride = 1, 
                          int kernel_size = 2, 
                          int mode = 0, 
-                         int padding = 1)
+                         int padding = 1,bool verbose = true)
 {
     Matrix3d *output3d_arr = (Matrix3d *)malloc(mid4.batch * sizeof(Matrix3d));
-
     for (int batch_idx = 0; batch_idx < mid4.batch; batch_idx++)
     {
         Matrix3d mid3 = mid4.matrix4d[batch_idx];
-
-        Matrix3d output3d = conv_test_with_output(mid3, input_dim, output_channels, stride, kernel_size, mode, padding);
-
+        Matrix3d output3d = conv_test_with_output(mid3, input_dim, output_channels, stride, kernel_size, mode, padding,verbose);
         output3d_arr[batch_idx] = output3d;
     }
 
@@ -714,6 +729,13 @@ Matrix4d batch_conv_test(Matrix4d mid4,
     {
         output4d.matrix4d[batch_idx] = output3d_arr[batch_idx];
     }
+    // std::cout << "input_dim: " << input_dim << std::endl;
+    // std::cout << "output_channels: " << output_channels << std::endl;
+    // std::cout << "stride: " << stride << std::endl;
+    // std::cout << "kernel_size: " << kernel_size << std::endl;
+    // std::cout << "mode: " << mode << std::endl;
+    // std::cout << "padding: " << padding << std::endl;
+    
     return output4d;
 }
 

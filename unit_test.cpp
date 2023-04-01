@@ -12,38 +12,44 @@
 #include "./root/include/edgelayer.h"
 #include "./welcome/score_wel.cpp"
 #include <iomanip>
-
+#include <iostream>
+#include <cassert>
 using namespace std;
 
-clock_t start_t, end_t;
-double duration;
-int main()
-{
-    welcome();
-    // cout_mat(CreateMatrix(10,9));
-    // Matrix3d a = conv_test_with_output(CreateMatrix3d(3,10,8),3,4,2,3,0,0);
+// TODO: 上面的函数定义
 
-    Matrix3d mid1 = CreateMatrix3d(3, 4, 4);
-    mid1.matrix3d[0] = CreateRandMat(4, 4);
-    mid1.matrix3d[1] = CreateRandMat(4, 4);
-    mid1.matrix3d[2] = CreateRandMat(4, 4);
-    Matrix4d mid4 = CreateMatrix4d(2, 3, 4, 4);
-    mid4.matrix4d[0] = mid1;
-    mid4.matrix4d[1] = mid1;
-    cout<<"input:";
-    getshape4d(mid4);
-    // 执行卷积计算
-    Matrix4d output4d = batch_conv_test(mid4, 3, 13, 1, 2, 0, 1);
-    getshape4d(output4d);
-    // 打印结果
-    cout << "Input: " << endl;
-    cout_mat4d(mid4);
-    cout << endl;
-    cout << "Output: " << endl;
-    cout_mat4d(output4d);
-    cout << endl;
-    getshape4d(output4d);
+void test_batch_conv_test(int batch_size, int depth, int height, int width, int input_dim, int output_channels, int stride, int kernel_size, int mode, int padding) {
+    // 打印参数对应关系
+    cout << "Parameters:" << endl;
+    cout << "batch_size = " << batch_size << endl;
+    cout << "depth = " << depth << endl;
+    cout << "height = " << height << endl;
+    cout << "width = " << width << endl;
+    cout << "input_dim = " << input_dim << endl;
+    cout << "output_channels = " << output_channels << endl;
+    cout << "stride = " << stride << endl;
+    cout << "kernel_size = " << kernel_size << endl;
+    cout << "mode = " << mode << endl;
+    cout << "padding = " << padding << endl;
 
-    // cout_mat3d(a);
+    Matrix4d input4d = CreateMatrix4d(batch_size, depth, height, width);
+
+    Matrix4d output4d = batch_conv_test(input4d, input_dim, output_channels, stride, kernel_size, mode, padding,true);
+
+    // 打印卷积维度计算过程
+    int output_width = (width - kernel_size + 2 * padding) / stride + 1;
+    int output_height = (height - kernel_size + 2 * padding) / stride + 1;
+    cout << "Output dimension calculation:" << endl;
+    cout << "output_width = (" << width << " - " << kernel_size << " + 2 * " << padding << ") / " << stride << " + 1 = " << output_width << endl;
+    cout << "output_height = (" << height << " - " << kernel_size << " + 2 * " << padding << ") / " << stride << " + 1 = " << output_height << endl;
+    getshape4d(output4d);
+    assert(output4d.dep == output_channels);
+    assert(output4d.wid == output_width);
+    assert(output4d.high == output_height);
+}
+
+int main() {
+    test_batch_conv_test(2, 3, 4, 4, 3, 2, 1, 2, 0, 0);
+    cout << "All tests passed!\n";
     return 0;
 }
