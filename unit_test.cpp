@@ -60,6 +60,9 @@ void test_batch_conv_test(int batch_size,
     assert(output4d.high == output_height);
     }
 int main() {
+ofstream outfile("result.txt");  // 打开输出文件流
+outfile << "bs" << "\t" << "ic" << "\t" << "height" << "\t" << "width" << "\t" 
+                                << "oc" << "\t" << "stride" << "\t" << "ksize" << "\t" << "mode" << endl;
     test_batch_conv_test(1, 3, 32, 32, 1, 2, 3, 0);
     for (int width = 32; width <= 640; ++width) {
     for (int height = 32; height <= 640; ++height) {
@@ -68,6 +71,8 @@ int main() {
                 for (int stride = 1; stride <= kernel_size; ++stride) {
                     for (int batch_size = 1; batch_size <= 4; ++batch_size) {
                         cout<<"---------------------------"<<endl;
+                        outfile << batch_size << "\t" << 3 << "\t" << height << "\t" << width << "\t" 
+                                << output_channels << "\t" << stride << "\t" << kernel_size << "\t" << 0 << endl;
                         test_batch_conv_test(batch_size, 3, height, width, output_channels, stride, kernel_size, 0);
                     }
                 }
