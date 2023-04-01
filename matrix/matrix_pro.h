@@ -654,8 +654,8 @@ Matrix3d conv_test_with_output(Matrix3d mid1,
     Matrix feature_maps[output_channels];
     for (int filter_idx = 0; filter_idx < output_channels; filter_idx++)
     {
-        Matrix sum_rgb = CreateMatrix(((mid1.wid - kernel_size) / stride) + 1, 
-                                      ((mid1.high - kernel_size) / stride) + 1);
+        Matrix sum_rgb = CreateMatrix(((mid1.wid - kernel_size + 2*padding_wid) / stride) + 1, 
+                                      ((mid1.high - kernel_size + 2*padding_high) / stride) + 1);
         for (int channel_idx = 0; channel_idx < input_dim; channel_idx++)
         {
             // Compute convolution result for a single RGB channel and a single filter
