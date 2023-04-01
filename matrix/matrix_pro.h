@@ -600,7 +600,6 @@ Matrix3d conv_test_with_output(Matrix3d mid1,
                                 int stride = 1, 
                                 int kernel_size = 2, 
                                 int mode = 0, 
-                                int padding = 0, 
                                 bool verbose = false)
 	{
     if (verbose) {
@@ -610,8 +609,7 @@ Matrix3d conv_test_with_output(Matrix3d mid1,
              << ", output_channels = " << output_channels 
              << ", stride = " << stride 
              << ", kernel_size = " << kernel_size 
-             << ", mode = " << mode 
-             << ", padding = " << padding << endl;
+             << ", mode = " << mode;
     }
 
     // Compute padding widths and heights
@@ -713,14 +711,14 @@ Matrix4d batch_conv_test(Matrix4d mid4,
                          int output_channels = 3, 
                          int stride = 1, 
                          int kernel_size = 2, 
-                         int mode = 0, 
-                         int padding = 1,bool verbose = true)
+                         int mode = 0,
+                         bool verbose = true)
 {
     Matrix3d *output3d_arr = (Matrix3d *)malloc(mid4.batch * sizeof(Matrix3d));
     for (int batch_idx = 0; batch_idx < mid4.batch; batch_idx++)
     {
         Matrix3d mid3 = mid4.matrix4d[batch_idx];
-        Matrix3d output3d = conv_test_with_output(mid3, input_dim, output_channels, stride, kernel_size, mode, padding,verbose);
+        Matrix3d output3d = conv_test_with_output(mid3, input_dim, output_channels, stride, kernel_size, mode,verbose);
         output3d_arr[batch_idx] = output3d;
     }
 
