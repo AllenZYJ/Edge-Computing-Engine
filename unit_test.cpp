@@ -18,24 +18,29 @@ using namespace std;
 
 // TODO: 上面的函数定义
 
-void test_batch_conv_test(int batch_size, int depth, int height, int width, int input_dim, int output_channels, int stride, int kernel_size, int mode, int padding) {
+void test_batch_conv_test(int batch_size,
+                          int depth, 
+                          int height, 
+                          int width, 
+                          int output_channels, 
+                          int stride, 
+                          int kernel_size, 
+                          int mode, 
+                          int padding) 
+    {
     // 打印参数对应关系
     cout << "Parameters:" << endl;
     cout << "batch_size = " << batch_size << endl;
     cout << "depth = " << depth << endl;
     cout << "height = " << height << endl;
     cout << "width = " << width << endl;
-    cout << "input_dim = " << input_dim << endl;
     cout << "output_channels = " << output_channels << endl;
     cout << "stride = " << stride << endl;
     cout << "kernel_size = " << kernel_size << endl;
     cout << "mode = " << mode << endl;
     cout << "padding = " << padding << endl;
-
     Matrix4d input4d = CreateMatrix4d(batch_size, depth, height, width);
-
-    Matrix4d output4d = batch_conv_test(input4d, input_dim, output_channels, stride, kernel_size, mode, padding,true);
-
+    Matrix4d output4d = batch_conv_test(input4d, depth, output_channels, stride, kernel_size, mode, padding,true);
     // 打印卷积维度计算过程
     int output_width = (width - kernel_size + 2 * padding) / stride + 1;
     int output_height = (height - kernel_size + 2 * padding) / stride + 1;
@@ -46,10 +51,11 @@ void test_batch_conv_test(int batch_size, int depth, int height, int width, int 
     assert(output4d.dep == output_channels);
     assert(output4d.wid == output_width);
     assert(output4d.high == output_height);
-}
+    }
 
 int main() {
-    test_batch_conv_test(2, 3, 4, 4, 3, 2, 1, 2, 0, 0);
+
+    test_batch_conv_test(2, 3, 4, 4, 2, 1, 2, 0, 0);
     cout << "All tests passed!\n";
     return 0;
 }
