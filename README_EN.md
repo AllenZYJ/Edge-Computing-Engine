@@ -1,235 +1,83 @@
+<div align=center><img src="picture/image-20200418210521131.png" alt="image-20200418210521131"  /></div>
+
+<div align=center><h1>Edge-Computing-Engine</h1></div>
+[![Edge support](https://img.shields.io/badge/SUPPORT-Macos-brightgreen)](https://support.apple.com/downloads/macos)
+[![Edge support](https://img.shields.io/badge/SUPPORT-Ubuntu-brightgreen)](https://ubuntu.com/download/server)
+[![Edge passing](https://img.shields.io/badge/Edge--CI-passing-blue)](https://github.com/AllenZYJ/Edge-Computing-Engine/actions)
+[![GitHub license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://raw.githubusercontent.com/tesseract-ocr/tesseract/master/LICENSE)
+
+Edge-Computing-Engine is an open-source scientific computing engine designed for matrix computation and machine learning tasks. It provides a wide range of matrix operations and neural network building blocks.
+
+Email: zk@likedge.top
+
+## Features
+
+- `read_csv(string &file_path)`: Reads a formatted file (csv) and returns a matrix with automatically calculated dimensions.
+- Formatted file writing interface. Similar to `pandas.to_csv`.
+- Broadcasting mechanism for matrices with padding interface.
+- Fully connected layer forward and backward propagation interfaces with automatic differentiation support.
+- Matrix differentiation and automatic differentiation interfaces.
+- `save_txt(Matrix mid1,string path = "./",string delimiter = ",",string header="./")`: Reads the file header and writes formatted files. It supports writing matrix-type data, custom headers, writing file paths, and custom delimiters (default is ", ").
+- `create(row,cols)`: Creates a matrix with specified dimensions and initializes all elements to 0.
+- `move_ele(int &ele1, int &ele2)`: Changes the value of an element at a specific position.
+- `add(Matrix mid1, Matrix mid2, int flag = 1)`: Matrix addition operation with optional bitwise operation acceleration.
+- `subtract(Matrix mid1, Matrix mid2)`: Matrix subtraction operation.
+- `mul(Matrix mid1, Matrix mid2)`: Matrix multiplication operation.
+- `times_mat(int times,Matrix mid1)`: Scalar matrix multiplication.
+- `get_T(Matrix mid1)`: Matrix transposition operation.
+- `mul(matrix1,matrix2)`: Matrix product (complete mathematical definition).
+- `flatten(Matrix mid1)`: Returns a flattened array.
+- `matrix_rs(Matrix mid1,int rs_row,int rs_col)`: Matrix structure compression.
+- `matrix_sum(Matrix mid1)`: Matrix summation.
+- `matrix_mean(Matrix mid1)`: Matrix mean.
+- `apply(Matrix mid1,Matrix mid2,int axis = 0)`: Matrix concatenation.
+- `iloc(Matrix mid1,int start_x=0,int end_x=0,int start_y=0,int end_y=0)`: Matrix slicing.
+- `mul_simple(Matrix mid1,Matrix mid2)`: Element-wise matrix multiplication for machine learning applications.
+- `Relu`: Activation function matrix interface.
+- `MSE`: Mean squared error matrix interface.
+- Random weight matrix creation interface.
+- Convolutional neural network definition (including but not limited to convolution kernel, pooling layer definition, and custom loss interface).
+
+## Requirements
+
+- C++11 or above.
+
+## Installation
+
+- Clone the repository: `git clone git@github.com:AllenZYJ/Edge-Computing-Engine.git`
+- Build the project: `cd Edge-Computing-Engine/install_diff && make && make install`
+
+## Usage
 
 
-<div align=center><img src="./picture/01.svg"/></div>
-
-# Edge-Engine
-
-## Edge : 一个开源的科学计算引擎
-
-
-
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000) ](https://github.com/AllenZYJ/Edge-Computing-Engine/blob/add-license-1/LICENSE)![](https://img.shields.io/badge/Bulid-Version1.0-green.svg)
-
-> 项目开始日期 : 2019/10/01
-
-> 目前项目总代码 : 709 行
->
-> 测试代码 : 810 行
->
-> 测试环境:
->
-> MacBook Pro
->
-> 编译器环境:
->
-> Configured with: --prefix=/Applications/Xcode.app/Contents/Developer/usr --with-gxx-include-dir=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/c++/4.2.1
-> Apple LLVM version 10.0.1 (clang-1001.0.46.4)
-> Target: x86_64-apple-darwin18.7.0
-> Thread model: posix
->
-> 目前实现的:
-
-How to install and run the demo:
-
-`git clone git@github.com:AllenZYJ/Edge-Computing-Engine.git`
-
-`cd to install `_diff
-
-make
-
-make install
-
-`g++ main.cpp -o main` -lautodiff
-
-`./main`
-
-Matrix API:
-
-- [x] Matrix read_csv(string &file_path)
-- [x] Create a matrix :  create(row,cols)
-- [x] Change the element for matrix void move_ele(int &ele1, int &ele2)
-- [x] Matrix1+Matrix2 : Matrix add(Matrix mid1,Matrix mid2,int flag=1)
-- [x] Flag is how to compete the ele ,default 1 ,bitwise operation(位运算加速).
-- [x] Matrix1-Matrix2 : Matrix subtract(Matrix mid1,Matrix mid2)
-- [x] Matrix1*Matrix2 : Matrix mul(Matrix mid1,Matrix mid2)
-- [x] Matrix1*n : Matrix times_mat(int times,Matrix mid1)
-- [x] Matrix1's Transposition : Matrix get_T(Matrix mid1)
-- [x] Mul(matrix1,matrix2)
-- [x] double* flatten(Matrix mid1) : Return a flattened array.
-- [x] Matrix matrix_rs(Matrix mid1,int rs_row,int rs_col)
-- [x] double matrix_sum(Matrix mid1)
-- [x] double matrix_mean(Matrix mid1)
-- [x] Matrix appply(Matrix mid1,Matrix mid2,int axis = 0)
-- [x] Matrix iloc(Matrix mid1,int start_x=0,int end_x=0,int start_y=0,int end_y=0)
-
-## Demo: mat*mat
-
-Matrix **A**：
-
-| 第1列   | 第2列   | 第3列   | 第4列   | 第5列   |
-| ------- | ------- | ------- | ------- | ------- |
-| 72.0000 | 0.0000  | 0.0000  | 0.0000  | 0.0000  |
-| 0.0000  | 64.0000 | 0.0000  | 0.0000  | 0.0000  |
-| 16.0000 | 8.0000  | 0.0000  | 0.0000  | 0.0000  |
-| 0.0000  | 0.0000  | 56.0000 | 16.0000 | 32.0000 |
-| 0.0000  | 0.0000  | 0.0000  | 0.0000  | 0.0000  |
-| 0.0000  | 0.0000  | 0.0000  | 0.0000  | 0.0000  |
-
-MAtrix **B**：
-
-| 第1列   | 第2列   | 第3列   | 第4列   | 第5列  | 第6列  |
-| ------- | ------- | ------- | ------- | ------ | ------ |
-| 72.0000 | 0.0000  | 16.0000 | 0.0000  | 0.0000 | 0.0000 |
-| 0.0000  | 64.0000 | 8.0000  | 0.0000  | 0.0000 | 0.0000 |
-| 0.0000  | 0.0000  | 0.0000  | 56.0000 | 0.0000 | 0.0000 |
-| 0.0000  | 0.0000  | 0.0000  | 16.0000 | 0.0000 | 0.0000 |
-| 0.0000  | 0.0000  | 0.0000  | 32.0000 | 0.0000 | 0.0000 |
-
-To
-
-| 第1列     | 第2列     | 第3列     | 第4列     | 第5列  | 第6列  |
-| --------- | --------- | --------- | --------- | ------ | ------ |
-| 5184.0000 | 0.0000    | 1152.0000 | 0.0000    | 0.0000 | 0.0000 |
-| 0.0000    | 4096.0000 | 512.0000  | 0.0000    | 0.0000 | 0.0000 |
-| 1152.0000 | 512.0000  | 320.0000  | 0.0000    | 0.0000 | 0.0000 |
-| 0.0000    | 0.0000    | 0.0000    | 4416.0000 | 0.0000 | 0.0000 |
-| 0.0000    | 0.0000    | 0.0000    | 0.0000    | 0.0000 | 0.0000 |
-| 0.0000    | 0.0000    | 0.0000    | 0.0000    | 0.0000 | 0.0000 |
-
-## Demo : mat.flatten
-
-double* flatten(Matrix mid1)
-
-|  1   |  2   |  3   |
-| :--: | :--: | :--: |
-|  2   |  4   |  6   |
-|  7   |  8   |  9   |
-
-​	To
-
-| 1    | 2    | 3    | 2    | 4    | 6    | 7    | 8    | 9                  |
-| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | :----------------- |
-|      |      |      |      |      |      |      |      | Like numpy.flatten |
-
-## Demo : apply nearly mat
-
-​	Matrix appply(Matrix mid1,Matrix mid2,int axis = 0)
-
-> if axis=0 :
-
-| 0    | 7    | 2    |
-| ---- | ---- | ---- |
-| 0    | 3    | 1    |
-| 0    | 0    | 0    |
-| 0    | 0    | 11   |
-| 0    | 7    | 2    |
-| 0    | 3    | 1    |
-| 0    | 0    | 0    |
-| 0    | 0    | 11   |
-------
-
-> axis = 1:
-
-| 0    | 7    | 2    | 0    | 7    | 2    |
-| ---- | ---- | ---- | ---- | ---- | ---- |
-| 0    | 3    | 1    | 0    | 3    | 1    |
-| 0    | 0    | 0    | 0    | 0    | 0    |
-| 0    | 0    | 11   | 0    | 0    | 11   |
-
-
-
-- [x] read_csv 
-
-- [x] return a matrix
-
-  CSV head :
-
-  | -0.017612 | 14.053064 | 0    |
-  | --------- | --------- | ---- |
-  | -1.395634 | 4.662541  | 1    |
-  | -0.752157 | 6.53862   | 0    |
-  | -1.322371 | 7.152853  | 0    |
-  | 0.423363  | 11.054677 | 0    |
-  | 0.406704  | 7.067335  | 1    |
-
-  Get:
-
-  ![](./picture/WX20191119-105411@2x.png)
-
-  
-
-  ## Test demo:
-
-```c
-#include<iostream>
-#include<ctime>
-#include<string>
-#include <time.h>
-#include <math.h>
-#include <fstream>
-#include"./matrix/matrix_def.h"
-#include"./matrix/matrix_pro.h"
-#include"./welcome/score_wel.cpp"
-#include"./logistic/logistic_def.h"
-#include"./file_pro/data_read.h"
-using namespace std;
-clock_t start, stop;
-double duration;
-int main()
-{
-	welcome();	
-	string path = "./new_data2.csv";
-	Matrix data = read_csv(path);
-	Matrix bais = CreateMatrix(data.row,1);		
-	data = appply(data,bais,1);
-	Matrix y = iloc(data,0,0,3,4);
-	Matrix x_1 = iloc(data,0,0,0,3);
-	Matrix x_2 = get_T(x_1);
-	double alpha = 0.002;
-	int max_epoch = 100;
-	Matrix weight = CreateMatrix(3,1);
-	change_va(weight,0,0,1);
-	change_va(weight,1,0,1);
-	change_va(weight,2,0,1);
-	int epoch = 0;
-	for(epoch = 0;epoch<=max_epoch;epoch++)
-	{
-	cout<<"-----------split-line-----------"<<endl;			
-	Matrix temp_mul = mul(x_1,weight);
-	Matrix h =e_sigmoid(temp_mul);
-	Matrix error = subtract(y,h);
-	Matrix temp_update = mul(x_2,error);
-	Matrix updata = add(weight,times_mat(alpha,temp_update),0);
-	cout_mat(weight);
-	cout<<"epoch: "<<epoch<<" error: "<<matrix_sum(error)<<endl;
-	cout<<"-----------split-line-----------"<<endl;	
-	}
-	stop = clock();
-  printf("%f\n", (double)(stop - start) / CLOCKS_PER_SEC);
-	return 0;
-}
+```shell
+g++ main.cpp -o main -lautodiff
 ```
-Something :
 
-> 1. Matrix'element is default 1
-> 2. Dynamically allocate memory to prevent matrix from being too large
-> 3. To save memory and delete later,  use pointer to open up array space temporarily
-> 4. if free please delete(matrix);
-> 5. Api design like numpy or pandas
-> 6. Talking is cheap u can get the code
-> 7. welcome 🏃watched and star.
->
+```shell
+./main
+```
 
-------
+## Contributing
 
+Contributions to Edge-Computing-Engine are welcome. To contribute, please follow these steps:
+
+- Fork the repository.
+- Create a new branch for your feature or bug fix: `git checkout -b my-new-feature`
+- Make your changes and commit them: `git commit -am 'Add some feature'`
+- Push your changes to the branch: `git push origin my-new-feature`
+- Submit a pull request.
+
+Please ensure your code adheres to the existing style and passes the existing tests before submitting a pull request.
+
+## License
+
+email:zk@likedge.top | edge@ibooker.org.cn
+
+The author's personal website is [Likedge](http://likedge.top/), and the author's email is zk@likedge.top.
+
+Edge-Computing-Engine is released under the Apache2.0. See the `LICENSE` file for details.
 
 
 <div align = center><img src = './picture/星月.svg'></div>
 
-
-
- 个人小站:[极度空间](likedge.top)
-
-作者邮箱:zk@likedge.top | edge@ibooker.org.cn
-
- QQ:2533524298
