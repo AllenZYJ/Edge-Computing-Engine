@@ -61,12 +61,12 @@ int main()
 	cout<<"data mine"<<endl;
 	cout_mat(data_mine);
 	cout<<"data mine"<<endl;
-	Matrix label = CreateRandMat(3,1);
-	Matrix weight1 = CreateRandMat(3,3);
-	Matrix bais1 = ones(3,1);
-	Matrix weight2 = CreateRandMat(3,3);
-	Matrix bais2 = ones(3,1);
-	for(int epoch = 0;epoch<10;epoch++)
+	Matrix label = ones(3,1);
+	Matrix weight1 = ones(3,3);
+	Matrix bais1 = zeros(3,1);
+	Matrix weight2 = ones(3,3);
+	Matrix bais2 = zeros(3,1);
+	for(int epoch = 0;epoch<1;epoch++)
 	{
 	cout<<"---------epoch: "<<epoch<<"------------"<<endl;
 	cout_mat(weight1);
@@ -74,13 +74,22 @@ int main()
 	int output_dim = 3;
 	edge_network sequaltial(input_dim,output_dim);
 	Matrix output1 = sequaltial.forward(data_mine,weight1,bais1);
+
 	Matrix output1_without_act = sequaltial.forward_without_act(data_mine,weight1,bais1);
+	cout_mat(output1_without_act);
+	cout<<"output2:"<<endl;
 	Matrix output2 = sequaltial.forward(output1,weight2,bais2);
+	cout_mat(output2);
 	Matrix output2_without_act = sequaltial.forward_without_act(output1,weight2,bais2);	
+	cout_mat(output2_without_act);
 	Matrix output_end = sequaltial.end_layer_backward(label,output2_without_act,*loss,*act);
 	Matrix backward3 = sequaltial.backward(output_end,output1_without_act,weight2,*act);
 	Matrix weight_2_grad = mul(output_end,get_T(output1));
+	cout<<"weight_2_grad:"<<endl;
+	cout_mat(weight_2_grad);
 	Matrix weight_1_grad = mul(backward3,get_T(data_mine));
+	cout<<"weight_1_grad:"<<endl;
+	cout_mat(weight_1_grad);
 	weight1 = subtract(weight1,times_mat(0.001,weight_1_grad));
 	bais1 = subtract(bais1,times_mat(0.001,backward3));
 	weight2 = subtract(weight2,times_mat(0.001,weight_2_grad));

@@ -146,7 +146,8 @@ Matrix mul(Matrix mid1, Matrix mid2)
 		for (int j = 0; j < mid2.col; j++)
 		{
 			for (int k = 0; k < mid1.col; k++)
-			{
+			{	
+				cout<<mid3.matrix[i][j]<<"+"<<mid1.matrix[i][k]<<"*"<<mid2.matrix[k][j]<<endl;
 				mid3.matrix[i][j] = mid3.matrix[i][j] + mid1.matrix[i][k] * mid2.matrix[k][j];
 			}
 		}
@@ -731,8 +732,5 @@ Matrix4d batch_conv_test(Matrix4d mid4,
     }
     return output4d;
 }
-
-
-
 
 #endif

@@ -133,6 +133,28 @@ Matrix ones(int ro, int co)
     m.matrix = inputMatrix;
     return m;
 }
+Matrix zeros(int ro, int co)
+{
+    Matrix m;
+    int row, col;
+    float **inputMatrix;
+    inputMatrix = (float **)malloc(ro * sizeof(float *));
+    for (int i = 0; i < ro; i++)
+    {
+        inputMatrix[i] = (float *)malloc(co * sizeof(float));
+    }
+    for (int i = 0; i < ro; i++)
+    {
+        for (int j = 0; j < co; j++)
+        {
+            inputMatrix[i][j] = 1;
+        }
+    }
+    m.col = co;
+    m.row = ro;
+    m.matrix = inputMatrix;
+    return m;
+}
 Matrix3d CreateMatrix3d(int depth, int height, int width)
 {
     Matrix3d m;

@@ -52,4 +52,6 @@ jobs:
         run: ./ma
       - name: run conv test
         run: pwd && ./conv_test
+      - name: run neural network
+        run: g++ main.cpp -o main -lautodiff && ./main
 

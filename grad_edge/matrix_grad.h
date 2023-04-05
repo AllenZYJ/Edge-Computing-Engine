@@ -25,7 +25,12 @@ struct edge_network
 	//	cout_mat(data);
 	//	cout<<"weights: "<<endl;
 	//	cout_mat(weights);	
+		cout_mat(weights);
+		cout_mat(data);
+
 		Matrix output = mul(weights,data);		
+		cout<<"out:"<<endl;
+		cout_mat(output);
 		output = add(output,bais,0);
 		Matrix output1 = e_sigmoid(output);
 	//	cout<<"----------forward data--------"<<endl;
