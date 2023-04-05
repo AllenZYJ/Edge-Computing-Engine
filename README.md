@@ -1,14 +1,28 @@
+<!-- <div align=center><img src="./picture/01.svg"/></div> -->
 <div align=center><img src="picture/image-20200418210521131.png" alt="image-20200418210521131"  /></div>
 
-<div align=center><h1>Edge-Computing-Engine</h1></div>
+<div align=center><h1>Edge-Engine</h1></div>
+<div align=center>一个开源的科学计算引擎
+
+
+Email: zk@likedge.top
+
 [![Edge support](https://img.shields.io/badge/SUPPORT-Macos-brightgreen)](https://support.apple.com/downloads/macos)
 [![Edge support](https://img.shields.io/badge/SUPPORT-Ubuntu-brightgreen)](https://ubuntu.com/download/server)
 [![Edge passing](https://img.shields.io/badge/Edge--CI-passing-blue)](https://github.com/AllenZYJ/Edge-Computing-Engine/actions)
 [![GitHub license](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://raw.githubusercontent.com/tesseract-ocr/tesseract/master/LICENSE)
 
+
+
+</div>
+
+
+------
 Edge-Computing-Engine is an open-source scientific computing engine designed for matrix computation and machine learning tasks. It provides a wide range of matrix operations and neural network building blocks.
 
 Email: zk@likedge.top
+
+
 
 ## Features
 

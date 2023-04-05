@@ -2,7 +2,7 @@
 <div align=center><img src="picture/image-20200418210521131.png" alt="image-20200418210521131"  /></div>
 
 <div align=center><h1>Edge-Engine</h1></div>
-<div align=center>
+<div align=center>一个开源的科学计算引擎
 
 
 Email: zk@likedge.top
@@ -15,6 +15,9 @@ Email: zk@likedge.top
 
 
 </div>
+
+
+------
 Edge-Computing-Engine is an open-source scientific computing engine designed for matrix computation and machine learning tasks. It provides a wide range of matrix operations and neural network building blocks.
 
 Email: zk@likedge.top
