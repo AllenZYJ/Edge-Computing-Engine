@@ -36,24 +36,30 @@ int main()
 {
     welcome();
     cout << setprecision(13);
-    Matrix3d mat_call = CreateMatrix3d(3, 64, 64);
-    Matrix3d mat_call2 = CreateMatrix3d(3, 64, 64);
-    edge_layer *conv2d_1 = new conv2d(CreateMatrix3d(3, 64, 64), 3, 12, 1, 2, 0, 0);
-    edge_layer *conv2d_2 = new conv2d(CreateMatrix3d(12, 63, 63), 12, 24, 7, 7, 0, 0);
-    edge_layer *conv2d_3 = new conv2d(CreateMatrix3d(24, 9, 9), 24, 1, 3, 3, 0, 0);
-    edge_layer *bn_1 = new bn(0.1, 0.2);
     start_t = clock();
-    Matrix3d output_conv = conv2d_1->forward(mat_call2);
-    Matrix3d output_conv2 = conv2d_2->forward(output_conv);
-    getshape(output_conv2);
-    Matrix3d output_conv3 = conv2d_3->forward(output_conv2);
-    Matrix3d output_bn1 = bn_1->forward(output_conv3);
-    cout << matrix3d_mean(output_bn1) << endl;
+    Matrix4d mat_call = CreateMatrix4d(2, 3, 640, 640);
+    print_shape(mat_call);
+
+    edge_layer *conv2d_1 = new conv2d(mat_call, 3, 12, 1, 2, 0, 0);
+    Matrix4d output_conv = conv2d_1->forward(mat_call);
+    print_shape(output_conv);    
+    int parameter_1 = conv2d_1->parameter_counter();
+
+    edge_layer *conv2d_2 = new conv2d(output_conv, 12, 24, 7, 7, 0, 0);
+    Matrix4d output_conv2 = conv2d_2->forward(output_conv);
+    print_shape(output_conv2);
+    std::cout << "EDGE Matrix Shape: (" << output_conv2.batch << "," << output_conv2.dep << ","
+              << output_conv2.wid << "," << output_conv2.high << ")" << std::endl;
+    parameter_1 += conv2d_2->parameter_counter();
+
+    edge_layer *conv2d_3 = new conv2d(output_conv2, 24, 1, 3, 3, 0, 0);
+    Matrix4d output_conv3 = conv2d_3->forward(output_conv2);
+    print_shape(output_conv3);
+    parameter_1 += conv2d_3->parameter_counter();
     end_t = clock();
+    cout<<"total parameters :"<<parameter_1<<endl;
     double total_t = (double)(end_t - start_t) / CLOCKS_PER_SEC;
     printf("CPUduration：%f\n", total_t);
-    getshape(output_conv3);
-    getshape(output_bn1);
     
 
 }
