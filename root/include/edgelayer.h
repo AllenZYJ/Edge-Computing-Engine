@@ -2,77 +2,63 @@ class edge_layer
 {
 public:
     virtual ~edge_layer() {}
-    virtual Matrix3d forward(Matrix3d mid1) = 0;
+    virtual Matrix4d forward(Matrix4d mid1) = 0;
+    virtual int parameter_counter() = 0;
 };
 
 class conv2d : public edge_layer
 {
 public:
-    conv2d(Matrix3d mid_1, int in_channel, int out_channle, int _stride, int ksize, int _mode, int _padding);
+    conv2d(Matrix4d mid_4, int in_channel, int out_channle, int _stride, int ksize, int _mode, int _padding);
     int arg1;
-    Matrix3d mid1;
+    Matrix4d mid4;
     int input_dim;
     int output_channels;
     int stride;
     int kernel_size;
     int mode;
     int padding;
-    Matrix3d forward(Matrix3d mid1)
+    
+    Matrix4d forward(Matrix4d mid4)
     {
-        Matrix output;
-        Matrix mid_rgb[input_dim];
-        for (int rgb_idx = 0; rgb_idx < input_dim; rgb_idx++)
-        {
-            mid_rgb[rgb_idx] = mid1.matrix3d[rgb_idx];
-        }
-        Matrix3d filters = CreateMatrix3d(output_channels, kernel_size, kernel_size);
-        // Matrix filters[output_channels][input_dim];
-        for (int channel_index = 0; channel_index < input_dim; channel_index++)
-        {
-            for (int filter_index = 0; filter_index < output_channels; filter_index++)
+            std::cout << "in_channel = " << input_dim << std::endl;
+            std::cout << "out_channle = " << output_channels << std::endl;
+            std::cout << "_stride = " << stride << std::endl;
+            std::cout << "ksize = " << kernel_size << std::endl;
+            std::cout << "_mode = " << mode << std::endl;
+            std::cout << "_padding = " << padding << std::endl;
+            Matrix3d *output3d_arr = (Matrix3d *)malloc(mid4.batch * sizeof(Matrix3d));
+            for (int batch_idx = 0; batch_idx < mid4.batch; batch_idx++)
             {
-                Matrix kernel = ones(kernel_size, kernel_size);
-                filters.matrix3d[filter_index] = kernel;
+                Matrix3d mid3 = mid4.matrix4d[batch_idx];
+                Matrix3d output3d = conv_test_with_output(mid3, input_dim, output_channels, stride, kernel_size, mode,false);
+                output3d_arr[batch_idx] = output3d;
             }
-        }
-        if (mode == 0)
-        {
-            // cout << "input_img:" << endl;
-            // for (int i = 0; i < input_dim; i++)
-            // {
-            // 	// cout << "---------rgb: " << i << "---------" << endl;
-            // 	// cout_mat(mid_rgb[i]);
-            // }
-            Matrix conv_result = CreateMatrix(((mid1.wid - kernel_size) / stride) + 1, ((mid1.high - kernel_size) / stride) + 1);
-            Matrix kernel = ones(kernel_size, kernel_size);
-            // cout << "--------- kernels: 3x3--------" << endl;
-            // cout_mat(kernel);
-            // cout << "--------- output: ---------" << endl;
-            Matrix feature_maps[output_channels];
-            for (int filter_idx = 0; filter_idx < output_channels; filter_idx++)
+
+            Matrix4d output4d = CreateMatrix4d(mid4.batch, output_channels, output3d_arr[0].wid, output3d_arr[0].high);
+            for (int batch_idx = 0; batch_idx < mid4.batch; batch_idx++)
             {
-                Matrix sum_rgb = CreateMatrix(((mid1.wid - kernel_size) / stride) + 1, ((mid1.high - kernel_size) / stride) + 1);
-                for (int channel_idx = 0; channel_idx < input_dim; channel_idx++)
-                {
-                    sum_rgb = add(sum_rgb, conv_element(mid_rgb[channel_idx], filters.matrix3d[filter_idx], kernel_size, stride), 0);
-                    // cout << "sum_rgb"
-                    //  << "filters_index: " << filter_idx << " " << endl;
-                    // cout_mat(sum_rgb);
-                }
-                feature_maps[filter_idx] = sum_rgb;
+                output4d.matrix4d[batch_idx] = output3d_arr[batch_idx];
             }
-            Matrix3d output3d = CreateMatrix3d(output_channels, feature_maps[0].row, feature_maps[0].col);
-            // for (int i = 0; i < output_channels; i++)
-            // {
-            // 	output3d.matrix3d[i] = feature_maps[i].matrix;
-            // }
-            return output3d;
-        }
+            return output4d;
     }
+    int parameter_counter()
+    {
+        int num_params = input_dim * output_channels * kernel_size * kernel_size;
+
+        // if (bias)
+        // {
+        //     num_params += out_channels;
+        // }
+
+        return num_params;
+    }
+
 };
-conv2d::conv2d(Matrix3d mid_1, int in_channel, int out_channle, int _stride, int ksize, int _mode, int _padding)
+
+conv2d::conv2d(Matrix4d mid_1, int in_channel, int out_channle, int _stride, int ksize, int _mode, int _padding)
 {
-    mid1 = mid_1;
+    mid4 = mid_1;
     input_dim = in_channel;
     output_channels = out_channle;
     stride = _stride;

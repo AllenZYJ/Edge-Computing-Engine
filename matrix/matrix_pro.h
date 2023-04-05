@@ -639,15 +639,17 @@ Matrix3d conv_test_with_output(Matrix3d mid1,
     }
 
     // Construct filters
-    Matrix filters[output_channels][input_dim];
-    for (int channel_index = 0; channel_index < input_dim; channel_index++)
-    {
-        for (int filter_index = 0; filter_index < output_channels; filter_index++)
-        {
-            Matrix kernel = ones(kernel_size, kernel_size);
-            filters[channel_index][filter_index] = kernel;
-        }
-    }
+    Matrix filters[input_dim][output_channels];
+	for (int channel_index = 0; channel_index < input_dim; channel_index++)
+	{
+	    
+	    for (int filter_index = 0; filter_index < output_channels; filter_index++)
+	    {
+	        Matrix kernel = ones(kernel_size, kernel_size);
+	        filters[channel_index][filter_index] = kernel;
+	    }
+	}
+
 
     // Compute convolution results for each filter
     Matrix kernel = ones(kernel_size, kernel_size);
@@ -727,13 +729,6 @@ Matrix4d batch_conv_test(Matrix4d mid4,
     {
         output4d.matrix4d[batch_idx] = output3d_arr[batch_idx];
     }
-    // std::cout << "input_dim: " << input_dim << std::endl;
-    // std::cout << "output_channels: " << output_channels << std::endl;
-    // std::cout << "stride: " << stride << std::endl;
-    // std::cout << "kernel_size: " << kernel_size << std::endl;
-    // std::cout << "mode: " << mode << std::endl;
-    // std::cout << "padding: " << padding << std::endl;
-    
     return output4d;
 }
 

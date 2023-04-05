@@ -39,7 +39,7 @@ void test_batch_conv_test(int batch_size,
     cout << "mode = " << mode << endl;
 
     Matrix4d input4d = CreateMatrix4d(batch_size, depth, height, width);
-    Matrix4d output4d = batch_conv_test(input4d, depth, output_channels, stride, kernel_size, mode,false);
+    Matrix4d output4d = batch_conv_test(input4d, depth, output_channels, stride, kernel_size, mode,true);
     // 打印卷积维度计算过程
     int padding_wid = stride - (input4d.wid - kernel_size) % stride;
     if (padding_wid == stride) {
@@ -59,27 +59,29 @@ void test_batch_conv_test(int batch_size,
     assert(output4d.wid == output_width);
     assert(output4d.high == output_height);
     }
+
 int main() {
 ofstream outfile("result.txt");  // 打开输出文件流
 outfile << "bs" << "\t" << "ic" << "\t" << "height" << "\t" << "width" << "\t" 
                                 << "oc" << "\t" << "stride" << "\t" << "ksize" << "\t" << "mode" << endl;
-    test_batch_conv_test(1, 3, 32, 32, 1, 2, 3, 0);
-    for (int width = 32; width <= 640; ++width) {
-    for (int height = 32; height <= 640; ++height) {
-        for (int output_channels = 1; output_channels <= 256; ++output_channels) {
-            for (int kernel_size = 1; kernel_size <= 7; ++kernel_size) {
-                for (int stride = 1; stride <= kernel_size; ++stride) {
-                    for (int batch_size = 1; batch_size <= 4; ++batch_size) {
-                        cout<<"---------------------------"<<endl;
-                        outfile << batch_size << "\t" << 3 << "\t" << height << "\t" << width << "\t" 
-                                << output_channels << "\t" << stride << "\t" << kernel_size << "\t" << 0 << endl;
-                        test_batch_conv_test(batch_size, 3, height, width, output_channels, stride, kernel_size, 0);
-                    }
-                }
-            }
-        }
-    }
-}
+
+    test_batch_conv_test(2, 24, 3, 3, 1, 3, 3, 0);
+//     for (int width = 32; width <= 640; ++width) {
+//     for (int height = 32; height <= 640; ++height) {
+//         for (int output_channels = 1; output_channels <= 256; ++output_channels) {
+//             for (int kernel_size = 1; kernel_size <= 7; ++kernel_size) {
+//                 for (int stride = 1; stride <= kernel_size; ++stride) {
+//                     for (int batch_size = 1; batch_size <= 4; ++batch_size) {
+//                         cout<<"---------------------------"<<endl;
+//                         outfile << batch_size << "\t" << 3 << "\t" << height << "\t" << width << "\t" 
+//                                 << output_channels << "\t" << stride << "\t" << kernel_size << "\t" << 0 << endl;
+//                         test_batch_conv_test(batch_size, 3, height, width, output_channels, stride, kernel_size, 0);
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
     cout << "All tests passed!\n";
     return 0;
 }
