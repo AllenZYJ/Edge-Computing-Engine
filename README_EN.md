@@ -1,7 +1,7 @@
 <!-- <div align=center><img src="./picture/01.svg"/></div> -->
 <div align=center><img src="picture/image-20200418210521131.png" alt="image-20200418210521131"  /></div>
 
-<div align=center><h1>Edge-Engine</h1></div>
+<div align=center><h1>Edge-Computing-Engine</h1></div>
 <div align=center>一个开源的科学计算引擎
 
 
