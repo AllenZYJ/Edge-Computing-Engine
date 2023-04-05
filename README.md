@@ -60,7 +60,7 @@ Email: zk@likedge.top
 
 ![path](./picture/path.png)
 
-## 快速开始
+## Quickstart
 
 ```
 git clone git@github.com:AllenZYJ/Edge-Computing-Engine.git
@@ -68,101 +68,26 @@ git clone git@github.com:AllenZYJ/Edge-Computing-Engine.git
 cd to install_diff
 ```
 
-进入install_diff目录:
+cd install_diff
 
-执行
+run on terminal
 
 ```
 make
 make install
 ```
 
-编译demo入口程序
-
 ```shell
 g++ main.cpp -o main -lautodiff
 ```
 
-或者BP测试程序
-
-```shell
-g++ nerual_network.cpp -o main
-```
-
-运行
+run
 
 ```shell
 ./main
 ```
 
-## 算子系列
-
-卷积：
-
-```c++
-double conv_test(Matrix mid1,int input_dim = 3,int output_channels = 3,int stride = 1,int kernel_size = 2,int mode = 0,int padding = 0)
-```
-
-测试：
-
-```c
-g++ conv_test.cpp -o conv_test -lautodiff && ./conv_test
-```
-## Opencv c++
-```c
-cd to opencv4.x.x/build
-cmake  ../opencv-4.x
-cmake --build .
-
-g++ conv_test.cpp -o ma -lautodiff -I /usr/local/include/opencv4 -L/usr/local/lib -lopencv_imgcodecs -lopencv_core
-```
-
-### 模型定义方法:
-
-```c
-edge_network(int input, int num_neuron)
-```
-
-作为序列模型api
-
-edge_network作为一个类型存在,位于matrix_grad.h中结构体类型的数据
-
-定义了前向传播函数,前向传播无激活版,反向传播,末层反向传播,四大最常用的函数主体.
-
-完整的序列模型:
-
-![image-20200128154352842](picture/image-20200128154352842.png)
-
-### 实现5层全连接层,可自定义神经元和激活函数,损失函数
-
-全连接层使用方法:
-
-第一层的权重自定义,而后调用forward函数前向传播一层,自动求出激活以后的值,激活函数可自定义.
-
-首先定义一个权重矩阵和偏置矩阵,第一个矩阵的维度大小使用数据列去定义:
-
-```c
-Matrix bias1 = CreateRandMat(2,1);
-Matrix weight1 = CreateRandMat(2,data.col);
-```
-
-之后可以输出第一层前向传播的值,同时可以定义下一层的bias的维度, row使用第一层的权重矩阵的行,第二层的权重矩阵的行使用了第一层的输出的行, 而列自行定义即可, 这一点体现了前向传播算法的维度相容. 也就是:
-
-```c
-Matrix output1 = sequaltial.forward(get_T(get_row(data_mine,index)),weight1,bias1);
-```
-
-```c
-Matrix weight2 = CreateRandMat(output1.row,2);
-Matrix bias2 = CreateRandMat(weight2.row,1);
-Matrix output2 = sequaltial.forward(output1,weight2,bias2);
-```
-
-同时第二层的输出也可以求出来,以此类推 .
-
-最终输出代码见nerual_test.cpp ![nerual_test1](./picture/nerual_test1.png)
-
-代码:
+### Define network
 
 ```c
 Matrix data_mine = CreateRandMat(2,1);
@@ -197,6 +122,7 @@ weight4 = subtract(weight4,times_mat(0.0001,padding(grad_w7w8,2,2)));
 }
 ```
 ```shell
+Output:
 ---------epoch: 0------------
 loss: 4.65667
 loss: 3.28273
@@ -259,30 +185,6 @@ loss: 4.65441
 loss: 3.2812
 ```
 
-## Bp反向传播的demo程序基于Pytorch官方代码模拟实现测试
-
-迭代结果 :
-
-W1: 0.6944 1.52368
-	-1.46644 -0.154097
-W2: 1.10079
-	0.462984
-loss: 0.559269
-
-epoch:100 , 可自行测试.
-
-输出最终损失和参数迭代结果.
-
------------split-line-----------
-2.79955
-0.36431
--0.451694
-epoch: 100 error: 6.05895
------------split-line-----------
-0.009167(sum of loss)
-
-### 目前实现的程序接口
-
 ### API:
 
 - [x] Matrix read_csv(string &file_path)读取格式化文件(csv),返回一个自动计算长度的矩阵.
@@ -341,241 +243,14 @@ epoch: 100 error: 6.05895
 
 - [ ] 主流网络架构实现.
 
-  
-
-## 反向传播测试demo:
-
-```c
-#include<iostream>
-#include<ctime>
-#include<string>
-#include<time.h>
-#include<math.h>
-#include<fstream>
-#include<stdlib.h>
-#include"./matrix/matrix_def.h"
-#include"./matrix/matrix_pro.h"
-#include"./welcome/score_wel.cpp"
-#include"./logistic/logistic_def.h"
-#include"./file_pro/data_read.h"
-using namespace std;
-clock_t start, stop;
-double duration;
-int main()
-{
-	welcome();	
-	string path = "./data/nerual_data.csv";
-	Matrix data = read_csv(path);
-	Matrix bais = CreateMatrix(data.row,1);		
-	Matrix x = iloc(data,0,100,0,2);
-	Matrix y = iloc(data,0,100,2,3);
-	int N=100,in_Dim=2,H_num=2,out_Dim=2;
-	double learning_rate = 0.0001;
-	Matrix W1 = CreateRandMat(in_Dim,H_num);
-	Matrix W2 = CreateRandMat(H_num,out_Dim);
-	cout_mat(W1);
-	cout_mat(W2);
-	for(int epoch = 0;epoch<100;epoch++)
-	{
-		Matrix x_w1 = mul(x,W1);
-		Matrix re = mat_relu(x_w1);
-		Matrix out = mul(re,W2);
-		Matrix mat_sq = mat_sq_loss(out,y);
-		Matrix grad_y_pred = times_mat(2.0,subtract(out,y));
-		Matrix grad_w2 = mul(get_T(re),grad_y_pred);
-		Matrix grad_h_relu = mul(grad_y_pred,get_T(W2));
-		Matrix grad_h_relu_copy = mat_relu(grad_h_relu);
-		Matrix grad_w1 = mul(get_T(x),grad_h_relu_copy);
-		Matrix dw1 = times_mat(learning_rate,mul(get_T(x),grad_h_relu_copy));
-		W1 = subtract(W1,dw1);
-		W2 = subtract(W2,times_mat(learning_rate,grad_w2));
-		cout<<"W1: ";
-		cout_mat(W1);
-		cout<<"W2: ";
-		cout_mat(W2);
-		cout<<"loss"<<": ";
-		cout<<matrix_sum(mat_sq)/100<<endl;
-	}
-}
-```
-
-
-
-## 演示:矩阵乘法
-
-Matrix **A**：
-
-| 第1列   | 第2列   | 第3列   | 第4列   | 第5列   |
-| ------- | ------- | ------- | ------- | ------- |
-| 72.0000 | 0.0000  | 0.0000  | 0.0000  | 0.0000  |
-| 0.0000  | 64.0000 | 0.0000  | 0.0000  | 0.0000  |
-| 16.0000 | 8.0000  | 0.0000  | 0.0000  | 0.0000  |
-| 0.0000  | 0.0000  | 56.0000 | 16.0000 | 32.0000 |
-| 0.0000  | 0.0000  | 0.0000  | 0.0000  | 0.0000  |
-| 0.0000  | 0.0000  | 0.0000  | 0.0000  | 0.0000  |
-
-MAtrix **B**：
-
-| 第1列   | 第2列   | 第3列   | 第4列   | 第5列  | 第6列  |
-| ------- | ------- | ------- | ------- | ------ | ------ |
-| 72.0000 | 0.0000  | 16.0000 | 0.0000  | 0.0000 | 0.0000 |
-| 0.0000  | 64.0000 | 8.0000  | 0.0000  | 0.0000 | 0.0000 |
-| 0.0000  | 0.0000  | 0.0000  | 56.0000 | 0.0000 | 0.0000 |
-| 0.0000  | 0.0000  | 0.0000  | 16.0000 | 0.0000 | 0.0000 |
-| 0.0000  | 0.0000  | 0.0000  | 32.0000 | 0.0000 | 0.0000 |
-
-To
-
-| 第1列     | 第2列     | 第3列     | 第4列     | 第5列  | 第6列  |
-| --------- | --------- | --------- | --------- | ------ | ------ |
-| 5184.0000 | 0.0000    | 1152.0000 | 0.0000    | 0.0000 | 0.0000 |
-| 0.0000    | 4096.0000 | 512.0000  | 0.0000    | 0.0000 | 0.0000 |
-| 1152.0000 | 512.0000  | 320.0000  | 0.0000    | 0.0000 | 0.0000 |
-| 0.0000    | 0.0000    | 0.0000    | 4416.0000 | 0.0000 | 0.0000 |
-| 0.0000    | 0.0000    | 0.0000    | 0.0000    | 0.0000 | 0.0000 |
-| 0.0000    | 0.0000    | 0.0000    | 0.0000    | 0.0000 | 0.0000 |
-
-## 演示: 矩阵展开(flatten).
-
-double* flatten(Matrix mid1)
-
-|  1   |  2   |  3   |
-| :--: | :--: | :--: |
-|  2   |  4   |  6   |
-|  7   |  8   |  9   |
-
-​	To
-
-| 1    | 2    | 3    | 2    | 4    | 6    | 7    | 8    | 9                  |
-| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | :----------------- |
-|      |      |      |      |      |      |      |      | Like numpy.flatten |
-
-function:
-
-## 演示: 邻接矩阵的参数定义:
-
-​	Matrix appply(Matrix mid1,Matrix mid2,int axis = 0)
-
-> 参数 axis=0 :
-
-| 0    | 7    | 2    |
-| ---- | ---- | ---- |
-| 0    | 3    | 1    |
-| 0    | 0    | 0    |
-| 0    | 0    | 11   |
-| 0    | 7    | 2    |
-| 0    | 3    | 1    |
-| 0    | 0    | 0    |
-| 0    | 0    | 11   |
-------
-
-> axis = 1:
-
-| 0    | 7    | 2    | 0    | 7    | 2    |
-| ---- | ---- | ---- | ---- | ---- | ---- |
-| 0    | 3    | 1    | 0    | 3    | 1    |
-| 0    | 0    | 0    | 0    | 0    | 0    |
-| 0    | 0    | 11   | 0    | 0    | 11   |
-
-------
-## 矩阵 padding
-
-|mid1.wid: 10,|kernel_size: 3| stride: 3 |padding_wid: 2 | padding_high: 2|      |      |      |      |      |      |      |
-| --- | ---  | ---  | ---  | ---  | ---  | ---  | ---  | ---  | ---  | ---  | ---  |
-| 0   | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    |
-| 0   | -0.626600 | 0.810600 | 1.072900 | 1.111000 | 0.556900 | 0.345700 | -0.279100 | 1.001200 | 1.785300 | -0.735700 | 0    |
-| 0   | -0.789300 | -0.351300 | 1.811300 | -0.780600 | -0.837700 | -0.005400 | -0.094100 | 0.142000 | -0.815500 | 1.186100 | 0    |
-| 0   | 1.871900 | -0.898500 | -0.276100 | -0.095300 | -0.142100 | 0.833700 | 0.358200 | -0.870000 | -0.418200 | 1.558500 | 0    |
-| 0   | 1.105900 | 1.706800 | 1.549700 | -0.569300 | 1.530000 | -0.671800 | 1.189500 | 0.043700 | 1.302500 | 0.733100 | 0    |
-| 0   | -0.319000 | 0.202600 | 0.285000 | 1.103900 | -0.987300 | 0.493700 | 0.932100 | -0.595000 | 0.517200 | 1.225800 | 0    |
-| 0   | 1.394400 | 0.119300 | 1.536400 | -0.789700 | 0.590100 | 0.737300 | 0.522400 | -0.959800 | 1.327900 | -0.910700 | 0    |
-| 0   | -0.081900 | -0.224100 | -0.379300 | -0.525000 | 1.770800 | 0.864100 | 0.646200 | -0.966900 | 0.592900 | 0.614600 | 0    |
-| 0   | -0.780800 | -0.057800 | 0.655500 | 0.275800 | 1.418900 | 1.220800 | 1.505400 | 0.230500 | -0.657900 | 1.346900 | 0    |
-| 0   | -0.149900 | 1.788800 | -0.663400 | 0.835300 | 0.475900 | 1.826600 | -0.112600 | -0.412000 | -0.624900 | 0.412000 | 0    |
-| 0   | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    |
-
-## 更新2019/11/18/00:12
-
-- [x] read_csv 通过文件流读取逗号分隔符文件,返回一个自动计算长度的矩阵.
-
-  例如 CSV's head :
-
-  | -0.017612 | 14.053064 | 0    |
-  | --------- | --------- | ---- |
-  | -1.395634 | 4.662541  | 1    |
-  | -0.752157 | 6.53862   | 0    |
-  | -1.322371 | 7.152853  | 0    |
-  | 0.423363  | 11.054677 | 0    |
-  | 0.406704  | 7.067335  | 1    |
-
-  Get:
-
-  ![](./picture/WX20191119-105411@2x.png)
-
-  
-
-  ## Logistic Regression demo base Edge:
-
-
-```c
-#include<iostream>
-#include<ctime>
-#include<string>
-#include <time.h>
-#include <math.h>
-#include <fstream>
-#include"./matrix/matrix_def.h"
-#include"./matrix/matrix_pro.h"
-#include"./welcome/score_wel.cpp"
-#include"./logistic/logistic_def.h"
-#include"./file_pro/data_read.h"
-using namespace std;
-clock_t start, stop;
-double duration;
-int main()
-{
-	welcome();	
-	string path = "./new_data2.csv";
-	Matrix data = read_csv(path);
-	Matrix bais = CreateMatrix(data.row,1);		
-	data = appply(data,bais,1);
-	Matrix y = iloc(data,0,0,3,4);
-	Matrix x_1 = iloc(data,0,0,0,3);
-	Matrix x_2 = get_T(x_1);
-	double alpha = 0.002;
-	int max_epoch = 100;
-	Matrix weight = CreateMatrix(3,1);
-	change_va(weight,0,0,1);
-	change_va(weight,1,0,1);
-	change_va(weight,2,0,1);
-	int epoch = 0;
-	for(epoch = 0;epoch<=max_epoch;epoch++)
-	{
-	cout<<"-----------split-line-----------"<<endl;			
-	Matrix temp_mul = mul(x_1,weight);
-	Matrix h =e_sigmoid(temp_mul);
-	Matrix error = subtract(y,h);
-	Matrix temp_update = mul(x_2,error);
-	Matrix updata = add(weight,times_mat(alpha,temp_update),0);
-	cout_mat(weight);
-	cout<<"epoch: "<<epoch<<" error: "<<matrix_sum(error)<<endl;
-	cout<<"-----------split-line-----------"<<endl;	
-	}
-	stop = clock();
-  printf("%f\n", (double)(stop - start) / CLOCKS_PER_SEC);
-	return 0;
-}
-```
-Something :
+  ### Something :
 
 > 1. 矩阵元素默认为1
 > 2. 使用位运算加速防止填充过大的数值,但是会损失一定精度,慎用.
 > 3. 记得delete(matrix)在你使用完一个矩阵计算单元以后.
 > 4. api接口更多的接近于pandas和numpy的使用习惯.
 > 5. 更多的细节参见目前最新的代码
-> 6. 欢迎star和关注.
-> 7. autodiff部分感谢国外博主Omar的思路提醒.
->
+> 
 
 ------
 
