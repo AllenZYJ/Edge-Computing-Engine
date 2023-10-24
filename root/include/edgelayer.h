@@ -18,29 +18,29 @@ public:
     int kernel_size;
     int mode;
     int padding;
-    
+
     Matrix4d forward(Matrix4d mid4)
     {
-            std::cout << "in_channel = " << input_dim << std::endl;
-            std::cout << "out_channle = " << output_channels << std::endl;
-            std::cout << "_stride = " << stride << std::endl;
-            std::cout << "ksize = " << kernel_size << std::endl;
-            std::cout << "_mode = " << mode << std::endl;
-            std::cout << "_padding = " << padding << std::endl;
-            Matrix3d *output3d_arr = (Matrix3d *)malloc(mid4.batch * sizeof(Matrix3d));
-            for (int batch_idx = 0; batch_idx < mid4.batch; batch_idx++)
-            {
-                Matrix3d mid3 = mid4.matrix4d[batch_idx];
-                Matrix3d output3d = conv_test_with_output(mid3, input_dim, output_channels, stride, kernel_size, mode,false);
-                output3d_arr[batch_idx] = output3d;
-            }
+        std::cout << "in_channel = " << input_dim << std::endl;
+        std::cout << "out_channle = " << output_channels << std::endl;
+        std::cout << "_stride = " << stride << std::endl;
+        std::cout << "ksize = " << kernel_size << std::endl;
+        std::cout << "_mode = " << mode << std::endl;
+        std::cout << "_padding = " << padding << std::endl;
+        Matrix3d *output3d_arr = (Matrix3d *)malloc(mid4.batch * sizeof(Matrix3d));
+        for (int batch_idx = 0; batch_idx < mid4.batch; batch_idx++)
+        {
+            Matrix3d mid3 = mid4.matrix4d[batch_idx];
+            Matrix3d output3d = conv_test_with_output(mid3, input_dim, output_channels, stride, kernel_size, mode, false);
+            output3d_arr[batch_idx] = output3d;
+        }
 
-            Matrix4d output4d = CreateMatrix4d(mid4.batch, output_channels, output3d_arr[0].wid, output3d_arr[0].high);
-            for (int batch_idx = 0; batch_idx < mid4.batch; batch_idx++)
-            {
-                output4d.matrix4d[batch_idx] = output3d_arr[batch_idx];
-            }
-            return output4d;
+        Matrix4d output4d = CreateMatrix4d(mid4.batch, output_channels, output3d_arr[0].wid, output3d_arr[0].high);
+        for (int batch_idx = 0; batch_idx < mid4.batch; batch_idx++)
+        {
+            output4d.matrix4d[batch_idx] = output3d_arr[batch_idx];
+        }
+        return output4d;
     }
     int parameter_counter()
     {
@@ -53,7 +53,6 @@ public:
 
         return num_params;
     }
-
 };
 
 conv2d::conv2d(Matrix4d mid_1, int in_channel, int out_channle, int _stride, int ksize, int _mode, int _padding)
@@ -111,3 +110,22 @@ public:
 //     batchnormal,
 //     fullconnect
 // };
+class focus : public edge_layer
+{
+public:
+    int in_channel = 32;
+    int out_channel = 64;
+    focus(int in_channel, int out_channel);
+    Matrix3d forward(Matrix3d mid1)
+    {
+        Matrix4d template_mid1 = CreateMatrix4d(in_channel, mid1.dep, mid1.wid, mid1.high);
+        edge_layer *conv2d_1 = new conv2d(template_mid1, 3, 12, 1, 9, 0, 5);
+        Matrix3d output_focus;
+        return output_focus;
+    }
+};
+focus::focus(int in_channel, int out_channel)
+{
+    in_channel = in_channel;
+    out_channel = out_channel;
+}

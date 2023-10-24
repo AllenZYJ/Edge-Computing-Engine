@@ -16,3 +16,4 @@ install_diff/bin/gradient_descent
 install_diff/bin/simple
 .gitignore
 install_diff/bin/ann
+install_diff/

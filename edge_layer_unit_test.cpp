@@ -39,10 +39,9 @@ int main()
     start_t = clock();
     Matrix4d mat_call = CreateMatrix4d(2, 3, 640, 640);
     print_shape(mat_call);
-
-    edge_layer *conv2d_1 = new conv2d(mat_call, 3, 12, 1, 2, 0, 0);
+    edge_layer *conv2d_1 = new conv2d(mat_call, 3, 12, 1, 9, 0, 5);
     Matrix4d output_conv = conv2d_1->forward(mat_call);
-    print_shape(output_conv);    
+    print_shape(output_conv);
     int parameter_1 = conv2d_1->parameter_counter();
 
     edge_layer *conv2d_2 = new conv2d(output_conv, 12, 24, 7, 7, 0, 0);
@@ -57,9 +56,7 @@ int main()
     print_shape(output_conv3);
     parameter_1 += conv2d_3->parameter_counter();
     end_t = clock();
-    cout<<"total parameters :"<<parameter_1<<endl;
+    cout << "total parameters :" << parameter_1 << endl;
     double total_t = (double)(end_t - start_t) / CLOCKS_PER_SEC;
     printf("CPUduration：%f\n", total_t);
-    
-
 }
