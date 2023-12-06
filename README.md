@@ -84,6 +84,10 @@ Contributions to Edge-Computing-Engine are welcome. To contribute, please follow
 
 Please ensure your code adheres to the existing style and passes the existing tests before submitting a pull request.
 
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/AllenZYJ/Edge-Computing-Engine.svg)](https://starchart.cc/AllenZYJ/Edge-Computing-Engine)
+
 ## License
 
 email:zk@likedge.top | edge@ibooker.org.cn
