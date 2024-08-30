@@ -59,7 +59,7 @@ Email: zk@likedge.top
 ## Installation
 
 - Clone the repository: `git clone git@github.com:AllenZYJ/Edge-Computing-Engine.git`
-- Build the project: `cd Edge-Computing-Engine/install_diff && make && make install`
+- Build the project: `cd Edge-Computing-Engine/install_diff && make && make install`(if common user shuould add sudo in Makefile(in install_diff))
 
 ## Usage
 
