@@ -17,3 +17,13 @@ install_diff/bin/simple
 .gitignore
 install_diff/bin/ann
 install_diff/
+matrix_add
+.gitignore
+index.html
+tools/stream_0_first_frame_20241031_165519_879.jpg
+tools/stream_0_first_frame_20241031_165555_446.jpg
+tools/stream_0_first_frame_20241031_165645_741.jpg
+tools/your_library.so
+tools/test_capture
+tools/test_capture_frame
+tools/read_rtsp.py
