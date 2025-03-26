@@ -4,6 +4,7 @@
 #include <cuda_runtime.h>
 #include <cassert>
 #include <cstring>
+#include <cmath>
 
 #define CHECK_CUDA_ERROR(val) check((val), #val, __FILE__, __LINE__)
 template <typename T>
@@ -53,7 +54,60 @@ struct Matrix_CU {
     void printFirstElement() const {
         std::cout << "First element: " << data[0] << std::endl;
     }
+    void printSubMatrix(int numRows, int numCols) const {
+    for (int i = 0; i < numRows; ++i) {
+        for (int j = 0; j < numCols; ++j) {
+            std::cout << data[i * col + j] << " ";
+        }
+        std::cout << std::endl;
+        }
+    }
+    
 };
+float getMaxValue(const Matrix_CU& matrix) {
+    float maxVal = matrix.data[0];
+    for (int i = 1; i < matrix.row * matrix.col; ++i) {
+            if (matrix.data[i] > maxVal) {
+                maxVal = matrix.data[i];
+            }
+        }
+        return maxVal;
+    }
+float getMinValue(const Matrix_CU& matrix) {
+    float minVal = matrix.data[0];
+    for (int i = 1; i < matrix.row * matrix.col; ++i) {
+        if (matrix.data[i] < minVal) {
+            minVal = matrix.data[i];
+        }
+    }
+    return minVal;
+}
+float getAverageValue(const Matrix_CU& matrix) {
+    float sum = 0.0f;
+    for (int i = 0; i < matrix.row * matrix.col; ++i) {
+        sum += matrix.data[i];
+    }
+    return sum / (matrix.row * matrix.col);
+}
+float getSum(const Matrix_CU& matrix) {
+    float sum = 0.0f;
+    for (int i = 0; i < matrix.row * matrix.col; ++i) {
+        sum += matrix.data[i];
+    }
+    return sum;
+}
+
+float getStandardDeviation(const Matrix_CU& matrix) {
+    float mean = getAverageValue(matrix);
+    float sumSquaredDifferences = 0.0f;
+    
+    for (int i = 0; i < matrix.row * matrix.col; ++i) {
+        float diff = matrix.data[i] - mean;
+        sumSquaredDifferences += diff * diff;
+    }
+
+    return sqrt(sumSquaredDifferences / (matrix.row * matrix.col));
+}
 
 __global__ void matrixAddKernel(const float* A, const float* B, float* C, int rows, int cols) {
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
@@ -89,9 +143,12 @@ void matrixAddCUDA(const Matrix_CU& A, const Matrix_CU& B, Matrix_CU& C) {
     dim3 blockSize(16, 16); // 256 threads per block
     dim3 gridSize((cols + blockSize.x - 1) / blockSize.x,
                  (rows + blockSize.y - 1) / blockSize.y);
-
+    auto start = std::chrono::high_resolution_clock::now();
     // 4. 启动核函数
     matrixAddKernel<<<gridSize, blockSize>>>(d_A, d_B, d_C, rows, cols);
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+    std::cout << "GPU执行时间: " << elapsed.count() * 1000 << " ms\n";
     CHECK_CUDA_ERROR(cudaGetLastError()); // 检查内核启动错误
     
     // 5. 拷贝结果回主机
@@ -147,7 +204,12 @@ void testMatrix_CUAddition() {
     matrixAddCUDA(A, B, C_gpu);
     std::cout << "GPU结果: ";
     C_gpu.printFirstElement();
-
+    std::cout<< "标准差:" << getStandardDeviation(C_gpu);
+    std::cout << "最大值: " << getMaxValue(C_gpu) << std::endl;
+    std::cout << "最小值: " << getMinValue(C_gpu) << std::endl;
+    std::cout << "平均值: " << getAverageValue(C_gpu) << std::endl;
+    std::cout << "和: " << getSum(C_gpu) << std::endl;
+    std::cout << "标准差: " << getStandardDeviation(C_gpu) << std::endl;
     // 验证结果
     bool correct = true;
     for (int i = 0; i < 10 && correct; ++i) {
