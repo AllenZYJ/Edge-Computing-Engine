@@ -119,6 +119,39 @@ __global__ void matrixAddKernel(const float* A, const float* B, float* C, int ro
     }
 }
 
+
+// 减法
+__global__ void matrixSubKernel(const float* A, const float* B, float* C, int rows, int cols) {
+    int idx = blockIdx.x * blockDim.x + threadIdx.x;
+    int idy = blockIdx.y * blockDim.y + threadIdx.y;
+    
+    if (idx < rows && idy < cols) {
+        int linear_idx = idx * cols + idy;
+        C[linear_idx] = A[linear_idx] - B[linear_idx];
+    }
+}
+
+// 乘法
+__global__ void matrixMulKernel(const float* A, const float* B, float* C, int rows, int cols) {
+    int idx = blockIdx.x * blockDim.x + threadIdx.x;
+    int idy = blockIdx.y * blockDim.y + threadIdx.y;
+    
+    if (idx < rows && idy < cols) {
+        int linear_idx = idx * cols + idy;
+        C[linear_idx] = A[linear_idx] * B[linear_idx];
+    }
+}
+
+// 除法（注意避免除零错误）
+__global__ void matrixDivKernel(const float* A, const float* B, float* C, int rows, int cols) {
+    int idx = blockIdx.x * blockDim.x + threadIdx.x;
+    int idy = blockIdx.y * blockDim.y + threadIdx.y;
+    
+    if (idx < rows && idy < cols) {
+        int linear_idx = idx * cols + idy;
+        C[linear_idx] = (B[linear_idx] != 0.0f) ? (A[linear_idx] / B[linear_idx]) : 0.0f;
+    }
+}
 // 修改为直接操作输出矩阵，避免拷贝
 void matrixAddCUDA(const Matrix_CU& A, const Matrix_CU& B, Matrix_CU& C) {
     assert(A.row == B.row && A.col == B.col);
@@ -159,7 +192,113 @@ void matrixAddCUDA(const Matrix_CU& A, const Matrix_CU& B, Matrix_CU& C) {
     CHECK_CUDA_ERROR(cudaFree(d_B));
     CHECK_CUDA_ERROR(cudaFree(d_C));
 }
+void matrixSubCUDA(const Matrix_CU& A, const Matrix_CU& B, Matrix_CU& C) {
+    assert(A.row == B.row && A.col == B.col);
+    assert(A.row == C.row && A.col == C.col);
+    
+    const int rows = A.row;
+    const int cols = A.col;
+    size_t size = rows * cols * sizeof(float);
+    
+    float *d_A, *d_B, *d_C;
+    
+    CHECK_CUDA_ERROR(cudaMalloc(&d_A, size));
+    CHECK_CUDA_ERROR(cudaMalloc(&d_B, size));
+    CHECK_CUDA_ERROR(cudaMalloc(&d_C, size));
 
+    CHECK_CUDA_ERROR(cudaMemcpy(d_A, A.data, size, cudaMemcpyHostToDevice));
+    CHECK_CUDA_ERROR(cudaMemcpy(d_B, B.data, size, cudaMemcpyHostToDevice));
+
+    dim3 blockSize(16, 16);
+    dim3 gridSize((cols + blockSize.x - 1) / blockSize.x,
+                 (rows + blockSize.y - 1) / blockSize.y);
+    auto start = std::chrono::high_resolution_clock::now();
+    
+    matrixSubKernel<<<gridSize, blockSize>>>(d_A, d_B, d_C, rows, cols);
+    
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+    std::cout << "GPU执行时间 (减法): " << elapsed.count() * 1000 << " ms\n";
+    
+    CHECK_CUDA_ERROR(cudaGetLastError());
+    CHECK_CUDA_ERROR(cudaMemcpy(C.data, d_C, size, cudaMemcpyDeviceToHost));
+
+    CHECK_CUDA_ERROR(cudaFree(d_A));
+    CHECK_CUDA_ERROR(cudaFree(d_B));
+    CHECK_CUDA_ERROR(cudaFree(d_C));
+}
+
+void matrixMulCUDA(const Matrix_CU& A, const Matrix_CU& B, Matrix_CU& C) {
+    assert(A.row == B.row && A.col == B.col);
+    assert(A.row == C.row && A.col == C.col);
+    
+    const int rows = A.row;
+    const int cols = A.col;
+    size_t size = rows * cols * sizeof(float);
+    
+    float *d_A, *d_B, *d_C;
+    
+    CHECK_CUDA_ERROR(cudaMalloc(&d_A, size));
+    CHECK_CUDA_ERROR(cudaMalloc(&d_B, size));
+    CHECK_CUDA_ERROR(cudaMalloc(&d_C, size));
+
+    CHECK_CUDA_ERROR(cudaMemcpy(d_A, A.data, size, cudaMemcpyHostToDevice));
+    CHECK_CUDA_ERROR(cudaMemcpy(d_B, B.data, size, cudaMemcpyHostToDevice));
+
+    dim3 blockSize(16, 16);
+    dim3 gridSize((cols + blockSize.x - 1) / blockSize.x,
+                 (rows + blockSize.y - 1) / blockSize.y);
+    auto start = std::chrono::high_resolution_clock::now();
+    
+    matrixMulKernel<<<gridSize, blockSize>>>(d_A, d_B, d_C, rows, cols);
+    
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+    std::cout << "GPU执行时间 (乘法): " << elapsed.count() * 1000 << " ms\n";
+    
+    CHECK_CUDA_ERROR(cudaGetLastError());
+    CHECK_CUDA_ERROR(cudaMemcpy(C.data, d_C, size, cudaMemcpyDeviceToHost));
+
+    CHECK_CUDA_ERROR(cudaFree(d_A));
+    CHECK_CUDA_ERROR(cudaFree(d_B));
+    CHECK_CUDA_ERROR(cudaFree(d_C));
+}
+
+void matrixDivCUDA(const Matrix_CU& A, const Matrix_CU& B, Matrix_CU& C) {
+    assert(A.row == B.row && A.col == B.col);
+    assert(A.row == C.row && A.col == C.col);
+    
+    const int rows = A.row;
+    const int cols = A.col;
+    size_t size = rows * cols * sizeof(float);
+    
+    float *d_A, *d_B, *d_C;
+    
+    CHECK_CUDA_ERROR(cudaMalloc(&d_A, size));
+    CHECK_CUDA_ERROR(cudaMalloc(&d_B, size));
+    CHECK_CUDA_ERROR(cudaMalloc(&d_C, size));
+
+    CHECK_CUDA_ERROR(cudaMemcpy(d_A, A.data, size, cudaMemcpyHostToDevice));
+    CHECK_CUDA_ERROR(cudaMemcpy(d_B, B.data, size, cudaMemcpyHostToDevice));
+
+    dim3 blockSize(16, 16);
+    dim3 gridSize((cols + blockSize.x - 1) / blockSize.x,
+                 (rows + blockSize.y - 1) / blockSize.y);
+    auto start = std::chrono::high_resolution_clock::now();
+    
+    matrixDivKernel<<<gridSize, blockSize>>>(d_A, d_B, d_C, rows, cols);
+    
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+    std::cout << "GPU执行时间 (除法): " << elapsed.count() * 1000 << " ms\n";
+    
+    CHECK_CUDA_ERROR(cudaGetLastError());
+    CHECK_CUDA_ERROR(cudaMemcpy(C.data, d_C, size, cudaMemcpyDeviceToHost));
+
+    CHECK_CUDA_ERROR(cudaFree(d_A));
+    CHECK_CUDA_ERROR(cudaFree(d_B));
+    CHECK_CUDA_ERROR(cudaFree(d_C));
+}
 Matrix_CU matrixAddCPU(const Matrix_CU& A, const Matrix_CU& B) {
     assert(A.row == B.row && A.col == B.col);
     
@@ -177,7 +316,59 @@ Matrix_CU matrixAddCPU(const Matrix_CU& A, const Matrix_CU& B) {
     
     return C;
 }
+Matrix_CU matrixSubCPU(const Matrix_CU& A, const Matrix_CU& B) {
+    assert(A.row == B.row && A.col == B.col);
+    
+    Matrix_CU C(A.row, A.col);
+    
+    auto start = std::chrono::high_resolution_clock::now();
+    
+    for (int i = 0; i < A.row * A.col; ++i) {
+        C.data[i] = A.data[i] - B.data[i];
+    }
+    
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+    std::cout << "CPU执行时间 (减法): " << elapsed.count() * 1000 << " ms\n";
+    
+    return C;
+}
 
+Matrix_CU matrixMulCPU(const Matrix_CU& A, const Matrix_CU& B) {
+    assert(A.row == B.row && A.col == B.col);
+    
+    Matrix_CU C(A.row, A.col);
+    
+    auto start = std::chrono::high_resolution_clock::now();
+    
+    for (int i = 0; i < A.row * A.col; ++i) {
+        C.data[i] = A.data[i] * B.data[i];
+    }
+    
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+    std::cout << "CPU执行时间 (乘法): " << elapsed.count() * 1000 << " ms\n";
+    
+    return C;
+}
+
+Matrix_CU matrixDivCPU(const Matrix_CU& A, const Matrix_CU& B) {
+    assert(A.row == B.row && A.col == B.col);
+    
+    Matrix_CU C(A.row, A.col);
+    
+    auto start = std::chrono::high_resolution_clock::now();
+    
+    for (int i = 0; i < A.row * A.col; ++i) {
+        C.data[i] = (B.data[i] != 0.0f) ? (A.data[i] / B.data[i]) : 0.0f;
+    }
+    
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed = end - start;
+    std::cout << "CPU执行时间 (除法): " << elapsed.count() * 1000 << " ms\n";
+    
+    return C;
+}
 void testMatrix_CUAddition() {
     const int rows = 10240;
     const int cols = 10240;
@@ -224,6 +415,7 @@ void testMatrix_CUAddition() {
     if (correct) {
         std::cout << "前10个元素验证成功!\n";
     }
+    
 }
 
 int main() {
@@ -232,6 +424,31 @@ int main() {
     CHECK_CUDA_ERROR(cudaGetDeviceProperties(&prop, 0));
     std::cout << "使用GPU: " << prop.name << "\n";
     
-    testMatrix_CUAddition();
+    // testMatrix_CUAddition();
+    Matrix_CU A(10240, 10240); // 假设有 1024x1024 矩阵
+    Matrix_CU B(10240, 10240);
+    Matrix_CU C(10240, 10240);
+    
+    matrixSubCUDA(A, B, C);
+    matrixMulCUDA(A, B, C);
+    matrixDivCUDA(A, B, C);
+
+    Matrix_CU C_cpu1 = matrixSubCPU(A, B);
+    std::cout << "CPU结果: ";
+    C_cpu1.printFirstElement();
+    std::cout << "GPU结果: ";
+    C.printFirstElement();
+    Matrix_CU C_cpu2 = matrixMulCPU(A, B);
+    std::cout << "CPU结果: ";
+    C_cpu2.printFirstElement();
+    std::cout << "GPU结果: ";
+    C.printFirstElement();
+    Matrix_CU C_cpu3 = matrixDivCPU(A, B);
+    std::cout << "CPU结果: ";
+    C_cpu3.printFirstElement();
+    std::cout << "GPU结果: ";
+    C.printFirstElement();
     return 0;
+
+    
 }
