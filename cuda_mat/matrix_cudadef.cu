@@ -418,37 +418,37 @@ void testMatrix_CUAddition() {
     
 }
 
-int main() {
-    // 初始化CUDA设备
-    cudaDeviceProp prop;
-    CHECK_CUDA_ERROR(cudaGetDeviceProperties(&prop, 0));
-    std::cout << "使用GPU: " << prop.name << "\n";
+// int main() {
+//     // 初始化CUDA设备
+//     cudaDeviceProp prop;
+//     CHECK_CUDA_ERROR(cudaGetDeviceProperties(&prop, 0));
+//     std::cout << "使用GPU: " << prop.name << "\n";
     
-    // testMatrix_CUAddition();
-    Matrix_CU A(10240, 10240); // 假设有 1024x1024 矩阵
-    Matrix_CU B(10240, 10240);
-    Matrix_CU C(10240, 10240);
+//     // testMatrix_CUAddition();
+//     Matrix_CU A(10240, 10240); // 假设有 1024x1024 矩阵
+//     Matrix_CU B(10240, 10240);
+//     Matrix_CU C(10240, 10240);
     
-    matrixSubCUDA(A, B, C);
-    matrixMulCUDA(A, B, C);
-    matrixDivCUDA(A, B, C);
+//     matrixSubCUDA(A, B, C);
+//     matrixMulCUDA(A, B, C);
+//     matrixDivCUDA(A, B, C);
 
-    Matrix_CU C_cpu1 = matrixSubCPU(A, B);
-    std::cout << "CPU结果: ";
-    C_cpu1.printFirstElement();
-    std::cout << "GPU结果: ";
-    C.printFirstElement();
-    Matrix_CU C_cpu2 = matrixMulCPU(A, B);
-    std::cout << "CPU结果: ";
-    C_cpu2.printFirstElement();
-    std::cout << "GPU结果: ";
-    C.printFirstElement();
-    Matrix_CU C_cpu3 = matrixDivCPU(A, B);
-    std::cout << "CPU结果: ";
-    C_cpu3.printFirstElement();
-    std::cout << "GPU结果: ";
-    C.printFirstElement();
-    return 0;
+//     Matrix_CU C_cpu1 = matrixSubCPU(A, B);
+//     std::cout << "CPU结果: ";
+//     C_cpu1.printFirstElement();
+//     std::cout << "GPU结果: ";
+//     C.printFirstElement();
+//     Matrix_CU C_cpu2 = matrixMulCPU(A, B);
+//     std::cout << "CPU结果: ";
+//     C_cpu2.printFirstElement();
+//     std::cout << "GPU结果: ";
+//     C.printFirstElement();
+//     Matrix_CU C_cpu3 = matrixDivCPU(A, B);
+//     std::cout << "CPU结果: ";
+//     C_cpu3.printFirstElement();
+//     std::cout << "GPU结果: ";
+//     C.printFirstElement();
+//     return 0;
 
     
-}
+// }
