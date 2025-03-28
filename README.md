@@ -177,8 +177,7 @@ The code carefully manages GPU memory by:
 ------
 
 
-
-**## CPU_Features**
+## CPU_Features
 
 
 
@@ -234,7 +233,7 @@ The code carefully manages GPU memory by:
 
 
 
-**## Requirements**
+## Requirements
 
 
 
@@ -242,7 +241,7 @@ The code carefully manages GPU memory by:
 
 
 
-**## Installation**
+## Installation
 
 
 
@@ -252,7 +251,7 @@ The code carefully manages GPU memory by:
 
 
 
-**## Usage**
+## Usage
 
 
 
@@ -274,7 +273,7 @@ g++ main.cpp -o main -lautodiff
 
 
 
-**## Contributing**
+## Contributing
 
 
 
@@ -298,7 +297,7 @@ Please ensure your code adheres to the existing style and passes the existing te
 
 
 
-**## Stargazers over time**
+## Stargazers over time
 
 
 
