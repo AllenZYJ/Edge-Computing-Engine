@@ -682,16 +682,14 @@ void matrixMatMulCPU(const Matrix_CU& A, const Matrix_CU& B, Matrix_CU& C) {
 }
 int main() {
     // 可配置参数
-    int input_rows = 10000;        // 原来是100，扩大100倍
-    int input_cols = 1000;         // 原来是10，扩大100倍
-    int output_cols = 500;         // 原来是5，扩大100倍
-    int batch_size = 32;           // 批处理大小保持不变
-    bool use_relu = true;          // 是否使用ReLU激活函数
-    int print_rows = 5;            // 保持打印行数不变
-    int print_cols = 5;            // 保持打印列数不变
-    bool verify_with_cpu = false;   // 是否用CPU验证结果
-    
-    // 初始化CUDA
+    int input_rows = 10000;        
+    int input_cols = 1000;         
+    int output_cols = 500;         
+    int batch_size = 32;           
+    bool use_relu = true;          
+    int print_rows = 5;           
+    int print_cols = 5;           
+    bool verify_with_cpu = false; 
     cudaFree(0);
     std::cout << "====== Configuration ======\n";
     std::cout << "Input matrix: " << input_rows << " x " << input_cols << std::endl;
@@ -702,11 +700,9 @@ int main() {
     // 创建计算图
     ComputeGraph graph;
     
-    // 创建输入节点
     ComputeNode* input = graph.addInput(input_rows, input_cols, batch_size);
     ComputeNode* weight = graph.addInput(input_cols, output_cols);
     
-    // 随机初始化
     input->value.randomInit();
     weight->value.randomInit();
     
