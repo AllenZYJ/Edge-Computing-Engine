@@ -2,38 +2,27 @@ name: Deploy static content to Pages
 
 on:
   push:
-    branches: ["master"]
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
+    branches:
+      - main
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
-    if: "contains(github.event.head_commit.message, '[up-page]')"
-
+    
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v2
-
+      - name: Build static content
+        run: |
+          # 你的构建命令，例如生成静态文件
+          echo "Building static content..."
+      
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2  # 改为使用 v2 版本
+        uses: actions/upload-pages-artifact@v2  # 使用 v2 版本
         with:
-          path: '.'
+          name: static-content
+          path: '.'  # 上传构建后的静态文件目录
 
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v1  # 使用 v1 版本进行部署
