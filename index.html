@@ -6,12 +6,13 @@
 <style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
 .mac-os-11 { --title-bar-height: 28px; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
-body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857143; overflow-x: hidden; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; tab-size: 4; background-position: inherit inherit; background-repeat: inherit inherit; }
+h1, h2, h3, h4, h5 { white-space: pre-wrap; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.428571; overflow-x: hidden; background: inherit; }
 iframe { margin: auto; }
 a.url { word-break: break-all; }
 a:active, a:hover { outline: 0px; }
 .in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
-#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
 #write.first-line-indent p { text-indent: 2em; }
 #write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
 #write.first-line-indent li { margin-left: 2em; }
@@ -19,14 +20,14 @@ a:active, a:hover { outline: 0px; }
 body.typora-export { padding-left: 30px; padding-right: 30px; }
 .typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
 .typora-export .task-list-item input { pointer-events: none; }
-@media screen and (max-width: 500px) { 
+@media screen and (max-width: 500px) {
   body.typora-export { padding-left: 0px; padding-right: 0px; }
   #write { padding-left: 20px; padding-right: 20px; }
 }
 #write li > figure:last-child { margin-bottom: 0.5rem; }
 #write ol, #write ul { position: relative; }
-img { max-width: 100%; vertical-align: middle; }
-button, input, select, textarea { color: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; font-size-adjust: inherit; font-kerning: inherit; font-variant-alternates: inherit; font-variant-ligatures: inherit; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-position: inherit; font-variant-emoji: inherit; font-feature-settings: inherit; font-optical-sizing: inherit; font-variation-settings: inherit; }
 input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
 *, ::after, ::before { box-sizing: border-box; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
@@ -44,7 +45,7 @@ h6 { font-size: 1rem; }
 .hidden { display: none; }
 .md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
 a { cursor: pointer; }
-sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.701961); color: rgb(85, 85, 85); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
 sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
 #write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
 figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
@@ -53,8 +54,8 @@ thead, tr { break-inside: avoid; break-after: auto; }
 thead { display: table-header-group; }
 table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
 table.md-table td { min-width: 32px; }
-.CodeMirror-gutters { border-right-width: 0px; background-color: inherit; }
-.CodeMirror-linenumber { }
+.CodeMirror-gutters { border-right-width: 0px; border-right-style: none; border-right-color: currentcolor; background-color: inherit; }
+.CodeMirror-linenumber { -webkit-user-select: none; }
 .CodeMirror { text-align: left; }
 .CodeMirror-placeholder { opacity: 0.3; }
 .CodeMirror pre { padding: 0px 4px; }
@@ -64,7 +65,7 @@ div.hr:focus { cursor: none; }
 #write.fences-no-line-wrapping pre { white-space: pre; }
 #write pre.ty-contain-cm { white-space: normal; }
 .CodeMirror-gutters { margin-right: 4px; }
-.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; position: relative !important; background-position: inherit inherit; background-repeat: inherit inherit; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
 .md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
 #write .md-fences.mock-cm { white-space: pre-wrap; }
 .md-fences.md-fences-with-lineno { padding-left: 0px; }
@@ -74,7 +75,7 @@ div.hr:focus { cursor: none; }
 svg { break-inside: avoid; }
 .footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
 .footnotes + .footnotes { margin-top: 0px; }
-.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; background-position: 0px 0px; background-repeat: initial initial; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
 li div { padding-top: 0px; }
 blockquote { margin: 1rem 0px; }
 li .mathjax-block, li p { margin: 0.5rem 0px; }
@@ -84,18 +85,20 @@ blockquote > :last-child { margin-bottom: 0px; }
 blockquote > :first-child, li > :first-child { margin-top: 0px; }
 .footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
 #write .footnote-line { white-space: pre-wrap; }
-@media print { 
-  body, html { border: 1px solid transparent; height: 99%; break-after: avoid-page; break-before: avoid-page; font-variant-ligatures: no-common-ligatures; }
-  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; padding-bottom: 0px !important; }
-  .typora-export * { -webkit-print-color-adjust: exact; }
-  .typora-export #write { break-after: avoid-page; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; border-color: transparent !important; padding-top: 0px !important; padding-bottom: 0px !important; }
+  .typora-export * { print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
   .typora-export #write::after { height: 0px; }
   .is-mac table { break-inside: avoid; }
+  #write > p:nth-child(1) { margin-top: 0px; }
   .typora-export-show-outline .typora-export-sidebar { display: none; }
+  figure { overflow-x: visible; }
 }
 .footnote-line { margin-top: 0.714em; font-size: 0.7em; }
 a img, img a { cursor: pointer; }
-pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background-color: rgb(204, 204, 204); display: block; overflow-x: hidden; background-position: initial initial; background-repeat: initial initial; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
 p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
 #write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
 p > .md-image:only-child { display: inline-block; width: 100%; }
@@ -106,9 +109,9 @@ p > .md-image:only-child { display: inline-block; width: 100%; }
 [contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
 .md-task-list-item { position: relative; list-style-type: none; }
 .task-list-item.md-task-list-item { padding-left: 0px; }
-.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: medium; }
 .math { font-size: 1rem; }
-.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
 .md-toc-content { position: relative; margin-left: 0px; }
 .md-toc-content::after, .md-toc::after { display: none; }
 .md-toc-item { display: block; color: rgb(65, 131, 196); }
@@ -121,7 +124,7 @@ p > .md-image:only-child { display: inline-block; width: 100%; }
 .md-toc-h4 .md-toc-inner { margin-left: 6em; }
 .md-toc-h5 .md-toc-inner { margin-left: 8em; }
 .md-toc-h6 .md-toc-inner { margin-left: 10em; }
-@media screen and (max-width: 48em) { 
+@media screen and (max-width: 48em) {
   .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
   .md-toc-h4 .md-toc-inner { margin-left: 5em; }
   .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
@@ -133,23 +136,23 @@ a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; 
 .md-attr { display: none; }
 .md-fn-count::after { content: "."; }
 code, pre, samp, tt { font-family: var(--monospace); }
-kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background-color: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; background-position: initial initial; background-repeat: initial initial; }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
 .md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
-code { text-align: left; }
-a.md-print-anchor { white-space: pre !important; border: none !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; text-shadow: initial !important; background-position: 0px 0px !important; background-repeat: initial initial !important; }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: medium !important; border-style: none !important; border-color: currentcolor !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
 .os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
 .md-diagram-panel > svg { max-width: 100%; }
 [lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
 [lang="mermaid"] .node text { font-size: 1rem; }
-table tr th { border-bottom-width: 0px; }
+table tr th { border-bottom-width: 0px; border-bottom-style: none; border-bottom-color: currentcolor; }
 video { max-width: 100%; display: block; margin: 0px auto; }
-iframe { max-width: 100%; width: 100%; border: none; }
+iframe { max-width: 100%; width: 100%; border: medium; }
 .highlight td, .highlight tr { border: 0px; }
-mark { background-color: rgb(255, 255, 0); color: rgb(0, 0, 0); background-position: initial initial; background-repeat: initial initial; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
 .md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
 .md-expand mark .md-meta { opacity: 0.3 !important; }
 mark .md-meta { color: rgb(0, 0, 0); }
-@media print { 
+@media print {
   .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
 }
 .md-diagram-panel .messageText { stroke: none !important; }
@@ -157,24 +160,24 @@ mark .md-meta { color: rgb(0, 0, 0); }
 .md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
 .md-fences.md-fences-math { font-size: 1em; }
 .md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
-.md-fences-advanced:not(.md-focus) { background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit inherit; background-repeat: inherit inherit; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
 .typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
 .typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
 .typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
-.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow-y: auto; padding-bottom: 30px; padding-top: 60px; width: 300px; overflow-x: hidden; }
-@media screen and (max-width: 1024px) { 
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
   .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
 }
-@media screen and (max-width: 800px) { 
+@media screen and (max-width: 800px) {
   .typora-export-sidebar { display: none; }
 }
-.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; overflow-wrap: anywhere; }
 .outline-content ul { margin-top: 0px; margin-bottom: 0px; }
 .outline-content strong { font-weight: 400; }
-.outline-expander { width: 1rem; height: 1.428571429rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
-.outline-expander::before { content: ''; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-expander { width: 1rem; height: 1.428571rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
 .outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
-.outline-expander:hover::before { content: ''; }
+.outline-expander:hover::before { content: ""; }
 .outline-h1 > .outline-item { padding-left: 0px; }
 .outline-h2 > .outline-item { padding-left: 1em; }
 .outline-h3 > .outline-item { padding-left: 2em; }
@@ -186,27 +189,41 @@ mark .md-meta { color: rgb(0, 0, 0); }
 .outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
 .outline-item:hover { margin-left: -28px; margin-right: -28px; border-left-width: 28px; border-left-style: solid; border-left-color: transparent; border-right-width: 28px; border-right-style: solid; border-right-color: transparent; }
 .outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
-.outline-item-open > .outline-item > .outline-expander::before { content: ''; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
 .outline-children { display: none; }
 .info-panel-tab-wrapper { display: none; }
 .outline-item-open > .outline-children { display: block; }
 .typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
 .typora-export .outline-item:hover { margin-right: -8px; border-right-width: 8px; border-right-style: solid; border-right-color: transparent; }
 .typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
-.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: '−'; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
 .typora-export-collapse-outline .outline-children { display: none; }
 .typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
 .typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
 .typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
 .md-inline-math-container mjx-container { zoom: 0.95; }
 mjx-container { break-inside: avoid; }
+.md-alert.md-alert-note { border-left-color: rgb(9, 105, 218); }
+.md-alert.md-alert-important { border-left-color: rgb(130, 80, 223); }
+.md-alert.md-alert-warning { border-left-color: rgb(154, 103, 0); }
+.md-alert.md-alert-tip { border-left-color: rgb(31, 136, 61); }
+.md-alert.md-alert-caution { border-left-color: rgb(207, 34, 46); }
+.md-alert { padding: 0px 1em; margin-bottom: 16px; color: inherit; border-left-width: 0.25em; border-left-style: solid; border-left-color: rgb(0, 0, 0); }
+.md-alert-text-note { color: rgb(9, 105, 218); }
+.md-alert-text-important { color: rgb(130, 80, 223); }
+.md-alert-text-warning { color: rgb(154, 103, 0); }
+.md-alert-text-tip { color: rgb(31, 136, 61); }
+.md-alert-text-caution { color: rgb(207, 34, 46); }
+.md-alert-text { font-size: 0.9rem; font-weight: 700; }
+.md-alert-text svg { fill: currentcolor; position: relative; top: 0.125em; margin-right: 1ch; overflow: visible; }
+.md-alert-text-container::after { content: attr(data-text); text-transform: capitalize; pointer-events: none; margin-right: 1ch; }
 
 
 .CodeMirror { height: auto; }
-.CodeMirror.cm-s-inner { background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit inherit; background-repeat: inherit inherit; }
-.CodeMirror-scroll { overflow-y: hidden; overflow-x: auto; z-index: 3; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
 .CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
-.CodeMirror-gutters { border-right-width: 1px; border-right-style: solid; border-right-color: rgb(221, 221, 221); background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; white-space: nowrap; background-position: inherit inherit; background-repeat: inherit inherit; }
+.CodeMirror-gutters { border-right-width: 1px; border-right-style: solid; border-right-color: rgb(221, 221, 221); background: inherit; white-space: nowrap; }
 .CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
 .cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
 .cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
@@ -242,34 +259,34 @@ mjx-container { break-inside: avoid; }
 .cm-defined { color: rgb(181, 137, 0); }
 div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
 div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
-.cm-s-inner .CodeMirror-activeline-background { background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit inherit; background-repeat: inherit inherit; }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
 .CodeMirror { position: relative; overflow: hidden; }
-.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit inherit; background-repeat: inherit inherit; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
 .CodeMirror-sizer { position: relative; }
 .CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
 .CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
-.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow-y: hidden; overflow-x: auto; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
 .CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
 .CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
 .CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
 .CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
-.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; border: none !important; background-position: 0px 0px !important; background-repeat: initial initial !important; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: medium !important; }
 .CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
 .CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
 .CodeMirror-lines { cursor: text; }
-.CodeMirror pre { border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; border-width: 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; word-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; background-position: 0px 0px; background-repeat: initial initial; }
-.CodeMirror-wrap pre { word-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
 .CodeMirror-code pre { border-right-width: 30px; border-right-style: solid; border-right-color: transparent; width: fit-content; }
-.CodeMirror-wrap .CodeMirror-code pre { border-right-style: none; width: auto; }
-.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right-width: medium; border-right-style: none; border-right-color: currentcolor; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
 .CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
 .CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
 .CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
 .CodeMirror-measure pre { position: static; }
-.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right-style: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right-width: medium; border-right-style: none; border-right-color: currentcolor; width: 0px; }
 .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
 .CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
-.cm-searching { background-color: rgba(255, 255, 0, 0.4); background-position: initial initial; background-repeat: initial initial; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
 span.cm-underlined { text-decoration: underline; }
 span.cm-strikethrough { text-decoration: line-through; }
 .cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
@@ -278,189 +295,1498 @@ span.cm-strikethrough { text-decoration: line-through; }
 .cm-tw-listitem:first-child { padding-left: 10px; }
 .cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
 .cm-tw-underline { text-decoration: underline; }
-@media print { 
+@media print {
   .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
 }
 
 
 :root {
-	--primary-color: #2875d9;
+  --mermaid-theme: night;
 }
 
-* {
-	box-sizing: border-box;
+[lang='mermaid'] .label {
+  color: #333;
 }
 
-html, body, #write {
-	font-family: 'Computer Modern';
+/* CSS Document */
+
+/** code highlight */
+
+.cm-s-inner .cm-variable,
+.cm-s-inner .cm-operator,
+.cm-s-inner .cm-property {
+    color: #b8bfc6;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	font-family: 'Computer Modern';
+.cm-s-inner .cm-keyword {
+    color: #C88FD0;
+}
+
+.cm-s-inner .cm-tag {
+    color: #f4df6a;
+}
+
+.cm-s-inner .cm-attribute {
+    color: #7575E4;
+}
+
+.CodeMirror div.CodeMirror-cursor {
+    border-left: 1px solid #b8bfc6;
+    z-index: 3;
+}
+
+.cm-s-inner .cm-string {
+    color: #D26B6B;
+}
+
+.cm-s-inner .cm-comment,
+.cm-s-inner.cm-comment {
+    color: #DA924A;
+}
+
+.cm-s-inner .cm-header,
+.cm-s-inner .cm-def,
+.cm-s-inner.cm-header,
+.cm-s-inner.cm-def {
+    color: #8d8df0;
+}
+
+.cm-s-inner .cm-quote,
+.cm-s-inner.cm-quote {
+    color: #57ac57;
+}
+
+.cm-s-inner .cm-hr {
+    color: #d8d5d5;
+}
+
+.cm-s-inner .cm-link {
+    color: #d3d3ef;
+}
+
+.cm-s-inner .cm-negative {
+    color: #d95050;
+}
+
+.cm-s-inner .cm-positive {
+    color: #50e650;
+}
+
+.cm-s-inner .cm-string-2 {
+    color: #f50;
+}
+
+.cm-s-inner .cm-meta,
+.cm-s-inner .cm-qualifier {
+    color: #b7b3b3;
+}
+
+.cm-s-inner .cm-builtin {
+    color: #f3b3f8;
+}
+
+.cm-s-inner .cm-bracket {
+    color: #997;
+}
+
+.cm-s-inner .cm-atom,
+.cm-s-inner.cm-atom {
+    color: #84B6CB;
+}
+
+.cm-s-inner .cm-number {
+    color: #64AB8F;
+}
+
+.cm-s-inner .cm-variable {
+    color: #b8bfc6;
+}
+
+.cm-s-inner .cm-variable-2 {
+    color: #9FBAD5;
+}
+
+.cm-s-inner .cm-variable-3 {
+    color: #1cc685;
+}
+
+.CodeMirror-selectedtext,
+.CodeMirror-selected {
+    background: #e37d00;
+    color: #fff !important;
+    text-shadow: none;
+}
+
+.CodeMirror-gutters {
+    border-right: none;
+}@import "";
+@import "";
+
+:root {
+    --of-theme-color: #ff9100;
+    --of-theme-color-dark: #4b4b46;
+    --of-darkest-color: #2d2d2d;
+    --of-darker-color: #1e1e1e;
+    --of-dark-color: #292929;
+    --of-dark-color2: #202020;
+    --of-dark-color3:#404040;
+    --of-dark-color4:#232323;
+    --of-dark-color5:#222222;
+    --of-dark-color6:#1b1b1b;
+    --of-strong: white;
+    --of-strong-code: #00ffa6;
+    --of-font-size: 15px; /*字体大小*/
+    --of-selection: #4a89dc;
+    --of-selection-text: white;
+    --of-text-color: #c6c5b8;
+
+    --bg-color: var(--of-darker-color);
+    /* 侧边栏颜色 */
+    --side-bar-bg-color: var(--of-darkest-color);
+    --text-color: var(--of-text-color);
+    /* 这才是文字颜色 */
+    --text-color-main: var(--of-text-color);
+    /* 选中文字的颜色 */
+    --select-text-bg-color: var(--of-theme-color-dark);
+    /* 被激活的目录背景 */
+    --item-hover-bg-color: var(--of-dark-color3);
+    --control-text-color: #b7b7b7;
+    --control-text-hover-color: #fff;
+    --window-border: 1px solid #333;
+    /* 被激活的文件背景 */
+    --active-file-bg-color: var(--of-dark-color4);
+    --active-file-border-color: var(--of-theme-color);
+    --primary-color: var(--of-theme-color);
+    --active-file-text-color: #fff;
+    --item-hover-text-color: #fff;
+    /* 编辑HTML文件 */
+    --rawblock-edit-panel-bd: var(--of-dark-color);
+    --search-select-bg-color: #3c3c3c;
+    
+    --code-bg-color:  var(--of-dark-color);
+    /* --code-bg-color: #31302e; */
+    --footer-bg-color: var(--side-bar-bg-color);
+    --table-bg-darker-color:   var(--of-dark-color2);
+    --table-bg-color:   var(--of-dark-color5);
+    --table-bg-color2:   var(--of-darkest-color);
+    --table-thead-color: var(--of-dark-color6);
+    --md-code-color: var(--of-strong-code);
+    --table-edit-color: var(--of-darkest-color);
+    --task-list-border-color: #ffffff;
+    --task-list-black-border-color: #000000;
+    /* --task-list-bg-color: rgb(176, 21, 21); */
+    --task-list-checked-color: #00ffa6;
+    /* 设置导航栏选中的背景颜色 */
+    --nav-group-item-color: var(--of-theme-color-dark);
+    --select-background: var(--of-theme-color-dark);
+    --other-main-color: var(--of-theme-color);
+    --hover-color: var(--of-dark-color2);
+    /* 引用的背景颜色 */
+    --blockquote-color: var(--of-dark-color);
+    /* 源代码被激活的颜色 */
+    --codemirror-color: var(--of-dark-color);
+    /* 右键菜单按下 */
+    --menu-item-container-btn-hover: var(--of-dark-color2);
+    /* 右键菜单按钮边框 */
+    --menu-item-container-btn: var(--of-theme-color-dark);
+    /* 右键菜单和字数统计 */
+    --context-menu-color: var(--of-darkest-color);
+    /* tooltip颜色（右键菜单按按钮时显示提示的颜色） */
+    --tooltip-color: var(--of-darkest-color);
+    /* tooltip文字颜色*/
+    --tooltip-text-color: white;
+    /* 滚动条颜色 */
+    --scrollbar-color: var(--of-theme-color-dark);
+    /* 源代码模式光标 */
+    --code-cursor-color: var(--of-theme-color);
+    /* 返回按钮 */
+    --back-btn-color: var(--of-theme-color);
+    /* 高亮文字颜色 */
+    --highlight-text-color: var(--of-darker-color);
+    /* 距离底部 */
+    --write-padding-bottom: 400px;
+
+    --ofcodetext: Inconsolata, Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+    --oftext: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+    --text-font: var(--oftext); /*正文字体*/
+    --title-font: var(--oftext); /*标题字体*/
+    --text-line-height: 1.7; /*正文行间距*/
+    --code-line-height: 1.6; /*代码块行间距*/
+    --p-spacing: 0.8rem; /*段间距*/
+
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
+
+html {
+    font-size: var(--of-font-size);
+    -webkit-font-smoothing: antialiased;
+}
+
+html,
+body {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    background: var(--bg-color);
+    fill: currentColor;
+    line-height: var(--text-line-height);
+}
+
+#write {
+    max-width: 914px;
+    padding-bottom: var(--write-padding-bottom);
+}
+
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+html,
+body,
+button,
+input,
+select,
+textarea,
+div.code-tooltip-content {
+    /* color: #d0d0d0; */
+    color: var(--text-color-main);
+    border-color: transparent;
+}
+
+div.code-tooltip,
+.md-hover-tip .md-arrow:after {
+    background: var(--code-bg-color);
+}
+
+.native-window #md-notification {
+    border: 1px solid  var(--select-background);
+}
+
+.popover.bottom > .arrow:after {
+    border-bottom-color: var(--code-bg-color);
+}
+
+html,
+body,
+button,
+input,
+select,
+textarea {
+    font-family: var(--text-font);
+}
+
+hr {
+    height: 2px;
+    border: 0;
+    margin: 24px 0 !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--title-font);
+    font-weight: bold;
+    clear: both;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+    margin: 0;
+    padding: 0;
+    color: white;
+    line-height: 1.4;
 }
 
 h1 {
-	font-size: 1.8rem;
+    font-size: 2.5rem;
+    margin-bottom: var(--p-spacing);
+    letter-spacing: -1.5px;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid #383838;
+    margin-top: 1em;
 }
 
 h2 {
-	font-size: 1.4rem;
+    font-size: 1.63rem;
+    margin-bottom: var(--p-spacing);
+    letter-spacing: -1px;
+    font-weight: bold;
 }
 
 h3 {
-	font-size: 1.2rem;
+    font-size: 1.6rem;
+    margin-bottom: var(--p-spacing);
+    letter-spacing: -1px;
+    font-weight: bold;
 }
 
 h4 {
-	font-size: 1rem;
+    font-size: 1.12rem;
+    margin-bottom: var(--p-spacing);
 }
 
 h5 {
-	font-size: 0.8rem;
+    font-size: 0.97rem;
+    margin-bottom: var(--p-spacing);
+    font-weight: bold;
 }
 
 h6 {
-	font-size: 0.6rem;
-}
-
-html {
-	font-size: 20px;
-}
-
-body, #write {
-	max-width: 914px;
-	text-align: justify;
-	display: block;
-	margin: auto;
-}
-
-p {
-	font-size: 0.8rem;
-}
-
-a {
-	color: var(--primary-color);
-}
-
-/* Stuff */
-
-sup.md-footnote {
-	background-color: transparent;
-	color: var(--primary-color);
-	padding: 1px;
-	margin: 0;
-}
-
-code, .md-fences, .sourceCode {
-	background: #f2f2f2;
-}
-
-.md-fences, pre.sourceCode {
-	font-size: .7em;
-	padding: .5rem;
-}
-
-.show-fences-line-number .md-fences {
-	padding-left: .5rem;
-}
-
-blockquote {
-	margin: 2rem .2rem;
-	padding: .3rem .5rem;
-	color: #6f6f6f;
-	border-left: .4rem solid gray;
-}
-
-blockquote p {
-	padding: .2rem 1.5rem;
-}
-
-mark {
-	background: yellow;
-}
-
-figure {
-	margin: .5rem auto;
-	max-width: 100%;
-	display: block;
-	margin: auto;
-}
-
-figcaption {
-	text-align: center;
-	margin: .5rem auto;
+    font-size: 0.93rem;
+    margin-bottom: var(--p-spacing);
+    color: #d3d3d3;
 }
 
 img {
-	max-width: 100%;
-	display: block;
-	margin: auto;
+    border-radius: 8px;
+    border-left: none !important;
+    border-right: none !important;
+    max-width: 60%;
 }
 
-/* 
-    Print Mode and page breaks.
-    WkhtmlToPDF does not work on @print mode
-*/
+@media (max-width: 800px) {
+    img {
+        max-width: 100%;
+    }
+}
 
-@media (max-width: 210mm) {
-	img {
-		max-height: 8cm;
-	}
-	html {
-		font-size: 16px;
-	}
-	div[title="pb"], page-break {
-		display: block;
-		page-break-after: always;
-		break-after: page;
-	}
-	nav {
-		font-size: .9rem;
-		page-break-after: always;
-		page-break-before: always;
-	}
-	nav a {
-		color: black;
-	}
-	/* Move top-level headings to a new page on the right-hand side: */
-	h1, h2 {
-		page-break-before: right;
-		break-before: recto;
-	}
-	/* Override the previous ruleset for the very first heading: */
-	h1:first-of-type, section>h1:first-child {
-		page-break-before: avoid;
-		break-before: avoid;
-	}
-	/* Headings should not be the last paragraph on a page: */
-	h1, h2, h3, h4, h5, h6 {
-		page-break-after: avoid;
-	}
-	/* Consecutive headings with deepening level should not be split across pages: */
-	h1+h2, h2+h3, h3+h4, h4+h5, h5+h6 {
-		page-break-before: avoid;
-	}
+@media (min-width: 980px) {
+    h3.md-focus:before,
+    h4.md-focus:before,
+    h5.md-focus:before,
+    h6.md-focus:before {
+        color: #ddd;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        position: absolute;
+        left: -1.642857143rem;
+        top: .357142857rem;
+        float: left;
+        font-size: 9px;
+        padding-left: 2px;
+        padding-right: 2px;
+        vertical-align: bottom;
+        font-weight: normal;
+        line-height: normal;
+    }
+
+    h3.md-focus:before {
+        content: 'h3';
+    }
+
+    h4.md-focus:before {
+        content: 'h4';
+    }
+
+    h5.md-focus:before {
+        content: 'h5';
+        top: 0px;
+    }
+
+    h6.md-focus:before {
+        content: 'h6';
+        top: 0px;
+    }
+}
+
+a {
+    text-decoration: none;
+    outline: 0;
+}
+
+a:hover {
+    outline: 0;
+}
+
+a:focus {
+    outline: thin dotted;
+}
+
+sup.md-footnote {
+    background-color: #555;
+    color: #ddd;
+}
+
+p {
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}
+
+p,
+ul,
+dd,
+ol,
+hr,
+address,
+pre,
+table,
+iframe,
+.wp-caption,
+.wp-audio-shortcode,
+.wp-video-shortcode {
+    margin-top: 0;
+    margin-bottom: var(--p-spacing);
+    /* 24px */
+}
+
+audio:not([controls]) {
+    display: none;
+}
+
+[hidden] {
+    display: none;
+}
+
+::-moz-selection {
+    background:  var(--of-selection);
+    color:  var(--of-selection-text);
+    text-shadow: none;
+}
+
+*.in-text-selection,
+::selection {
+    background: var(--of-selection);
+    color:  var(--of-selection-text);
+    text-shadow: none;
+}
+
+ul,
+ol {
+    padding: 0 0 0 1.875rem;
+    /* 30px */
+}
+
+ul {
+    list-style: square;
+}
+
+ol {
+    list-style: decimal;
+}
+
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+    margin: 0;
+}
+
+b,
+th,
+dt,
+strong {
+    font-weight: bold;
+    color: var(--of-strong);
+}
+
+i,
+em,
+dfn,
+cite {
+    font-style: italic;
+}
+
+blockquote {
+    padding: 20px;
+    position: relative;
+    border-radius: 8px;
+    border: 1px solid var(--primary-color);
+    /* background-color: var(--background-color); */
+    box-shadow: 0 2 px4px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    line-height: 1.5;
+    /* color: var(--text-color); */
+    color: white
+}
+
+blockquote::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    width: 16px;
+    height: 16px;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    transform: rotate(45deg);
+}
+
+pre,
+code,
+kbd,
+tt,
+var {
+    font-size: 0.9rem;
+    font-family: var(--ofcodetext);
+}
+
+code,
+tt,
+var {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--md-code-color);
+    border-radius: 0.2rem;
+}
+
+kbd {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #fff;
+    background-color: var(--code-bg-color);
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
+}
+
+/* pre.md-fences {
+    padding: 10px 10px 10px 30px;
+    margin-bottom: 20px;
+    background: #31302e;
+} */
+pre.md-fences {
+    font-size: 1rem;
+    padding: 0.5rem !important;
+    border-radius: 8px;
+    word-wrap: normal;
+    background-color: var(--code-bg-color);
+    border: none;
+    font-family: var(--ofcodetext);
+}
+
+.CodeMirror-gutters {
+    background: var(--code-bg-color);
+    border-right: 1px solid transparent;
+}
+
+.enable-diagrams pre.md-fences[lang="sequence"] .code-tooltip,
+.enable-diagrams pre.md-fences[lang="flow"] .code-tooltip,
+.enable-diagrams pre.md-fences[lang="mermaid"] .code-tooltip {
+    bottom: -2.2em;
+    right: 4px;
+}
+
+code,
+kbd,
+tt,
+var {
+    padding: 0.2rem 0.4rem;
+}
+
+table {
+    max-width: 100%;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th,
+td {
+    padding: 5px 10px;
+    vertical-align: top;
+}
+
+a {
+    -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+hr {
+    background: var(--other-main-color);
+    /* 下划线颜色 */
+    /* variable */
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #fff;
+}
+
+.md-inline-math script {
+    color: #81b1db;
+}
+
+/* 高亮颜色 */
+
+mark {
+    background: var(--other-main-color);
+    color: var(--highlight-text-color);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.2rem;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+mark a,
+mark .md-content.md-url {
+    color: var(--highlight-text-color);
+}
+
+mark a:hover {
+    color: white;
+}
+
+mark code {
+    color: var(--highlight-text-color);
+    border-radius: 0.2rem;
+    border: 1px solid var(--highlight-text-color);
+    background: none;
+    padding: 0.1rem 0.35rem;
+}
+
+table a {
+    color: var(--primary-color);
+    /* variable */
+}
+
+table tr {
+    border-top: 1px solid #212121;
+    margin: 0;
+    padding: 0;
+}
+table tr th {
+    font-weight: bold;
+    color: var(--other-main-color);
+    border: 1px solid #383838;
+    border-bottom: 0;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr td {
+    border: 1px solid #383838;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr th:first-child,
+table tr td:first-child {
+    margin-top: 0;
+}
+table tr th:last-child,
+table tr td:last-child {
+    margin-bottom: 0;
+}
+
+table img {
+    border-radius: 8px;
+    border-left: none !important;
+    border-right: none !important;
+    max-width: 100%;
+}
+
+/* th,
+td {
+    border: solid 1px #544e47;
+} */
+
+
+/* 设置表格头部行的样式 */
+th,
+
+th {
+    background-color: var(--table-thead-color);
+}
+
+/* 设置奇偶行的背景颜色 */
+
+tr:nth-child(2n) {
+    background-color: var(--table-bg-darker-color);
+}
+
+tr:nth-child(2n + 1) {
+    background-color: var(--table-bg-color);
+}
+
+.task-list {
+    padding-left: 0;
+}
+
+.md-task-list-item {
+    padding-left: 1.25rem;
+}
+
+.md-task-list-item > input {
+    top: auto;
+}
+
+.md-task-list-item > input:before {
+    content: "";
+    display: inline-block;
+    width: 0.875rem;
+    height: 0.875rem;
+    vertical-align: middle;
+    text-align: center;
+    border: 2px solid var(--task-list-border-color);
+    /* background-color: var(--task-list-bg-color); */
+    margin-top: -0.4rem;
+    border-radius: 4px
+}
+
+
+.md-task-list-item > input:checked:before,
+.md-task-list-item > input[checked]:before {
+    /* content: '\2713';
+    font-size: 0.625rem;
+    line-height: 0.625rem;
+    color: var(--task-list-checked-color); */
+    background-color: var(--task-list-checked-color);
+    border-radius: 4px;
+    border: 2px solid var(----task-list-black-border-color);
+}
+
+
+
+/** quick open **/
+.auto-suggest-container {
+    border: 0px;
+    background-color: var(--select-background);
+}
+
+#typora-quick-open {
+    background-color: var(--select-background);
+}
+
+#typora-quick-open input{
+    background-color: var(--select-background);
+    border: 0;
+    border-bottom: 1px solid grey;
+}
+
+.typora-quick-open-item {
+    background-color: inherit;
+    color: inherit;
+}
+
+.typora-quick-open-item.active,
+.typora-quick-open-item:hover {
+    background-color: var(--other-main-color);
+    color: white;
+}
+
+.typora-quick-open-item:hover {
+    background-color:  var(--of-theme-color-dark);
+}
+
+.typora-search-spinner > div {
+  background-color: #fff;
+}
+
+/* #write pre.md-meta-block {
+    border-bottom: 1px dashed #ccc;
+    background: transparent;
+    padding-bottom: 0.6em;
+    line-height: 1.6em;
+} */
+#write pre.md-meta-block {
+    font-size: 0.8rem;
+    border: 1px dashed #ccc;
+    border-color: var(--primary-color);
+    padding: 1rem;
+    border-radius: 8px;
+    line-height: 1.45;
+    background: transparent;
+    font-family: var(--ofcodetext);
+}
+
+.btn,
+.btn .btn-default {
+    background: transparent;
+    color: #b8bfc6;
+}
+
+.ty-table-edit {
+    border-top: 1px solid gray;
+    background-color: var(--table-edit-color);
+}
+
+.popover-title {
+    background: transparent;
+}
+
+.md-image>.md-meta {
+    color: #BBBBBB;
+    background: transparent;
+}
+
+.md-expand.md-image>.md-meta {
+    color: #DDD;
+}
+
+#write>h3:before,
+#write>h4:before,
+#write>h5:before,
+#write>h6:before {
+    border: none;
+    border-radius: 0px;
+    color: #888;
+    text-decoration: underline;
+    left: -1.4rem;
+    top: 0.2rem;
+}
+
+#write>h3.md-focus:before {
+    top: 2px;
+}
+
+#write>h4.md-focus:before {
+    top: 2px;
+}
+
+.md-toc-item {
+    color: #A8C2DC;
+}
+
+#write div.md-toc-tooltip {
+    background-color:  var(--select-background);
+}
+
+.dropdown-menu .btn:hover,
+.dropdown-menu .btn:focus,
+.md-toc .btn:hover,
+.md-toc .btn:focus {
+    color: white;
+    background: black;
+}
+
+#toc-dropmenu {
+    background:  var(--select-background);
+    border: 1px solid rgba(253, 253, 253, 0.15);
+}
+
+#toc-dropmenu .divider {
+    background-color: #9b9b9b;
+}
+
+.outline-expander:before {
+    top: 2px;
+}
+
+#typora-sidebar {
+    box-shadow: none;
+    border-right: 1px dashed;
+    border-right: none;
+}
+
+.sidebar-tabs {
+    border-bottom:0;
+}
+
+#typora-sidebar:hover .outline-title-wrapper {
+    border-left: 1px dashed;
+}
+
+.outline-title-wrapper .btn {
+    color: inherit;
+}
+
+.outline-item:hover {
+    border-color: var(--item-hover-bg-color);
+    background-color: var(--item-hover-bg-color);
+    color: white;
+}
+
+h1.md-focus .md-attr,
+h2.md-focus .md-attr,
+h3.md-focus .md-attr,
+h4.md-focus .md-attr,
+h5.md-focus .md-attr,
+h6.md-focus .md-attr,
+.md-header-span .md-attr {
+    color: #8C8E92;
+    display: inline;
+}
+
+.md-comment {
+    color: var(--other-main-color);
+    opacity: 0.8;
+}
+
+.md-inline-math svg {
+    color: #c6c1b8;
+}
+
+#math-inline-preview .md-arrow:after {
+    background: black;
+}
+
+/* 退出菜单 */
+
+.modal-content {
+    background: var(--bg-color);
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.modal-title {
+    font-size: 2.5rem;
+}
+
+.modal-content input {
+    background-color: rgba(26, 21, 21, 0.51);
+    color: white;
+}
+
+.modal-content .input-group-addon {
+    color: white;
+}
+
+.modal-backdrop {
+    background-color: rgba(174, 174, 174, 0.7);
+}
+
+.modal-content .btn-primary {
+    border-color: var(--primary-color);
+}
+
+.modal-open .modal.fade.in {
+    background: none;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.md-table-resize-popover {
+    background-color: var(--code-bg-color);
+}
+
+.form-inline .input-group .input-group-addon {
+    color: white;
+}
+
+#md-searchpanel {
+    border-bottom: 1px dashed grey;
+}
+
+/* 右键菜单和字数统计 */
+
+.context-menu,
+#spell-check-panel,
+#footer-word-count-info {
+    background-color:  var(--context-menu-color);
+}
+
+.context-menu.dropdown-menu .divider,
+.dropdown-menu .divider {
+    background-color: #777777;
+    opacity: 1;
+}
+
+/* 页尾模糊 */
+
+footer {
+    backdrop-filter: saturate(120%) blur(20px) brightness(0.85);
+    border: none !important;
+    background: none;
+    background-color: var(--footer-bg-color);
+}
+/* footer {
+    color: inherit;
+} */
+
+@media (max-width: 1000px) {
+    footer {
+        border-top: none;
+    }
+    footer:hover {
+        color: inherit;
+    }
+}
+
+#file-info-file-path .file-info-field-value:hover {
+    background-color: #555;
+    color: #dedede;
+}
+
+.megamenu-content,
+.megamenu-opened header {
+    background: var(--bg-color);
+}
+
+.megamenu-menu-panel h2,
+.megamenu-menu-panel h1 {
+    color: inherit;
+}
+
+.long-btn {
+    margin-bottom: 12px;
+    margin-left: 2px;
+    background-color: var(--of-darkest-color);
+    border: 1px solid #383838;
+    border-radius: 0.3rem;
+    padding: 1rem;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.long-btn:hover {
+    background-color: var(--other-main-color);
+    color: black !important ;
+}
+
+#m-import-local:hover .preference-item-hint {
+    color: black !important ;
+}
+
+.megamenu-menu-panel input[type='text'] {
+    background: inherit;
+    border: 0;
+    border-bottom: 1px solid;
+}
+
+#recent-document-table {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+#recent-file-panel {
+    padding: 10px;
+}
+
+#recent-file-panel-action-btn {
+    background: inherit;
+    border: 1px grey solid;
+}
+
+#recent-file-panel thead tr {
+    background-color: var(--table-thead-color);
+}
+
+#recent-file-panel tbody tr:nth-child(2n) {
+    background-color: var(--table-bg-darker-color);
+}
+
+#recent-file-panel tbody tr:nth-child(2n + 1) {
+    background-color: var(--table-bg-color);
+}
+
+
+.modal-footer .btn-default, 
+.modal-footer .btn-primary,
+.modal-footer .btn-default:not(:hover) {
+    border: 1px solid;
+    border-color: transparent;
+    border-radius: 0.3rem !important;
+}
+
+/* #recent-file-panel-action-btn:hover {
+    background-color: var(--hover-bg-color1);
+} */
+
+/* 一体化菜单 */
+
+#megamenu-back-btn {
+    border-color: transparent;
+    color: var(--back-btn-color);
+}
+
+.megamenu-menu-header:hover {
+    background-color: var(--item-hover-bg-color);
+}
+
+.megamenu-menu-panel .dropdown-menu > li > a {
+    color: inherit;
+    background-color: var(--select-background);
+    text-decoration: none;
+}
+
+.megamenu-menu-panel table td:nth-child(1) {
+    color: inherit;
+    font-weight: bold;
+}
+
+.megamenu-menu-panel tbody tr:hover td:nth-child(1) {
+    color: white;
+}
+
+/* .megamenu-menu-sidebar tbody tr:hover td:nth-child(1) {
+    background-color: rgb(0, 0, 0);
+} */
+.megamenu-menu {
+    background-color: var(--side-bar-bg-color);
+}
+
+
+
+
+
+.btn-primary {
+    border: none;
+    border-radius: 0.3rem;
+    background-color: var(--other-main-color);
+    color: white !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    color: white;
+    background-color: var(--of-theme-color-dark) !important;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
+    /* color: white;
+    border: 1px solid #ddd; */
+    background-color: var(--of-theme-color-dark);
+}
+
+.modal-header {
+    border-bottom: 0;
+}
+
+.modal-footer {
+    border-top: 0;
+}
+
+.megamenu-menu-panel tbody tr:hover td:nth-child(2) {
+    color: inherit;
+}
+
+.megamenu-menu-panel .btn {
+    border: 1px solid #eee;
+    background: transparent;
+}
+
+.mouse-hover .toolbar-icon.btn:hover,
+#w-full.mouse-hover,
+#w-pin.mouse-hover {
+    background-color: inherit;
+}
+
+.typora-node::-webkit-scrollbar {
+    width: 5px;
+}
+
+.typora-node::-webkit-scrollbar-thumb:vertical {
+    background: rgba(250, 250, 250, 0.3);
+}
+
+.typora-node::-webkit-scrollbar-thumb:vertical:active {
+    background: rgba(250, 250, 250, 0.5);
+}
+
+#w-unpin {
+    background-color:  var(--other-main-color);
+}
+
+/* 放大缩小的颜色 */
+#top-titlebar .toolbar-icon.btn:hover {
+    color: var(--item-hover-text-color);
+    background-color: var(--of-theme-color-dark);
+}
+
+/* 关闭按钮的颜色 */
+#top-titlebar #w-close:hover {
+    background-color: #e81123 !important;
+}
+
+#top-titlebar, #top-titlebar * {
+    color: var(--item-hover-text-color);
+}
+
+.typora-sourceview-on #toggle-sourceview-btn,
+#footer-word-count:hover,
+.ty-show-word-count #footer-word-count {
+    background: var(--hover-color);
+    /* 字数统计按下去的颜色 */
+}
+
+#toggle-sourceview-btn:hover {
+    color: white;
+    background: var(--hover-color);
+    /* 查看源代码按下去的颜色 */
+}
+
+/** focus mode */
+.on-focus-mode .md-end-block:not(.md-focus):not(.md-focus-container) * {
+    color: #686868 !important;
+}
+
+.on-focus-mode .md-end-block:not(.md-focus) img,
+.on-focus-mode .md-task-list-item:not(.md-focus-container)>input {
+    opacity: #686868 !important;
+}
+
+.on-focus-mode li[cid]:not(.md-focus-container){
+    color: #686868;
+}
+
+.on-focus-mode .md-fences.md-focus .CodeMirror-code>*:not(.CodeMirror-activeline) *,
+.on-focus-mode .CodeMirror.cm-s-inner:not(.CodeMirror-focused) * {
+    color: #686868 !important;
+}
+
+.on-focus-mode .md-focus,
+.on-focus-mode .md-focus-container {
+    color: white;
+}
+
+.on-focus-mode #typora-source .CodeMirror-code>*:not(.CodeMirror-activeline) * {
+    color: #686868 !important;
+}
+
+
+/*diagrams*/
+#write .md-focus .md-diagram-panel {
+    border: 1px solid white;
+    margin-left: -1px;
+    width: calc(100% + 2px);
+}
+
+/*diagrams*/
+#write .md-focus.md-fences-with-lineno .md-diagram-panel {
+    margin-left: auto;
+}
+
+.md-diagram-panel-error {
+    color: #f1908e;
+}
+
+.active-tab-files #info-panel-tab-file,
+.active-tab-files #info-panel-tab-file:hover,
+.active-tab-outline #info-panel-tab-outline,
+.active-tab-outline #info-panel-tab-outline:hover {
+    color: white;
+}
+
+.sidebar-footer-item:hover,
+.footer-item:hover {
+    background: inherit;
+    color: white;
+}
+
+.ty-side-sort-btn.active,
+.ty-side-sort-btn:hover,
+.selected-folder-menu-item a:after {
+    color: white;
+}
+
+#sidebar-files-menu {
+    border:solid 1px;
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.79);
+    background-color: var(--bg-color);
+}
+
+.file-list-item {
+    border-bottom:none;
+}
+
+.file-list-item-summary {
+    opacity: 1;
+}
+
+.file-list-item.active:first-child {
+    border-top: none;
+}
+
+.file-node-background {
+    height: 32px;
+}
+
+.file-library-node.active>.file-node-content,
+.file-list-item.active {
+    color: white;
+    color: var(--active-file-text-color);
+}
+
+.file-library-node.active>.file-node-background{
+    background-color: rgb(34, 34, 34);
+    background-color: var(--active-file-bg-color);
+}
+.file-list-item.active {
+    background-color: rgb(34, 34, 34);
+    background-color: var(--active-file-bg-color);
+}
+
+#ty-tooltip {
+    background-color:  var(--tooltip-color);
+    color: var(--tooltip-text-color);
+}
+
+/* 右键菜单按下 */
+.menu-item-container:hover {
+    background-color: var(--menu-item-container-btn-hover);
+}
+
+/* 右键菜单按钮 */
+.menu-item-container a.menu-style-btn {
+    /* background: var(--menu-item-container-btn); */
+    border: 1px solid;
+    border-color: var(--menu-item-container-btn);
+    border-radius: 5px;
+}
+
+.md-task-list-item>input {
+    margin-left: -1.3em;
+    margin-top: 0.3rem;
+    -webkit-appearance: none;
+}
+
+.md-mathjax-midline {
+    background-color:  var(--select-background);
+    border-bottom: none;
+}
+
+footer.ty-footer {
+    border-color: var(--select-background);
+}
+
+/* 偏好 */
+
+.ty-preferences .btn-default {
+    background: transparent;
+}
+.ty-preferences .btn-default:hover {
+    background: var(--select-background);
+}
+
+.ty-preferences select {
+    border: 1px solid #9a9a9a;
+    height: 21px;
+}
+
+.ty-preferences .nav-group-item.active,
+.export-item.active,
+.export-items-list-control,
+.export-detail {
+    background: var(--item-hover-bg-color);
+}
+
+.ty-preferences input[type="search"] {
+    border-color: var(--code-bg-color);
+    background: var(--code-bg-color);
+    line-height: 22px;
+    border-radius: 6px;
+    color: white;
+}
+
+.ty-preferences input[type="search"]:focus {
+    box-shadow: none;
+}
+
+[data-is-directory="true"] .file-node-content {
+    margin-bottom: 0;
+}
+
+.file-node-title {
+    line-height: 22px;
+}
+
+.html-for-mac .file-node-open-state, .html-for-mac .file-node-icon {
+    line-height: 26px;
+}
+
+/*滚动条*/
+
+::-webkit-scrollbar {
+    width: 8px;
+}  
+
+::-webkit-scrollbar-thumb {
+    background: rgba(230, 230, 230, 0.30);
+    border-radius: 3px;
+    background-color: var(--scrollbar-color);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: rgba(230, 230, 230, 0.50);
+}
+
+#typora-sidebar:hover div.sidebar-content-content::-webkit-scrollbar-thumb:horizontal {
+    background: rgba(230, 230, 230, 0.30);
+}
+
+.nav-group-item:active {
+    background-color:  var(--nav-group-item-color) !important;
+}
+
+.md-search-hit {
+    background:  var(--select-background);
+    color: white;
+}
+
+.md-search-hit * {
+    color: white;
+}
+
+#md-searchpanel input {
+    color: white;
+}
+
+.modal-backdrop.in {
+    opacity: 1;
+    backdrop-filter: blur(1px);
+}
+
+.clear-btn-icon {
+    top: 8px;
+}
+
+
+/* 代码模式 */
+
+.cm-s-typora-default .cm-header, 
+.cm-s-typora-default .cm-property
+{
+    color: var(--other-main-color);
+}
+
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor{
+    border-left: 3px solid var(--code-cursor-color);
+}
+
+.cm-s-typora-default .cm-comment {
+    color: #ffffff;
+}
+
+.cm-s-typora-default .cm-string {
+    color: #00bfff
+}
+
+.cm-s-typora-default .cm-atom, .cm-s-typora-default .cm-number {
+    color: #aa00ff;
+    font-style: italic;
+}
+
+.cm-s-typora-default .cm-link {
+    color: #95B94B;
+}
+
+.cm-s-typora-default .CodeMirror-activeline-background {
+    background: var(--codemirror-color);
+}
+
+.cm-s-typora-default .cm-comment, .cm-s-typora-default .cm-code {
+	color: #e1bb8a;
 }
 
  @media print { @page {margin: 0 0 0 0;} body.typora-export {padding-left: 0; padding-right: 0;} #write {padding:0;}}
 </style><title>README</title>
 </head>
 <body class='typora-export'><div class='typora-export-content'>
-<div id='write'  class=''><p>&nbsp;</p><div align="center"><img src="./picture/01.svg"></div><h1 id='edge-engine'><span>Edge-Engine</span></h1><p>&nbsp;</p><h2 id='edge--一个开源的科学计算引擎'><span>Edge : 一个开源的科学计算引擎</span></h2><p><a href='./README_EN.md'><span>README for English_version</span></a></p><p><span>声明：本项目禁止闭源商用，如有需要请和作者取得联系</span></p><p><span>email: zk@likedge.top</span></p><p><a href='https://raw.githubusercontent.com/tesseract-ocr/tesseract/master/LICENSE'><img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" referrerpolicy="no-referrer" alt="GitHub license"></a></p><hr /><p>&nbsp;</p><blockquote><p><span>项目开始日期 : 2019/10/01</span></p><p><span>测试 : main.cpp | nerual_network.cpp | </span></p><p><span>2022年11月19日12:28:29：实现卷积神经网络单元前向传播</span></p><p><span>2019年10月01日12:28:56：新增全连接神经网络架构(新增全连接网络正向传播和反向传播的测试demo)</span></p><p><span>测试环境:</span></p><p><span>MacBook Pro、ubuntu</span></p><p><span>编译器环境:</span></p><p><span>Configured with: --prefix=/Applications/Xcode.app/Contents/Developer/usr --with-gxx-include-dir=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include/c++/4.2.1</span>
-<span>Apple LLVM version 10.0.1 (clang-1001.0.46.4)</span>
-<span>Target: x86_64-apple-darwin18.7.0</span>
-<span>Thread model: posix</span></p></blockquote><p><img src="picture/image-20200418210521131.png" alt="image-20200418210521131"  /></p><p>&nbsp;</p><hr /><p><span>这是什么?</span></p><p><img src="./picture/path.png" referrerpolicy="no-referrer" alt="path"></p><h2 id='快速开始'><span>快速开始</span></h2><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.5px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">git clone git@github.com:AllenZYJ/Edge-Computing-Engine.git</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
-</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">cd to install_diff</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 45px;"></div><div class="CodeMirror-gutters" style="display: none; height: 45px;"></div></div></div></pre><p><span>进入install_diff目录:</span></p><p><span>执行</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.5px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">make</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">make install</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 30px;"></div><div class="CodeMirror-gutters" style="display: none; height: 30px;"></div></div></div></pre><p><span>编译demo入口程序</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">g<span class="cm-operator">++</span> main.cpp <span class="cm-attribute">-o</span> main <span class="cm-attribute">-lautodiff</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 15px;"></div><div class="CodeMirror-gutters" style="display: none; height: 15px;"></div></div></div></pre><p><span>或者BP测试程序</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">g<span class="cm-operator">++</span> nerual_network.cpp <span class="cm-attribute">-o</span> main</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 15px;"></div><div class="CodeMirror-gutters" style="display: none; height: 15px;"></div></div></div></pre><p><span>运行</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">./main</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 15px;"></div><div class="CodeMirror-gutters" style="display: none; height: 15px;"></div></div></div></pre><h2 id='算子系列'><span>算子系列</span></h2><p><span>卷积：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="c++"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="c++"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.5px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">double</span> <span class="cm-def">conv_test</span>(<span class="cm-variable">Matrix</span> <span class="cm-variable">mid1</span>,<span class="cm-variable-3">int</span> <span class="cm-variable">input_dim</span> <span class="cm-operator">=</span> <span class="cm-number">3</span>,<span class="cm-variable-3">int</span> <span class="cm-variable">output_channels</span> <span class="cm-operator">=</span> <span class="cm-number">3</span>,<span class="cm-variable-3">int</span> <span class="cm-variable">stride</span> <span class="cm-operator">=</span> <span class="cm-number">1</span>,<span class="cm-variable-3">int</span> <span class="cm-variable">kernel_size</span> <span class="cm-operator">=</span> <span class="cm-number">2</span>,<span class="cm-variable-3">int</span> <span class="cm-variable">mode</span> <span class="cm-operator">=</span> <span class="cm-number">0</span>,<span class="cm-variable-3">int</span> <span class="cm-variable">padding</span> <span class="cm-operator">=</span> <span class="cm-number">0</span>)</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 30px;"></div><div class="CodeMirror-gutters" style="display: none; height: 30px;"></div></div></div></pre><p><span>测试：</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="c"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="c"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">g</span><span class="cm-operator">++</span> <span class="cm-variable">conv_test</span>.<span class="cm-variable">cpp</span> <span class="cm-operator">-</span><span class="cm-variable">o</span> <span class="cm-variable">conv_test</span> <span class="cm-operator">-</span><span class="cm-variable">lautodiff</span> <span class="cm-operator">&amp;&amp;</span> .<span class="cm-operator">/</span><span class="cm-variable">conv_test</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 15px;"></div><div class="CodeMirror-gutters" style="display: none; height: 15px;"></div></div></div></pre><h3 id='模型定义方法'><span>模型定义方法:</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="c"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="c"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">edge_network</span>(<span class="cm-variable-3">int</span> <span class="cm-variable">input</span>, <span class="cm-variable-3">int</span> <span class="cm-variable">num_neuron</span>)</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 15px;"></div><div class="CodeMirror-gutters" style="display: none; height: 15px;"></div></div></div></pre><p><span>作为序列模型api</span></p><p><span>edge_network作为一个类型存在,位于matrix_grad.h中结构体类型的数据</span></p><p><span>定义了前向传播函数,前向传播无激活版,反向传播,末层反向传播,四大最常用的函数主体.</span></p><p><span>完整的序列模型:</span></p><p><img src="picture/image-20200128154352842.png" referrerpolicy="no-referrer" alt="image-20200128154352842"></p><h3 id='实现5层全连接层可自定义神经元和激活函数损失函数'><span>实现5层全连接层,可自定义神经元和激活函数,损失函数</span></h3><p><span>全连接层使用方法:</span></p><p><span>第一层的权重自定义,而后调用forward函数前向传播一层,自动求出激活以后的值,激活函数可自定义.</span></p><p><span>首先定义一个权重矩阵和偏置矩阵,第一个矩阵的维度大小使用数据列去定义:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="c"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="c"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.5px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">bias1</span> <span class="cm-operator">=</span> <span class="cm-variable">CreateRandMat</span>(<span class="cm-number">2</span>,<span class="cm-number">1</span>);</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">weight1</span> <span class="cm-operator">=</span> <span class="cm-variable">CreateRandMat</span>(<span class="cm-number">2</span>,<span class="cm-variable">data</span>.<span class="cm-variable">col</span>);</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 30px;"></div><div class="CodeMirror-gutters" style="display: none; height: 30px;"></div></div></div></pre><p><span>之后可以输出第一层前向传播的值,同时可以定义下一层的bias的维度, row使用第一层的权重矩阵的行,第二层的权重矩阵的行使用了第一层的输出的行, 而列自行定义即可, 这一点体现了前向传播算法的维度相容. 也就是:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="c"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="c"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.5px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">output1</span> <span class="cm-operator">=</span> <span class="cm-variable">sequaltial</span>.<span class="cm-variable">forward</span>(<span class="cm-variable">get_T</span>(<span class="cm-variable">get_row</span>(<span class="cm-variable">data_mine</span>,<span class="cm-variable">index</span>)),<span class="cm-variable">weight1</span>,<span class="cm-variable">bias1</span>);</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 30px;"></div><div class="CodeMirror-gutters" style="display: none; height: 30px;"></div></div></div></pre><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="c"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="c"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.5px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">weight2</span> <span class="cm-operator">=</span> <span class="cm-variable">CreateRandMat</span>(<span class="cm-variable">output1</span>.<span class="cm-variable">row</span>,<span class="cm-number">2</span>);</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">bias2</span> <span class="cm-operator">=</span> <span class="cm-variable">CreateRandMat</span>(<span class="cm-variable">weight2</span>.<span class="cm-variable">row</span>,<span class="cm-number">1</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">output2</span> <span class="cm-operator">=</span> <span class="cm-variable">sequaltial</span>.<span class="cm-variable">forward</span>(<span class="cm-variable">output1</span>,<span class="cm-variable">weight2</span>,<span class="cm-variable">bias2</span>);</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 45px;"></div><div class="CodeMirror-gutters" style="display: none; height: 45px;"></div></div></div></pre><p><span>同时第二层的输出也可以求出来,以此类推 .</span></p><p><span>最终输出代码见nerual_test.cpp </span><img src="./picture/nerual_test1.png" referrerpolicy="no-referrer" alt="nerual_test1"></p><p><span>代码:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="c" style="page-break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="c"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.5px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">data_mine</span> <span class="cm-operator">=</span> <span class="cm-variable">CreateRandMat</span>(<span class="cm-number">2</span>,<span class="cm-number">1</span>);</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">label</span> <span class="cm-operator">=</span> <span class="cm-variable">CreateMatrix</span>(<span class="cm-number">2</span>,<span class="cm-number">1</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">weight1</span> <span class="cm-operator">=</span> <span class="cm-variable">CreateRandMat</span>(<span class="cm-number">2</span>,<span class="cm-number">2</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">weight2</span> <span class="cm-operator">=</span> <span class="cm-variable">CreateRandMat</span>(<span class="cm-number">2</span>,<span class="cm-number">2</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">weight3</span> <span class="cm-operator">=</span> <span class="cm-variable">CreateRandMat</span>(<span class="cm-number">2</span>,<span class="cm-number">2</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">weight4</span> <span class="cm-operator">=</span> <span class="cm-variable">CreateRandMat</span>(<span class="cm-number">2</span>,<span class="cm-number">2</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">for</span>(<span class="cm-variable-3">int</span> <span class="cm-variable">epoch</span> <span class="cm-operator">=</span> <span class="cm-number">0</span>;<span class="cm-variable">epoch</span><span class="cm-operator">&lt;</span><span class="cm-number">20</span>;<span class="cm-variable">epoch</span><span class="cm-operator">++</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">cout_mat</span>(<span class="cm-variable">weight1</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">edge_network</span> <span class="cm-variable">sequaltial</span>(<span class="cm-number">2</span>,<span class="cm-number">2</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
-</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">output1</span> <span class="cm-operator">=</span> <span class="cm-variable">sequaltial</span>.<span class="cm-variable">forward</span>(<span class="cm-variable">data_mine</span>,<span class="cm-variable">weight1</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">output2</span> <span class="cm-operator">=</span> <span class="cm-variable">sequaltial</span>.<span class="cm-variable">forward</span>(<span class="cm-variable">output1</span>,<span class="cm-variable">weight2</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">output3</span> <span class="cm-operator">=</span> <span class="cm-variable">sequaltial</span>.<span class="cm-variable">forward</span>(<span class="cm-variable">output2</span>,<span class="cm-variable">weight3</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">output4</span> <span class="cm-operator">=</span> <span class="cm-variable">sequaltial</span>.<span class="cm-variable">forward</span>(<span class="cm-variable">output3</span>,<span class="cm-variable">weight4</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">output_end</span> <span class="cm-operator">=</span> <span class="cm-variable">sequaltial</span>.<span class="cm-variable">end_layer_backward</span>(<span class="cm-variable">label</span>,<span class="cm-variable">output4</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">//get the forward</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">backward1</span> <span class="cm-operator">=</span> <span class="cm-variable">sequaltial</span>.<span class="cm-variable">backward</span>(<span class="cm-variable">output_end</span>,<span class="cm-variable">output3</span>,<span class="cm-variable">weight4</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">grad_w1w2</span> <span class="cm-operator">=</span> <span class="cm-variable">mul_simple</span>(<span class="cm-variable">backward1</span>,<span class="cm-variable">data_mine</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">backward2</span> <span class="cm-operator">=</span> <span class="cm-variable">sequaltial</span>.<span class="cm-variable">backward</span>(<span class="cm-variable">backward1</span>,<span class="cm-variable">output2</span>,<span class="cm-variable">weight3</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">grad_w3w4</span> <span class="cm-operator">=</span> <span class="cm-variable">mul_simple</span>(<span class="cm-variable">backward2</span>,<span class="cm-variable">data_mine</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">backward3</span> <span class="cm-operator">=</span> <span class="cm-variable">sequaltial</span>.<span class="cm-variable">backward</span>(<span class="cm-variable">backward2</span>,<span class="cm-variable">output1</span>,<span class="cm-variable">weight2</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">grad_w5w6</span> <span class="cm-operator">=</span> <span class="cm-variable">mul_simple</span>(<span class="cm-variable">backward3</span>,<span class="cm-variable">data_mine</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">backward4</span> <span class="cm-operator">=</span> <span class="cm-variable">sequaltial</span>.<span class="cm-variable">backward</span>(<span class="cm-variable">backward3</span>,<span class="cm-variable">output4</span>,<span class="cm-variable">weight1</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Matrix</span> <span class="cm-variable">grad_w7w8</span> <span class="cm-operator">=</span> <span class="cm-variable">mul_simple</span>(<span class="cm-variable">backward4</span>,<span class="cm-variable">data_mine</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">weight1</span> <span class="cm-operator">=</span> <span class="cm-variable">subtract</span>(<span class="cm-variable">weight1</span>,<span class="cm-variable">times_mat</span>(<span class="cm-number">0.0001</span>,<span class="cm-variable">padding</span>(<span class="cm-variable">grad_w1w2</span>,<span class="cm-number">2</span>,<span class="cm-number">2</span>)));</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">weight2</span> <span class="cm-operator">=</span> <span class="cm-variable">subtract</span>(<span class="cm-variable">weight2</span>,<span class="cm-variable">times_mat</span>(<span class="cm-number">0.0001</span>,<span class="cm-variable">padding</span>(<span class="cm-variable">grad_w3w4</span>,<span class="cm-number">2</span>,<span class="cm-number">2</span>)));</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">weight3</span> <span class="cm-operator">=</span> <span class="cm-variable">subtract</span>(<span class="cm-variable">weight3</span>,<span class="cm-variable">times_mat</span>(<span class="cm-number">0.0001</span>,<span class="cm-variable">padding</span>(<span class="cm-variable">grad_w5w6</span>,<span class="cm-number">2</span>,<span class="cm-number">2</span>)));</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">weight4</span> <span class="cm-operator">=</span> <span class="cm-variable">subtract</span>(<span class="cm-variable">weight4</span>,<span class="cm-variable">times_mat</span>(<span class="cm-number">0.0001</span>,<span class="cm-variable">padding</span>(<span class="cm-variable">grad_w7w8</span>,<span class="cm-number">2</span>,<span class="cm-number">2</span>)));</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 450px;"></div><div class="CodeMirror-gutters" style="display: none; height: 450px;"></div></div></div></pre><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell" style="page-break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.5px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">---------epoch</span>: <span class="cm-number">0</span><span class="cm-attribute">------------</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">4</span>.65667</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">3</span>.28273</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">---------epoch</span>: <span class="cm-number">1</span><span class="cm-attribute">------------</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">4</span>.65655</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">3</span>.28265</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">---------epoch</span>: <span class="cm-number">2</span><span class="cm-attribute">------------</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">4</span>.65643</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">3</span>.28257</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">---------epoch</span>: <span class="cm-number">3</span><span class="cm-attribute">------------</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">4</span>.65631</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">3</span>.28249</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">---------epoch</span>: <span class="cm-number">4</span><span class="cm-attribute">------------</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">4</span>.65619</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">3</span>.2824</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">---------epoch</span>: <span class="cm-number">5</span><span class="cm-attribute">------------</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">4</span>.65607</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">3</span>.28232</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">---------epoch</span>: <span class="cm-number">6</span><span class="cm-attribute">------------</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">4</span>.65596</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">3</span>.28224</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">---------epoch</span>: <span class="cm-number">7</span><span class="cm-attribute">------------</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">4</span>.65584</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">3</span>.28216</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">---------epoch</span>: <span class="cm-number">8</span><span class="cm-attribute">------------</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">4</span>.65572</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">3</span>.28208</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">---------epoch</span>: <span class="cm-number">9</span><span class="cm-attribute">------------</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">4</span>.6556</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">3</span>.282</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">---------epoch</span>: <span class="cm-number">10</span><span class="cm-attribute">------------</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">4</span>.65548</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">3</span>.28192</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">---------epoch</span>: <span class="cm-number">11</span><span class="cm-attribute">------------</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">4</span>.65536</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">3</span>.28184</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">---------epoch</span>: <span class="cm-number">12</span><span class="cm-attribute">------------</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">4</span>.65524</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">3</span>.28176</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">---------epoch</span>: <span class="cm-number">13</span><span class="cm-attribute">------------</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">4</span>.65512</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">3</span>.28168</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">---------epoch</span>: <span class="cm-number">14</span><span class="cm-attribute">------------</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">4</span>.65501</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">3</span>.2816</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">---------epoch</span>: <span class="cm-number">15</span><span class="cm-attribute">------------</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">4</span>.65489</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">3</span>.28152</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">---------epoch</span>: <span class="cm-number">16</span><span class="cm-attribute">------------</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">4</span>.65477</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">3</span>.28144</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">---------epoch</span>: <span class="cm-number">17</span><span class="cm-attribute">------------</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">4</span>.65465</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">3</span>.28136</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">---------epoch</span>: <span class="cm-number">18</span><span class="cm-attribute">------------</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">4</span>.65453</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">3</span>.28128</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">---------epoch</span>: <span class="cm-number">19</span><span class="cm-attribute">------------</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">4</span>.65441</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">loss: <span class="cm-number">3</span>.2812</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 900px;"></div><div class="CodeMirror-gutters" style="display: none; height: 900px;"></div></div></div></pre><h2 id='bp反向传播的demo程序基于pytorch官方代码模拟实现测试'><span>Bp反向传播的demo程序基于Pytorch官方代码模拟实现测试</span></h2><p><span>迭代结果 :</span></p><p><span>W1: 0.6944 1.52368</span>
-<span>	</span><span>-1.46644 -0.154097</span>
-<span>W2: 1.10079</span>
-<span>	</span><span>0.462984</span>
-<span>loss: 0.559269</span></p><p><span>epoch:100 , 可自行测试.</span></p><p><span>输出最终损失和参数迭代结果.</span></p><p><span>-----------split-line-----------</span>
-<span>2.79955</span>
-<span>0.36431</span>
-<span>-0.451694</span>
-<span>epoch: 100 error: 6.05895</span>
-<span>-----------split-line-----------</span>
-<span>0.009167(sum of loss)</span></p><h3 id='目前实现的程序接口'><span>目前实现的程序接口</span></h3><h3 id='api'><span>API:</span></h3><ul><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>Matrix read_csv(string &amp;file_path)读取格式化文件(csv),返回一个自动计算长度的矩阵.</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>实现格式化文件写入接口.比较pandas.to_csv.</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>矩阵广播机制,实现padding接口</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>全连接层前向传播和反向传播接口,支持自动求导</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>矩阵微分和自动求导接口封装</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>int save_txt(Matrix mid1,string path = &quot;./&quot;,string delimiter = &quot;,&quot;,string header=&quot;./&quot;) 设计文件流获取文件头部接口 , 写入格式化文件 , 已设计支持矩阵类型数据写入,支持自定义表头,写入文件路径 , 自定义分隔符,默认为&quot; , &quot;.</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>Create a matrix :  create(row,cols)开辟一个矩阵结构的内存,元素初值为0;</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>Change the element for matrix void move_ele(int &amp;ele1, int &amp;ele2),修改某一个位置的元素的值.</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>Matrix1+Matrix2 : Matrix add(Matrix mid1,Matrix mid2,int flag=1),矩阵加和操作接口,可选位运算加速.</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>Flag is how to compete the ele ,default 1 ,bitwise operation(位运算加速).</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>Matrix1-Matrix2 : Matrix subtract(Matrix mid1,Matrix mid2)</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>Matrix1*Matrix2 : Matrix mul(Matrix mid1,Matrix mid2)</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>Matrix1*n : Matrix times_mat(int times,Matrix mid1)</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>Matrix1&#39;s Transposition : Matrix get_T(Matrix mid1)矩阵转置</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>Mul(matrix1,matrix2)矩阵乘积(完整数学定义).</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>double* flatten(Matrix mid1) : Return a flattened array.矩阵展开</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>Matrix matrix_rs(Matrix mid1,int rs_row,int rs_col) 矩阵的结构压缩</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>double matrix_sum(Matrix mid1)矩阵求和</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>double matrix_mean(Matrix mid1)均值</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>Matrix appply(Matrix mid1,Matrix mid2,int axis = 0)矩阵拼接</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>Matrix iloc(Matrix mid1,int start_x=0,int end_x=0,int start_y=0,int end_y=0)矩阵切片</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>Matrix mul_simple(Matrix mid1,Matrix mid2)为了贴合机器学习的需要,实现了矩阵对应元素相乘,请与传统意义的矩阵乘法区分开.</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>Relu激活函数矩阵接口</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>均方误差矩阵接口</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>创建随机权重矩阵接口</span></p></li><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>卷积神经网络定义(包括但不限于卷积核,池化层定义,自定义损失接口).</span></p><h3 id='即将着手开发'><span>即将着手开发:</span></h3></li><li class='md-task-list-item task-list-item task-list-not-done' ><input type='checkbox' /><p><span>主流网络架构实现.</span></p><p>&nbsp;</p></li></ul><h2 id='反向传播测试demo'><span>反向传播测试demo:</span></h2><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="c" style="page-break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="c"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.5px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include&lt;iostream&gt;</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include&lt;ctime&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include&lt;string&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include&lt;time.h&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include&lt;math.h&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include&lt;fstream&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include&lt;stdlib.h&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include"./matrix/matrix_def.h"</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include"./matrix/matrix_pro.h"</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include"./welcome/score_wel.cpp"</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include"./logistic/logistic_def.h"</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include"./file_pro/data_read.h"</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">using</span> <span class="cm-variable">namespace</span> <span class="cm-variable">std</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">clock_t</span> <span class="cm-variable">start</span>, <span class="cm-variable">stop</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">double</span> <span class="cm-variable">duration</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">int</span> <span class="cm-def">main</span>()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" class="cm-tab-wrap-hack" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">welcome</span>();<span class="cm-tab" role="presentation" cm-text="	">  </span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">string</span> <span class="cm-variable">path</span> <span class="cm-operator">=</span> <span class="cm-string">"./data/nerual_data.csv"</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">data</span> <span class="cm-operator">=</span> <span class="cm-variable">read_csv</span>(<span class="cm-variable">path</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" class="cm-tab-wrap-hack" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">bais</span> <span class="cm-operator">=</span> <span class="cm-variable">CreateMatrix</span>(<span class="cm-variable">data</span>.<span class="cm-variable">row</span>,<span class="cm-number">1</span>);<span class="cm-tab" role="presentation" cm-text="	"> </span><span class="cm-tab" role="presentation" cm-text="	">  </span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">x</span> <span class="cm-operator">=</span> <span class="cm-variable">iloc</span>(<span class="cm-variable">data</span>,<span class="cm-number">0</span>,<span class="cm-number">100</span>,<span class="cm-number">0</span>,<span class="cm-number">2</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">y</span> <span class="cm-operator">=</span> <span class="cm-variable">iloc</span>(<span class="cm-variable">data</span>,<span class="cm-number">0</span>,<span class="cm-number">100</span>,<span class="cm-number">2</span>,<span class="cm-number">3</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable-3">int</span> <span class="cm-variable">N</span><span class="cm-operator">=</span><span class="cm-number">100</span>,<span class="cm-variable">in_Dim</span><span class="cm-operator">=</span><span class="cm-number">2</span>,<span class="cm-variable">H_num</span><span class="cm-operator">=</span><span class="cm-number">2</span>,<span class="cm-variable">out_Dim</span><span class="cm-operator">=</span><span class="cm-number">2</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable-3">double</span> <span class="cm-variable">learning_rate</span> <span class="cm-operator">=</span> <span class="cm-number">0.0001</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">W1</span> <span class="cm-operator">=</span> <span class="cm-variable">CreateRandMat</span>(<span class="cm-variable">in_Dim</span>,<span class="cm-variable">H_num</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">W2</span> <span class="cm-operator">=</span> <span class="cm-variable">CreateRandMat</span>(<span class="cm-variable">H_num</span>,<span class="cm-variable">out_Dim</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">cout_mat</span>(<span class="cm-variable">W1</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">cout_mat</span>(<span class="cm-variable">W2</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-keyword">for</span>(<span class="cm-variable-3">int</span> <span class="cm-variable">epoch</span> <span class="cm-operator">=</span> <span class="cm-number">0</span>;<span class="cm-variable">epoch</span><span class="cm-operator">&lt;</span><span class="cm-number">100</span>;<span class="cm-variable">epoch</span><span class="cm-operator">++</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span>{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">x_w1</span> <span class="cm-operator">=</span> <span class="cm-variable">mul</span>(<span class="cm-variable">x</span>,<span class="cm-variable">W1</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">re</span> <span class="cm-operator">=</span> <span class="cm-variable">mat_relu</span>(<span class="cm-variable">x_w1</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">out</span> <span class="cm-operator">=</span> <span class="cm-variable">mul</span>(<span class="cm-variable">re</span>,<span class="cm-variable">W2</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">mat_sq</span> <span class="cm-operator">=</span> <span class="cm-variable">mat_sq_loss</span>(<span class="cm-variable">out</span>,<span class="cm-variable">y</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">grad_y_pred</span> <span class="cm-operator">=</span> <span class="cm-variable">times_mat</span>(<span class="cm-number">2.0</span>,<span class="cm-variable">subtract</span>(<span class="cm-variable">out</span>,<span class="cm-variable">y</span>));</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">grad_w2</span> <span class="cm-operator">=</span> <span class="cm-variable">mul</span>(<span class="cm-variable">get_T</span>(<span class="cm-variable">re</span>),<span class="cm-variable">grad_y_pred</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">grad_h_relu</span> <span class="cm-operator">=</span> <span class="cm-variable">mul</span>(<span class="cm-variable">grad_y_pred</span>,<span class="cm-variable">get_T</span>(<span class="cm-variable">W2</span>));</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">grad_h_relu_copy</span> <span class="cm-operator">=</span> <span class="cm-variable">mat_relu</span>(<span class="cm-variable">grad_h_relu</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">grad_w1</span> <span class="cm-operator">=</span> <span class="cm-variable">mul</span>(<span class="cm-variable">get_T</span>(<span class="cm-variable">x</span>),<span class="cm-variable">grad_h_relu_copy</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">dw1</span> <span class="cm-operator">=</span> <span class="cm-variable">times_mat</span>(<span class="cm-variable">learning_rate</span>,<span class="cm-variable">mul</span>(<span class="cm-variable">get_T</span>(<span class="cm-variable">x</span>),<span class="cm-variable">grad_h_relu_copy</span>));</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">W1</span> <span class="cm-operator">=</span> <span class="cm-variable">subtract</span>(<span class="cm-variable">W1</span>,<span class="cm-variable">dw1</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">W2</span> <span class="cm-operator">=</span> <span class="cm-variable">subtract</span>(<span class="cm-variable">W2</span>,<span class="cm-variable">times_mat</span>(<span class="cm-variable">learning_rate</span>,<span class="cm-variable">grad_w2</span>));</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">cout</span><span class="cm-operator">&lt;&lt;</span><span class="cm-string">"W1: "</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">cout_mat</span>(<span class="cm-variable">W1</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">cout</span><span class="cm-operator">&lt;&lt;</span><span class="cm-string">"W2: "</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">cout_mat</span>(<span class="cm-variable">W2</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">cout</span><span class="cm-operator">&lt;&lt;</span><span class="cm-string">"loss"</span><span class="cm-operator">&lt;&lt;</span><span class="cm-string">": "</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">cout</span><span class="cm-operator">&lt;&lt;</span><span class="cm-variable">matrix_sum</span>(<span class="cm-variable">mat_sq</span>)<span class="cm-operator">/</span><span class="cm-number">100</span><span class="cm-operator">&lt;&lt;</span><span class="cm-variable">endl</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span>}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 765px;"></div><div class="CodeMirror-gutters" style="display: none; height: 765px;"></div></div></div></pre><p>&nbsp;</p><h2 id='演示矩阵乘法'><span>演示:矩阵乘法</span></h2><p><span>Matrix </span><strong><span>A</span></strong><span>：</span></p><figure><table><thead><tr><th><span>第1列</span></th><th><span>第2列</span></th><th><span>第3列</span></th><th><span>第4列</span></th><th><span>第5列</span></th></tr></thead><tbody><tr><td><span>72.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td></tr><tr><td><span>0.0000</span></td><td><span>64.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td></tr><tr><td><span>16.0000</span></td><td><span>8.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td></tr><tr><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>56.0000</span></td><td><span>16.0000</span></td><td><span>32.0000</span></td></tr><tr><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td></tr><tr><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td></tr></tbody></table></figure><p><span>MAtrix </span><strong><span>B</span></strong><span>：</span></p><figure><table><thead><tr><th><span>第1列</span></th><th><span>第2列</span></th><th><span>第3列</span></th><th><span>第4列</span></th><th><span>第5列</span></th><th><span>第6列</span></th></tr></thead><tbody><tr><td><span>72.0000</span></td><td><span>0.0000</span></td><td><span>16.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td></tr><tr><td><span>0.0000</span></td><td><span>64.0000</span></td><td><span>8.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td></tr><tr><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>56.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td></tr><tr><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>16.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td></tr><tr><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>32.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td></tr></tbody></table></figure><p><span>To</span></p><figure><table><thead><tr><th><span>第1列</span></th><th><span>第2列</span></th><th><span>第3列</span></th><th><span>第4列</span></th><th><span>第5列</span></th><th><span>第6列</span></th></tr></thead><tbody><tr><td><span>5184.0000</span></td><td><span>0.0000</span></td><td><span>1152.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td></tr><tr><td><span>0.0000</span></td><td><span>4096.0000</span></td><td><span>512.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td></tr><tr><td><span>1152.0000</span></td><td><span>512.0000</span></td><td><span>320.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td></tr><tr><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>4416.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td></tr><tr><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td></tr><tr><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td><td><span>0.0000</span></td></tr></tbody></table></figure><h2 id='演示-矩阵展开flatten'><span>演示: 矩阵展开(flatten).</span></h2><p><span>double* flatten(Matrix mid1)</span></p><figure><table><thead><tr><th style='text-align:center;' ><span>1</span></th><th style='text-align:center;' ><span>2</span></th><th style='text-align:center;' ><span>3</span></th></tr></thead><tbody><tr><td style='text-align:center;' ><span>2</span></td><td style='text-align:center;' ><span>4</span></td><td style='text-align:center;' ><span>6</span></td></tr><tr><td style='text-align:center;' ><span>7</span></td><td style='text-align:center;' ><span>8</span></td><td style='text-align:center;' ><span>9</span></td></tr></tbody></table></figure><p><span>	</span><span>To</span></p><figure><table><thead><tr><th><span>1</span></th><th><span>2</span></th><th><span>3</span></th><th><span>2</span></th><th><span>4</span></th><th><span>6</span></th><th><span>7</span></th><th><span>8</span></th><th style='text-align:left;' ><span>9</span></th></tr></thead><tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td style='text-align:left;' ><span>Like numpy.flatten</span></td></tr></tbody></table></figure><p><span>function:</span></p><h2 id='演示-邻接矩阵的参数定义'><span>演示: 邻接矩阵的参数定义:</span></h2><p><span>	</span><span>Matrix appply(Matrix mid1,Matrix mid2,int axis = 0)</span></p><blockquote><p><span>参数 axis=0 :</span></p></blockquote><figure><table><thead><tr><th><span>0</span></th><th><span>7</span></th><th><span>2</span></th></tr></thead><tbody><tr><td><span>0</span></td><td><span>3</span></td><td><span>1</span></td></tr><tr><td><span>0</span></td><td><span>0</span></td><td><span>0</span></td></tr><tr><td><span>0</span></td><td><span>0</span></td><td><span>11</span></td></tr><tr><td><span>0</span></td><td><span>7</span></td><td><span>2</span></td></tr><tr><td><span>0</span></td><td><span>3</span></td><td><span>1</span></td></tr><tr><td><span>0</span></td><td><span>0</span></td><td><span>0</span></td></tr><tr><td><span>0</span></td><td><span>0</span></td><td><span>11</span></td></tr></tbody></table></figure><hr /><blockquote><p><span>axis = 1:</span></p></blockquote><figure><table><thead><tr><th><span>0</span></th><th><span>7</span></th><th><span>2</span></th><th><span>0</span></th><th><span>7</span></th><th><span>2</span></th></tr></thead><tbody><tr><td><span>0</span></td><td><span>3</span></td><td><span>1</span></td><td><span>0</span></td><td><span>3</span></td><td><span>1</span></td></tr><tr><td><span>0</span></td><td><span>0</span></td><td><span>0</span></td><td><span>0</span></td><td><span>0</span></td><td><span>0</span></td></tr><tr><td><span>0</span></td><td><span>0</span></td><td><span>11</span></td><td><span>0</span></td><td><span>0</span></td><td><span>11</span></td></tr></tbody></table></figure><hr /><h2 id='更新201911180012'><span>更新2019/11/18/00:12</span></h2><ul><li class='md-task-list-item task-list-item task-list-done' ><input type='checkbox' checked/><p><span>read_csv 通过文件流读取逗号分隔符文件,返回一个自动计算长度的矩阵.</span></p><p><span>例如 CSV&#39;s head :</span></p><figure><table><thead><tr><th><span>-0.017612</span></th><th><span>14.053064</span></th><th><span>0</span></th></tr></thead><tbody><tr><td><span>-1.395634</span></td><td><span>4.662541</span></td><td><span>1</span></td></tr><tr><td><span>-0.752157</span></td><td><span>6.53862</span></td><td><span>0</span></td></tr><tr><td><span>-1.322371</span></td><td><span>7.152853</span></td><td><span>0</span></td></tr><tr><td><span>0.423363</span></td><td><span>11.054677</span></td><td><span>0</span></td></tr><tr><td><span>0.406704</span></td><td><span>7.067335</span></td><td><span>1</span></td></tr></tbody></table></figure><p><span>Get:</span></p><p><img src="./picture/WX20191119-105411@2x.png" referrerpolicy="no-referrer"></p><p>&nbsp;</p><h2 id='logistic-regression-demo-base-edge'><span>Logistic Regression demo base Edge:</span></h2></li></ul><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="c" style="page-break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="c"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 5.5px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include&lt;iostream&gt;</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include&lt;ctime&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include&lt;string&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include &lt;time.h&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include &lt;math.h&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include &lt;fstream&gt;</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include"./matrix/matrix_def.h"</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include"./matrix/matrix_pro.h"</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include"./welcome/score_wel.cpp"</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include"./logistic/logistic_def.h"</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-meta">#include"./file_pro/data_read.h"</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">using</span> <span class="cm-variable">namespace</span> <span class="cm-variable">std</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">clock_t</span> <span class="cm-variable">start</span>, <span class="cm-variable">stop</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">double</span> <span class="cm-variable">duration</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable-3">int</span> <span class="cm-def">main</span>()</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" class="cm-tab-wrap-hack" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">welcome</span>();<span class="cm-tab" role="presentation" cm-text="	">  </span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">string</span> <span class="cm-variable">path</span> <span class="cm-operator">=</span> <span class="cm-string">"./new_data2.csv"</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">data</span> <span class="cm-operator">=</span> <span class="cm-variable">read_csv</span>(<span class="cm-variable">path</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" class="cm-tab-wrap-hack" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">bais</span> <span class="cm-operator">=</span> <span class="cm-variable">CreateMatrix</span>(<span class="cm-variable">data</span>.<span class="cm-variable">row</span>,<span class="cm-number">1</span>);<span class="cm-tab" role="presentation" cm-text="	"> </span><span class="cm-tab" role="presentation" cm-text="	">  </span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">data</span> <span class="cm-operator">=</span> <span class="cm-variable">appply</span>(<span class="cm-variable">data</span>,<span class="cm-variable">bais</span>,<span class="cm-number">1</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">y</span> <span class="cm-operator">=</span> <span class="cm-variable">iloc</span>(<span class="cm-variable">data</span>,<span class="cm-number">0</span>,<span class="cm-number">0</span>,<span class="cm-number">3</span>,<span class="cm-number">4</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">x_1</span> <span class="cm-operator">=</span> <span class="cm-variable">iloc</span>(<span class="cm-variable">data</span>,<span class="cm-number">0</span>,<span class="cm-number">0</span>,<span class="cm-number">0</span>,<span class="cm-number">3</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">x_2</span> <span class="cm-operator">=</span> <span class="cm-variable">get_T</span>(<span class="cm-variable">x_1</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable-3">double</span> <span class="cm-variable">alpha</span> <span class="cm-operator">=</span> <span class="cm-number">0.002</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable-3">int</span> <span class="cm-variable">max_epoch</span> <span class="cm-operator">=</span> <span class="cm-number">100</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">weight</span> <span class="cm-operator">=</span> <span class="cm-variable">CreateMatrix</span>(<span class="cm-number">3</span>,<span class="cm-number">1</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">change_va</span>(<span class="cm-variable">weight</span>,<span class="cm-number">0</span>,<span class="cm-number">0</span>,<span class="cm-number">1</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">change_va</span>(<span class="cm-variable">weight</span>,<span class="cm-number">1</span>,<span class="cm-number">0</span>,<span class="cm-number">1</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">change_va</span>(<span class="cm-variable">weight</span>,<span class="cm-number">2</span>,<span class="cm-number">0</span>,<span class="cm-number">1</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable-3">int</span> <span class="cm-variable">epoch</span> <span class="cm-operator">=</span> <span class="cm-number">0</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-keyword">for</span>(<span class="cm-variable">epoch</span> <span class="cm-operator">=</span> <span class="cm-number">0</span>;<span class="cm-variable">epoch</span><span class="cm-operator">&lt;=</span><span class="cm-variable">max_epoch</span>;<span class="cm-variable">epoch</span><span class="cm-operator">++</span>)</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span>{</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" class="cm-tab-wrap-hack" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">cout</span><span class="cm-operator">&lt;&lt;</span><span class="cm-string">"-----------split-line-----------"</span><span class="cm-operator">&lt;&lt;</span><span class="cm-variable">endl</span>;<span class="cm-tab" role="presentation" cm-text="	"> </span><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-tab" role="presentation" cm-text="	">  </span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">temp_mul</span> <span class="cm-operator">=</span> <span class="cm-variable">mul</span>(<span class="cm-variable">x_1</span>,<span class="cm-variable">weight</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">h</span> <span class="cm-operator">=</span><span class="cm-variable">e_sigmoid</span>(<span class="cm-variable">temp_mul</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">error</span> <span class="cm-operator">=</span> <span class="cm-variable">subtract</span>(<span class="cm-variable">y</span>,<span class="cm-variable">h</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">temp_update</span> <span class="cm-operator">=</span> <span class="cm-variable">mul</span>(<span class="cm-variable">x_2</span>,<span class="cm-variable">error</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">Matrix</span> <span class="cm-variable">updata</span> <span class="cm-operator">=</span> <span class="cm-variable">add</span>(<span class="cm-variable">weight</span>,<span class="cm-variable">times_mat</span>(<span class="cm-variable">alpha</span>,<span class="cm-variable">temp_update</span>),<span class="cm-number">0</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">cout_mat</span>(<span class="cm-variable">weight</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">cout</span><span class="cm-operator">&lt;&lt;</span><span class="cm-string">"epoch: "</span><span class="cm-operator">&lt;&lt;</span><span class="cm-variable">epoch</span><span class="cm-operator">&lt;&lt;</span><span class="cm-string">" error: "</span><span class="cm-operator">&lt;&lt;</span><span class="cm-variable">matrix_sum</span>(<span class="cm-variable">error</span>)<span class="cm-operator">&lt;&lt;</span><span class="cm-variable">endl</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" class="cm-tab-wrap-hack" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">cout</span><span class="cm-operator">&lt;&lt;</span><span class="cm-string">"-----------split-line-----------"</span><span class="cm-operator">&lt;&lt;</span><span class="cm-variable">endl</span>;<span class="cm-tab" role="presentation" cm-text="	"> </span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span>}</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-variable">stop</span> <span class="cm-operator">=</span> <span class="cm-variable">clock</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;<span class="cm-variable">printf</span>(<span class="cm-string">"%f\n"</span>, (<span class="cm-variable-3">double</span>)(<span class="cm-variable">stop</span> <span class="cm-operator">-</span> <span class="cm-variable">start</span>) <span class="cm-operator">/</span> <span class="cm-variable">CLOCKS_PER_SEC</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-tab" role="presentation" cm-text="	">  </span><span class="cm-keyword">return</span> <span class="cm-number">0</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 705px;"></div><div class="CodeMirror-gutters" style="display: none; height: 705px;"></div></div></div></pre><p><span>Something :</span></p><blockquote><ol start='' ><li><span>矩阵元素默认为1</span></li><li><span>使用位运算加速防止填充过大的数值,但是会损失一定精度,慎用.</span></li><li><span>记得delete(matrix)在你使用完一个矩阵计算单元以后.</span></li><li><span>api接口更多的接近于pandas和numpy的使用习惯.</span></li><li><span>更多的细节参见目前最新的代码</span></li><li><span>欢迎star和关注.</span></li><li><span>autodiff部分感谢国外博主Omar的思路提醒.</span></li></ol></blockquote><hr /><p>&nbsp;</p><div align="center"><img src="./picture/星月.svg"></div><p><span> 个人小站:</span><a href='http://likedge.top/'><span>极度空间</span></a></p><p><span>作者邮箱:zk@likedge.top | </span><a href='mailto:edge@ibooker.org.cn' target='_blank' class='url'>edge@ibooker.org.cn</a></p><p><span> QQ:2533524298</span></p></div></div>
+<div id='write'  class=''><div align=center><img src="picture/image-20200418210521131.png" alt="image-20200418210521131"  /></div><h1 id='edge-computing-engine'><span>Edge-Computing-Engine</span></h1><p><span>An open-source scientific computing engine designed for matrix computation and machine learning tasks, with CUDA acceleration support.</span></p><p><a href='https://support.apple.com/downloads/macos'><img src="https://img.shields.io/badge/SUPPORT-Macos-brightgreen" referrerpolicy="no-referrer" alt="Edge support"></a>
+<a href='https://ubuntu.com/download/server'><img src="https://img.shields.io/badge/SUPPORT-Ubuntu-brightgreen" referrerpolicy="no-referrer" alt="Edge support"></a>
+<a href='https://github.com/AllenZYJ/Edge-Computing-Engine/actions'><img src="https://img.shields.io/badge/Edge--CI-passing-blue" referrerpolicy="no-referrer" alt="Edge passing"></a>
+<a href='https://raw.githubusercontent.com/tesseract-ocr/tesseract/master/LICENSE'><img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" referrerpolicy="no-referrer" alt="GitHub license"></a></p><h1 id='overview'><span>Overview</span></h1><p><span>Edge-Computing-Engine provides a flexible computational graph implementation that supports:</span></p><ol start='' ><li><p><span>Forward propagation for neural network inference</span></p></li><li><p><span>Backward propagation for training via automatic differentiation</span></p></li><li><p><span>CUDA-accelerated operations for improved performance on NVIDIA GPUs</span></p></li></ol><p><span>The computational graph is built using nodes representing operations such as matrix multiplication, element-wise operations, and activation functions.</span></p><h1 id='1-gpu-features'><span>1. GPU Features</span></h1><h3 id='11-operation-types'><span>1.1 Operation Types</span></h3><p><span>The framework supports the following operations:</span></p><ul><li><p><strong><span>OP_INPUT</span></strong><span>: Input nodes for data and parameters</span></p></li><li><p><strong><span>OP_ADD</span></strong><span>: Element-wise addition</span></p></li><li><p><strong><span>OP_SUB</span></strong><span>: Element-wise subtraction</span></p></li><li><p><strong><span>OP_MUL</span></strong><span>: Element-wise multiplication</span></p></li><li><p><strong><span>OP_DIV</span></strong><span>: Element-wise division</span></p></li><li><p><strong><span>OP_MATMUL</span></strong><span>: Matrix multiplication</span></p></li><li><p><strong><span>OP_RELU</span></strong><span>: ReLU activation function</span></p></li><li><p><strong><span>OP_SIGMOID</span></strong><span>: Sigmoid activation function</span></p></li><li><p><strong><span>OP_TANH</span></strong><span>: Tanh activation function (declared but not implemented)</span></p></li><li><p><strong><span>OP_SOFTMAX</span></strong><span>: Softmax function (declared but not implemented)</span></p></li></ul><h3 id='12-core-classes'><span>1.2 Core Classes</span></h3><ol start='' ><li><p><strong><span>Matrix_CU</span></strong><span>: A custom matrix class with CUDA support</span></p></li><li><p><strong><span>ComputeNode</span></strong><span>: Represents a node in the computational graph</span></p></li><li><p><strong><span>ComputeGraph</span></strong><span>: Manages the graph, including node creation, forward and backward propagation</span></p></li></ol><h3 id='13-cuda-kernels'><span>1.3 CUDA Kernels</span></h3><p><span>The code includes several CUDA kernel functions:</span></p><ul><li><p><strong><span>reluForwardKernel/reluBackwardKernel</span></strong><span>: Forward and backward propagation for ReLU</span></p></li><li><p><strong><span>sigmoidForwardKernel/sigmoidBackwardKernel</span></strong><span>: Forward and backward propagation for Sigmoid</span></p></li><li><p><strong><span>matmulForwardKernel/matmulBackwardAKernel/matmulBackwardBKernel</span></strong><span>: Forward and backward propagation for matrix multiplication</span></p></li><li><p><strong><span>mulBackwardKernel</span></strong><span>: Backward propagation for element-wise multiplication</span></p></li><li><p><strong><span>divBackwardKernel</span></strong><span>: Backward propagation for element-wise division</span></p></li><li><p><strong><span>negGradKernel</span></strong><span>: Helper kernel for computing negative gradients</span></p></li></ul><h3 id='14-cuda-example'><span>1.4 CUDA Example</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="cpp" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="cpp"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10.5px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: currentcolor;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: currentcolor;"><div class="CodeMirror-measure"><span><span>​</span>x</span></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// Create a computational graph</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ComputeGraph</span> <span class="cm-variable">graph</span>;</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// Create input and weight nodes</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ComputeNode</span><span class="cm-operator">*</span> <span class="cm-variable">input</span> <span class="cm-operator">=</span> <span class="cm-variable">graph</span>.<span class="cm-variable">addInput</span>(<span class="cm-variable">input_rows</span>, <span class="cm-variable">input_cols</span>, <span class="cm-variable">batch_size</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ComputeNode</span><span class="cm-operator">*</span> <span class="cm-variable">weight</span> <span class="cm-operator">=</span> <span class="cm-variable">graph</span>.<span class="cm-variable">addInput</span>(<span class="cm-variable">input_cols</span>, <span class="cm-variable">output_cols</span>);</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// Initialize with random values</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">input</span><span class="cm-operator">-&gt;</span><span class="cm-variable">value</span>.<span class="cm-variable">randomInit</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">weight</span><span class="cm-operator">-&gt;</span><span class="cm-variable">value</span>.<span class="cm-variable">randomInit</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// Build forward computation graph</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ComputeNode</span><span class="cm-operator">*</span> <span class="cm-variable">fc1</span> <span class="cm-operator">=</span> <span class="cm-variable">graph</span>.<span class="cm-variable">addMatMul</span>(<span class="cm-variable">input</span>, <span class="cm-variable">weight</span>); &nbsp;<span class="cm-comment">// Fully connected layer</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ComputeNode</span><span class="cm-operator">*</span> <span class="cm-variable">output_node</span> <span class="cm-operator">=</span> <span class="cm-variable">graph</span>.<span class="cm-variable">addReLU</span>(<span class="cm-variable">fc1</span>); &nbsp; &nbsp; &nbsp;<span class="cm-comment">// Apply ReLU activation</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// Perform forward propagation</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">graph</span>.<span class="cm-variable">forward</span>();</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// Compute gradients via backward propagation</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">graph</span>.<span class="cm-variable">backward</span>(<span class="cm-variable">output_node</span>);</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 500px;"></div><div class="CodeMirror-gutters" style="display: none; height: 500px;"></div></div></div></pre><h3 id='15-gpuusage'><span>1.5 GPU_Usage</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10.25px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: currentcolor;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: currentcolor;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">root@5353:/backup<span class="cm-comment"># nvcc -arch=sm_80 -I/usr/local/cuda/include -L/usr/local/cuda/lib64 cuda_mat/mat_grad.cu -o main &amp;&amp; ./main</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">root@5353:/backup<span class="cm-comment"># ./main</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-operator">======</span> Configuration <span class="cm-operator">======</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Input matrix: <span class="cm-number">10000</span> x <span class="cm-number">1000</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Weight matrix: <span class="cm-number">1000</span> x <span class="cm-number">500</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Batch size: <span class="cm-number">32</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Activation: ReLU</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-operator">======</span> CUDA Results <span class="cm-operator">======</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Input first 5x5:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">0</span>.840188 <span class="cm-number">0</span>.394383 <span class="cm-number">0</span>.783099 <span class="cm-number">0</span>.79844 <span class="cm-number">0</span>.911647</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">0</span>.45724 <span class="cm-number">0</span>.640368 <span class="cm-number">0</span>.717092 <span class="cm-number">0</span>.460067 <span class="cm-number">0</span>.54114</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">0</span>.0860517 <span class="cm-number">0</span>.180886 <span class="cm-number">0</span>.426423 <span class="cm-number">0</span>.0470658 <span class="cm-number">0</span>.306902</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">0</span>.0587587 <span class="cm-number">0</span>.0138811 <span class="cm-number">0</span>.622212 <span class="cm-number">0</span>.0391351 <span class="cm-number">0</span>.221551</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">0</span>.456151 <span class="cm-number">0</span>.24875 <span class="cm-number">0</span>.0699601 <span class="cm-number">0</span>.742097 <span class="cm-number">0</span>.216935</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Weight first 5x5:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">0</span>.817311 <span class="cm-number">0</span>.0247108 <span class="cm-number">0</span>.0146763 <span class="cm-number">0</span>.939293 <span class="cm-number">0</span>.502699</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">0</span>.604392 <span class="cm-number">0</span>.921644 <span class="cm-number">0</span>.675689 <span class="cm-number">0</span>.948712 <span class="cm-number">0</span>.58803</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">0</span>.824073 <span class="cm-number">0</span>.747934 <span class="cm-number">0</span>.0448163 <span class="cm-number">0</span>.757354 <span class="cm-number">0</span>.858343</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">0</span>.308744 <span class="cm-number">0</span>.659798 <span class="cm-number">0</span>.941692 <span class="cm-number">0</span>.255731 <span class="cm-number">0</span>.539655</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">0</span>.89383 <span class="cm-number">0</span>.609149 <span class="cm-number">0</span>.799556 <span class="cm-number">0</span>.726306 <span class="cm-number">0</span>.640965</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Output first 5x5:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">256</span>.076 <span class="cm-number">253</span>.23 <span class="cm-number">258</span>.393 <span class="cm-number">259</span>.965 <span class="cm-number">255</span>.971</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">250</span>.843 <span class="cm-number">246</span>.827 <span class="cm-number">252</span>.131 <span class="cm-number">253</span>.493 <span class="cm-number">244</span>.151</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">247</span>.064 <span class="cm-number">244</span>.543 <span class="cm-number">251</span>.723 <span class="cm-number">247</span>.424 <span class="cm-number">250</span>.466</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">249</span>.944 <span class="cm-number">250</span>.359 <span class="cm-number">256</span>.148 <span class="cm-number">252</span>.21 <span class="cm-number">249</span>.615</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">246</span>.675 <span class="cm-number">238</span>.295 <span class="cm-number">252</span>.572 <span class="cm-number">242</span>.94 <span class="cm-number">243</span>.512</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Input gradient first 5x5:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">244</span>.628 <span class="cm-number">251</span>.341 <span class="cm-number">255</span>.388 <span class="cm-number">250</span>.4 <span class="cm-number">249</span>.891</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">244</span>.628 <span class="cm-number">251</span>.341 <span class="cm-number">255</span>.388 <span class="cm-number">250</span>.4 <span class="cm-number">249</span>.891</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">244</span>.628 <span class="cm-number">251</span>.341 <span class="cm-number">255</span>.388 <span class="cm-number">250</span>.4 <span class="cm-number">249</span>.891</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">244</span>.628 <span class="cm-number">251</span>.341 <span class="cm-number">255</span>.388 <span class="cm-number">250</span>.4 <span class="cm-number">249</span>.891</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">244</span>.628 <span class="cm-number">251</span>.341 <span class="cm-number">255</span>.388 <span class="cm-number">250</span>.4 <span class="cm-number">249</span>.891</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">Weight gradient first 5x5:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">159791</span> <span class="cm-number">159791</span> <span class="cm-number">159791</span> <span class="cm-number">159791</span> <span class="cm-number">159791</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">160010</span> <span class="cm-number">160010</span> <span class="cm-number">160010</span> <span class="cm-number">160010</span> <span class="cm-number">160010</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">160266</span> <span class="cm-number">160266</span> <span class="cm-number">160266</span> <span class="cm-number">160266</span> <span class="cm-number">160266</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">159899</span> <span class="cm-number">159899</span> <span class="cm-number">159899</span> <span class="cm-number">159899</span> <span class="cm-number">159899</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">159964</span> <span class="cm-number">159964</span> <span class="cm-number">159964</span> <span class="cm-number">159964</span> <span class="cm-number">159964</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-operator">======</span> Performance <span class="cm-operator">======</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">CUDA computation time: <span class="cm-number">2201</span>.45 ms</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 1075px;"></div><div class="CodeMirror-gutters" style="display: none; height: 1075px;"></div></div></div></pre><h3 id='16-requirements'><span>1.6 Requirements</span></h3><ul><li><p><span>CUDA-capable NVIDIA GPU (for GPU features)</span></p></li><li><p><span>CUDA Toolkit</span></p></li><li><p><span>C++11 or above</span></p></li><li><p><span>nvcc: NVIDIA (R) Cuda compiler driver</span>
+<span>Copyright (c) 2005-2024 NVIDIA Corporation</span>
+<span>Built on Thu_Mar_28_02:18:24_PDT_2024</span>
+<span>Cuda compilation tools, release 12.4, V12.4.131</span>
+<span>Build cuda_12.4.r12.4/compiler.34097967_0</span></p></li></ul><h1 id='2-cpu-features'><span>2. CPU Features</span></h1><ul><li><p><code>read_csv(string &amp;file_path)</code><span>: Reads a formatted file (csv) and returns a matrix with automatically calculated dimensions</span></p></li><li><p><span>Formatted file writing interface (similar to </span><code>pandas.to_csv</code><span>)</span></p></li><li><p><span>Broadcasting mechanism for matrices with padding interface</span></p></li><li><p><span>Fully connected layer forward and backward propagation interfaces with automatic differentiation support</span></p></li><li><p><span>Matrix differentiation and automatic differentiation interfaces</span></p></li><li><p><span>Various matrix operations:</span></p><ul><li><p><code>create(row,cols)</code><span>: Creates a matrix with specified dimensions</span></p></li><li><p><code>add</code><span>, </span><code>subtract</code><span>, </span><code>mul</code><span>: Basic matrix operations</span></p></li><li><p><code>get_T</code><span>: Matrix transposition</span></p></li><li><p><code>flatten</code><span>: Returns a flattened array</span></p></li><li><p><code>matrix_rs</code><span>: Matrix structure compression</span></p></li><li><p><code>matrix_sum</code><span>, </span><code>matrix_mean</code><span>: Statistical operations</span></p></li><li><p><code>iloc</code><span>: Matrix slicing</span></p></li><li><p><span>And many more</span></p></li></ul></li><li><p><span>Activation functions (Relu)</span></p></li><li><p><span>Loss functions (MSE)</span></p></li><li><p><span>Neural network components (convolutional layers, pooling layers)</span></p></li></ul><h3 id='21-cpuautodiffinstallation'><span>2.1 CPU_autodiff_Installation</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10.5px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: currentcolor;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: currentcolor;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-builtin">git</span> clone <span class="cm-builtin">git</span>@github.com:AllenZYJ/Edge-Computing-Engine.git</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-builtin">cd</span> Edge-Computing-Engine/install_diff &amp;&amp; <span class="cm-builtin">make</span> &amp;&amp; <span class="cm-builtin">make</span> install</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 50px;"></div><div class="CodeMirror-gutters" style="display: none; height: 50px;"></div></div></div></pre><p><span>Note: If you&#39;re not a root user, you may need to add sudo to the make install command.</span></p><h3 id='22-cpuusage'><span>2.2 CPU_Usage</span></h3><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="shell" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="shell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 10.5px; left: 4px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: currentcolor;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: currentcolor;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">root@5353:/backup<span class="cm-comment"># .g++ main.cpp -o main -lautodiff</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">root@5353:/backup<span class="cm-comment"># ./main</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">0</span>.000000<span class="cm-operator">+</span><span class="cm-attribute">-0</span>.000378*1.000000</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">-0</span>.000378<span class="cm-operator">+</span><span class="cm-number">0</span>.000000*1.000000</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">....</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">-0</span>.000378<span class="cm-operator">+</span><span class="cm-number">0</span>.000000*1.000000</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-number">0</span>.000000<span class="cm-operator">+</span><span class="cm-attribute">-0</span>.000378*1.000000</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">-0</span>.000378<span class="cm-operator">+</span><span class="cm-number">0</span>.000000*1.000000</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">-0</span>.000378<span class="cm-operator">+</span><span class="cm-number">0</span>.000000*1.000000</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">weight_1_grad:</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">[</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; <span class="cm-attribute">-0</span>.000378 &nbsp; &nbsp;<span class="cm-attribute">-0</span>.000378 &nbsp; &nbsp;<span class="cm-attribute">-0</span>.000378 </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; <span class="cm-attribute">-0</span>.000378 &nbsp; &nbsp;<span class="cm-attribute">-0</span>.000378 &nbsp; &nbsp;<span class="cm-attribute">-0</span>.000378 </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; <span class="cm-attribute">-0</span>.000378 &nbsp; &nbsp;<span class="cm-attribute">-0</span>.000378 &nbsp; &nbsp;<span class="cm-attribute">-0</span>.000378 </span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">]</span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">neraul end;</span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 400px;"></div><div class="CodeMirror-gutters" style="display: none; height: 400px;"></div></div></div></pre><h1 id='3-contributing'><span>3. Contributing</span></h1><p><span>Contributions are welcome. To contribute:</span></p><ol start='' ><li><p><span>Fork the repository</span></p></li><li><p><span>Create a new branch: </span><code>git checkout -b my-new-feature</code></p></li><li><p><span>Make your changes and commit them: </span><code>git commit -am &#39;Add some feature&#39;</code></p></li><li><p><span>Push your changes: </span><code>git push origin my-new-feature</code></p></li><li><p><span>Submit a pull request</span></p></li></ol><p><span>Please ensure your code adheres to the existing style and passes tests before submitting.</span></p><h2 id='stargazers-over-time'><span>Stargazers over time</span></h2><p><a href='https://starchart.cc/AllenZYJ/Edge-Computing-Engine'><img src="https://starchart.cc/AllenZYJ/Edge-Computing-Engine.svg" referrerpolicy="no-referrer" alt="Stargazers over time"></a></p><h2 id='contact'><span>Contact</span></h2><ul><li><p><span>Email: zk@likedge.top or </span><a href='mailto:edge@ibooker.org.cn' target='_blank' class='url'>edge@ibooker.org.cn</a></p></li><li><p><span>Website: </span><a href='http://likedge.top/'><span>Likedge</span></a></p></li></ul><h2 id='license'><span>License</span></h2><p><span>Edge-Computing-Engine is released under the Apache 2.0 License. See the </span><a href='https://www.apache.org/licenses/LICENSE-2.0'><code>LICENSE</code></a><span> file for details.</span></p></div></div>
 </body>
 </html>

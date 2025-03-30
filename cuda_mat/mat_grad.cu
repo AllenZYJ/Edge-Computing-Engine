@@ -20,7 +20,6 @@ enum OpType {
     OP_TANH,     // Tanh激活函数
     OP_SOFTMAX   // Softmax函数
 };
-
 // 计算图节点
 struct ComputeNode {
     OpType op;                     // 操作类型
@@ -682,14 +681,14 @@ void matrixMatMulCPU(const Matrix_CU& A, const Matrix_CU& B, Matrix_CU& C) {
 }
 int main() {
     // 可配置参数
-    int input_rows = 10000;        
-    int input_cols = 1000;         
-    int output_cols = 500;         
+    int input_rows = 100;        
+    int input_cols = 100;         
+    int output_cols = 50;         
     int batch_size = 32;           
     bool use_relu = true;          
     int print_rows = 5;           
     int print_cols = 5;           
-    bool verify_with_cpu = false; 
+    bool verify_with_cpu = true; 
     cudaFree(0);
     std::cout << "====== Configuration ======\n";
     std::cout << "Input matrix: " << input_rows << " x " << input_cols << std::endl;
